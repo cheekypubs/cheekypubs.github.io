@@ -1,0 +1,129 @@
+name: Process Story from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-story-issue:
+    # Only run if the issue title starts with "[Story Submission]"
+    if: startsWith(github.event.issue.title, '[Story Submission]')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse issue and create story
+        id: parse
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = issue.body;
+            
+            // Extract filename from issue body
+            const filenameMatch = body.match(/### Filename\s*\n`([^`]+)`/);
+            const contentMatch = body.match(/### Content \(Base64 Encoded\)\s*\n```\s*\n([\s\S]*?)\n```/);
+            const titleMatch = body.match(/\*\*Title:\*\* (.+)/);
+            const authorMatch = body.match(/\*\*Author:\*\* (.+)/);
+            
+            if (!filenameMatch || !contentMatch) {
+              core.setFailed('Could not parse story submission');
+              return;
+            }
+            
+            const filename = filenameMatch[1].trim();
+            const content = contentMatch[1].trim();
+            const title = titleMatch ? titleMatch[1].trim() : 'Unknown';
+            const author = authorMatch ? authorMatch[1].trim() : 'Anonymous';
+            
+            // Decode base64 content
+            const decodedContent = Buffer.from(content, 'base64').toString('utf8');
+            
+            // Write the story file
+            const fs = require('fs');
+            const path = require('path');
+            
+            const storyPath = path.join('_stories', filename);
+            fs.writeFileSync(storyPath, decodedContent);
+            
+            // Create author page if needed
+            // Match Jekyll's slugify: replace non-alphanumeric with hyphens, then collapse and trim
+            const authorSlug = author.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            const authorPath = path.join('pages', 'authors', `${authorSlug}.md`);
+            
+            if (!fs.existsSync(authorPath)) {
+              fs.mkdirSync(path.dirname(authorPath), { recursive: true });
+              const authorContent = [
+                '---',
+                'layout: author',
+                'title: "Stories by ' + author + '"',
+                'author: "' + author + '"',
+                'permalink: /pages/authors/' + authorSlug + '/',
+                '---',
+                ''
+              ].join('\n');
+              fs.writeFileSync(authorPath, authorContent);
+            }
+            
+            // Extract tags and create tag pages
+            const tagsMatch = decodedContent.match(/tags:\s*\n((?:\s+-\s+.+\n)+)/);
+            if (tagsMatch) {
+              const tags = tagsMatch[1].match(/-\s+(.+)/g).map(t => t.replace(/^-\s+/, '').trim());
+              for (const tag of tags) {
+                // Match Jekyll's slugify: replace non-alphanumeric with hyphens, then collapse and trim
+                const tagSlug = tag.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                const tagPath = path.join('pages', 'tags', `${tagSlug}.md`);
+                if (!fs.existsSync(tagPath)) {
+                  fs.mkdirSync(path.dirname(tagPath), { recursive: true });
+                  const tagContent = [
+                    '---',
+                    'layout: tag',
+                    'title: "Stories tagged ' + tag + '"',
+                    'tag: "' + tag + '"',
+                    'permalink: /pages/tags/' + tagSlug + '/',
+                    '---',
+                    ''
+                  ].join('\n');
+                  fs.writeFileSync(tagPath, tagContent);
+                }
+              }
+            }
+            
+            core.setOutput('filename', filename);
+            core.setOutput('title', title);
+            core.setOutput('author', author);
+            core.setOutput('issue_number', issue.number);
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add _stories/ pages/authors/ pages/tags/
+          git commit -m "Add new story: ${{ steps.parse.outputs.filename }}" || echo "No changes to commit"
+          git push
+
+      - name: Close and comment on issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = ${{ steps.parse.outputs.issue_number }};
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: '✅ Story has been published!\n\nTitle: **${{ steps.parse.outputs.title }}**\nAuthor: **${{ steps.parse.outputs.author }}**\n\nThe story will be visible on the site once the build completes.'
+            });
+            
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              state: 'closed',
+              labels: ['story-published']
+            });

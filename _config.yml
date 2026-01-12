@@ -1,0 +1,33 @@
+# Cheeky Pubs - Stories Site
+title: Cheeky Pubs
+description: A collection of stories from the Cheeky community.
+
+# Site URL
+url: "https://cheekypubs.github.io"
+baseurl: ""
+
+# Build Settings
+markdown: kramdown
+theme: minima
+permalink: pretty
+future: true
+
+# Collections
+collections:
+  stories:
+    output: true
+    permalink: /:path/
+
+# Defaults for stories collection
+defaults:
+  - scope:
+      path: ""
+      type: "stories"
+    values:
+      layout: "story"
+
+# Exclusions
+exclude:
+  - README.md
+  - netlify.toml
+  - netlify/

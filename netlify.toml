@@ -1,0 +1,14 @@
+[build]
+  # Skip building - we only use Netlify for the serverless function
+  # The main site is hosted on GitHub Pages
+  publish = "netlify/public"
+  command = "echo 'Skipping build - using Netlify for functions only'"
+
+[functions]
+  directory = "netlify/functions"
+
+# Redirect for the function (optional, makes URL cleaner)
+[[redirects]]
+  from = "/api/submit-story"
+  to = "/.netlify/functions/submit-story"
+  status = 200

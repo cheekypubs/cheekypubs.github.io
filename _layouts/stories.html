@@ -1,0 +1,147 @@
+---
+layout: default
+---
+
+<div class="stories-page">
+  <!-- Mobile Authors/Tags Toggle -->
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+    <span>Authors &amp; Tags</span>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M7 10l5 5 5-5z"/>
+    </svg>
+  </button>
+
+  <div class="stories-container">
+    <!-- Sidebar with Authors and Tags -->
+    <aside class="stories-sidebar" id="storiesSidebar">
+      <div class="sidebar-section">
+        <h3>Authors</h3>
+        <ul class="author-list">
+          {% assign authors = site.stories | map: "author" | uniq | sort %}
+          {% for author in authors %}
+            {% assign author_stories = site.stories | where: "author", author %}
+            {% assign author_slug = author | slugify %}
+            <li>
+              <a href="{{ site.baseurl }}/pages/authors/{{ author_slug }}">
+                {{ author }} <span class="count">({{ author_stories.size }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Tags</h3>
+        <div class="tag-cloud">
+          {% comment %}Collect unique tag slugs and count stories per slug{% endcomment %}
+          {% assign tag_slugs = "" | split: "" %}
+          {% assign tag_names = "" | split: "" %}
+          {% for story in site.stories %}
+            {% for tag in story.tags %}
+              {% assign tag_slug = tag | slugify %}
+              {% unless tag_slugs contains tag_slug %}
+                {% assign tag_slugs = tag_slugs | push: tag_slug %}
+                {% assign tag_names = tag_names | push: tag %}
+              {% endunless %}
+            {% endfor %}
+          {% endfor %}
+          {% assign sorted_slugs = tag_slugs | sort %}
+          {% for slug in sorted_slugs %}
+            {% assign story_count = 0 %}
+            {% for story in site.stories %}
+              {% for tag in story.tags %}
+                {% assign t_slug = tag | slugify %}
+                {% if t_slug == slug %}
+                  {% assign story_count = story_count | plus: 1 %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+            {% comment %}Find original tag name for display{% endcomment %}
+            {% for i in (0..tag_slugs.size) %}
+              {% if tag_slugs[i] == slug %}
+                {% assign display_tag = tag_names[i] %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            <a href="{{ site.baseurl }}/pages/tags/{{ slug }}" class="tag">
+              {{ display_tag | downcase }} <span class="count">({{ story_count }})</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <a href="{{ '/submit/' | absolute_url }}" class="submit-link-btn">
+          ✏️ Submit a Story
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Stories List -->
+    <main class="stories-main">
+      <h1>{{ page.title }}</h1>
+      
+      {% if page.filter_author %}
+        <p class="filter-notice">Showing stories by <strong>{{ page.filter_author }}</strong> 
+          <a href="{{ '/' | absolute_url }}" class="clear-filter">[Clear filter]</a>
+        </p>
+      {% endif %}
+      
+      {% if page.filter_tag %}
+        <p class="filter-notice">Showing stories tagged <strong>{{ page.filter_tag }}</strong>
+          <a href="{{ '/' | absolute_url }}" class="clear-filter">[Clear filter]</a>
+        </p>
+      {% endif %}
+
+      {{ content }}
+
+      <div class="story-list">
+        {% assign stories_to_show = page.stories | default: site.stories %}
+        {% assign sorted_stories = stories_to_show | sort: "date" | reverse %}
+        
+        {% assign per_page = 20 %}
+        {% assign total_stories = sorted_stories.size %}
+        {% assign total_pages = total_stories | divided_by: per_page %}
+        {% assign remainder = total_stories | modulo: per_page %}
+        {% if remainder > 0 %}
+          {% assign total_pages = total_pages | plus: 1 %}
+        {% endif %}
+        
+        {% for story in sorted_stories limit: per_page %}
+          {% assign story_author_slug = story.author | slugify %}
+          <article class="story-preview">
+            <h2 class="story-title">
+              <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
+            </h2>
+            <div class="story-meta">
+              <span class="story-author">
+                By <a href="{{ site.baseurl }}/pages/authors/{{ story_author_slug }}">{{ story.author }}</a>
+              </span>
+              <span class="story-date">{{ story.date | date: "%B %-d, %Y" }}</span>
+            </div>
+            {% if story.tags.size > 0 %}
+            <div class="story-tags">
+              {% for tag in story.tags %}
+                {% assign tag_slug = tag | slugify %}
+                <a href="{{ site.baseurl }}/pages/tags/{{ tag_slug }}" class="tag">{{ tag | downcase }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <p class="story-excerpt">
+              {{ story.excerpt | strip_html | truncatewords: 50 }}
+            </p>
+            <a href="{{ story.url | absolute_url }}" class="read-more">Read more &rarr;</a>
+          </article>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination for JavaScript -->
+      <div class="stories-pagination" id="storiesPagination" data-per-page="{{ per_page }}" data-total="{{ total_stories }}">
+        <!-- Pagination will be handled by JavaScript for client-side pagination -->
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/stories.js' | absolute_url }}"></script>

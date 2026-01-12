@@ -1,0 +1,77 @@
+---
+layout: default
+title: Submit a Story
+permalink: /submit/
+---
+
+<div class="submit-page">
+  <h1>Submit a Story</h1>
+  
+  <!-- Password Gate -->
+  <div id="passwordGate" class="password-gate">
+    <div class="password-container">
+      <h2>🔒 Password Required</h2>
+      <p>Enter the submission password to access the story submission form.</p>
+      <div class="password-form">
+        <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        <button type="button" id="passwordSubmit" class="btn-primary">Enter</button>
+      </div>
+      <p id="passwordError" class="error-message" style="display: none;">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- Story Submission Form (hidden until password is correct) -->
+  <div id="submissionForm" class="submission-form" style="display: none;">
+    <p class="form-intro">Fill out the form below to submit your story. All fields marked with * are required.</p>
+    
+    <form id="storyForm">
+      <div class="form-group">
+        <label for="storyTitle">Story Title *</label>
+        <input type="text" id="storyTitle" name="title" required placeholder="Enter your story title">
+      </div>
+
+      <div class="form-group">
+        <label for="storyAuthor">Author Name *</label>
+        <input type="text" id="storyAuthor" name="author" required placeholder="Your pen name">
+      </div>
+
+      <div class="form-group">
+        <label for="storyTags">Tags</label>
+        <input type="text" id="storyTags" name="tags" placeholder="e.g., romance, drama, fiction (comma separated)">
+        <small class="form-hint">Separate multiple tags with commas. All tags will be displayed in lowercase.</small>
+      </div>
+
+      <div class="form-group">
+        <label for="storyContent">Story Content *</label>
+        <textarea id="storyContent" name="content" required rows="20" placeholder="Write or paste your story here. You can use Markdown formatting."></textarea>
+        <small class="form-hint">You can use <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a> for formatting (bold, italic, headers, etc.)</small>
+        <div class="form-note">
+          <strong>📷 Including Images:</strong> Upload your image to a free hosting service like <a href="https://imgur.com/" target="_blank" rel="noopener">Imgur</a>, <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB</a>, or <a href="https://postimages.org/" target="_blank" rel="noopener">Postimages</a>. Then copy the direct image URL and use this Markdown syntax in your story:<br>
+          <code>![Image description](https://i.imgur.com/yourimage.jpg)</code>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary btn-submit" id="submitBtn">
+          <span class="btn-text">Submit Story</span>
+          <span class="btn-loading" style="display: none;">Submitting...</span>
+        </button>
+      </div>
+    </form>
+
+    <div id="submissionSuccess" class="submission-success" style="display: none;">
+      <h2>✅ Story Submitted!</h2>
+      <p>Thank you for your submission. Your story has been received and will be reviewed before being published.</p>
+      <p><a href="{{ '/' | absolute_url }}">Return to Stories</a></p>
+    </div>
+
+    <div id="submissionError" class="submission-error" style="display: none;">
+      <h2>❌ Submission Error</h2>
+      <p>There was an error submitting your story. Please try again or contact us if the problem persists.</p>
+      <p id="errorDetails"></p>
+      <button type="button" class="btn-secondary" onclick="document.getElementById('submissionError').style.display='none'; document.getElementById('storyForm').style.display='block';">Try Again</button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/submit-story.js' | absolute_url }}"></script>

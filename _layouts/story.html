@@ -1,0 +1,33 @@
+---
+layout: default
+---
+<div class="content-box">
+  <article class="story">
+    <header class="story-header">
+      <h1>{{ page.title }}</h1>
+      <div class="story-meta">
+        {% assign author_slug = page.author | slugify %}
+        <span class="story-author">
+          By <a href="{{ site.baseurl }}/pages/authors/{{ author_slug }}">{{ page.author }}</a>
+        </span>
+        <span class="story-date">{{ page.date | date: "%B %-d, %Y" }}</span>
+      </div>
+      {% if page.tags.size > 0 %}
+      <div class="story-tags">
+        {% for tag in page.tags %}
+          {% assign tag_slug = tag | slugify %}
+          <a href="{{ site.baseurl }}/pages/tags/{{ tag_slug }}" class="tag">{{ tag | downcase }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+
+    <div class="story-content">
+      {{ content }}
+    </div>
+
+    <footer class="story-footer">
+      <a href="{{ '/' | absolute_url }}" class="back-link">&larr; Back to Stories</a>
+    </footer>
+  </article>
+</div>

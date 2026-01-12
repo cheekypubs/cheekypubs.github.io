@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ page.title }} | {{ site.title }}</title>
+    
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | absolute_url }}">
+</head>
+<body>
+
+    <header class="header">
+        {% include header.html %}
+    </header>
+
+    <main class="main-content">
+        <div class="page-container">
+          {{ content }}
+        </div>
+    </main>
+
+    <footer class="footer">
+        {% include footer.html %}
+    </footer>
+    
+    <script src="{{ '/assets/js/hamburger.js' | absolute_url }}"></script>
+</body>
+</html>
