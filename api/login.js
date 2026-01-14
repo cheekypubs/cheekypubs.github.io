@@ -37,9 +37,24 @@ function verifyToken(token, secret) {
   }
 }
 
+// CORS helper for cross-origin requests from GitHub Pages
+function setCorsHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://cheekypubs.github.io');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+}
+
 export default async function handler(req, res) {
+  setCorsHeaders(res);
+
+  // Handle CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'POST, OPTIONS');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
@@ -65,8 +80,8 @@ export default async function handler(req, res) {
   const payload = { iat: now, exp: now + 60 * 60 }; // 1 hour session
   const token = signToken(payload, sessionSecret);
 
-  // Set HttpOnly secure cookie
-  const cookie = `session=${token}; HttpOnly; Path=/; Max-Age=${60 * 60}; SameSite=Lax; Secure`;
+  // Set HttpOnly secure cookie (SameSite=None for cross-origin)
+  const cookie = `session=${token}; HttpOnly; Path=/; Max-Age=${60 * 60}; SameSite=None; Secure`;
   res.setHeader('Set-Cookie', cookie);
   return res.status(200).json({ status: 'ok' });
 }

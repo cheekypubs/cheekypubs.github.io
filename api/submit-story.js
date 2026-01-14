@@ -3,9 +3,24 @@
 
 import crypto from 'crypto';
 
+// CORS helper for cross-origin requests from GitHub Pages
+function setCorsHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://cheekypubs.github.io');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+}
+
 export default async function handler(req, res) {
+  setCorsHeaders(res);
+
+  // Handle CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'POST, OPTIONS');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 

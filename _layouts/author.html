@@ -70,12 +70,6 @@ layout: default
           {% endfor %}
         </div>
       </div>
-
-      <div class="sidebar-section">
-        <a href="{{ '/submit/' | absolute_url }}" class="submit-link-btn">
-          ✏️ Submit a Story
-        </a>
-      </div>
     </aside>
 
     <!-- Main Stories List -->
@@ -90,10 +84,35 @@ layout: default
       <div class="story-list">
         {% assign author_stories = site.stories | where: "author", page.author | sort: "date" | reverse %}
         
+        {% comment %}Group multi-chapter stories - only show first chapter{% endcomment %}
+        {% assign displayed_story_ids = "" | split: "" %}
+        {% assign filtered_stories = "" | split: "" %}
         {% for story in author_stories %}
+          {% if story.story_id %}
+            {% unless displayed_story_ids contains story.story_id %}
+              {% assign story_chapters = author_stories | where: "story_id", story.story_id | sort: "chapter" %}
+              {% assign first_chapter = story_chapters | first %}
+              {% assign filtered_stories = filtered_stories | push: first_chapter %}
+              {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
+            {% endunless %}
+          {% else %}
+            {% assign filtered_stories = filtered_stories | push: story %}
+          {% endif %}
+        {% endfor %}
+        
+        {% for story in filtered_stories %}
+          {% if story.story_id %}
+            {% assign story_chapters = site.stories | where: "story_id", story.story_id %}
+            {% assign chapter_count = story_chapters.size %}
+          {% else %}
+            {% assign chapter_count = 0 %}
+          {% endif %}
           <article class="story-preview">
             <h2 class="story-title">
               <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
+              {% if chapter_count > 1 %}
+                <span class="chapter-badge">{{ chapter_count }} chapters</span>
+              {% endif %}
             </h2>
             <div class="story-meta">
               <span class="story-date">{{ story.date | date: "%B %-d, %Y" }}</span>

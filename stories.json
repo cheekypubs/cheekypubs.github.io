@@ -1,0 +1,17 @@
+---
+layout: null
+---
+[
+  {% for story in site.stories %}
+  {
+    "title": {{ story.title | jsonify }},
+    "author": {{ story.author | jsonify }},
+    "url": {{ story.url | absolute_url | jsonify }},
+    "date": {{ story.date | date: "%Y-%m-%d" | jsonify }},
+    "story_id": {{ story.story_id | jsonify }},
+    "chapter": {{ story.chapter | default: nil | jsonify }},
+    "chapter_title": {{ story.chapter_title | jsonify }},
+    "tags": {{ story.tags | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

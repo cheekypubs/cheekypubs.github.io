@@ -625,6 +625,8 @@ a {
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="number"],
+.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 12px;
@@ -635,6 +637,15 @@ a {
     box-sizing: border-box;
 }
 
+.form-group select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.form-group input[type="number"] {
+    max-width: 120px;
+}
+
 .form-group textarea {
     resize: vertical;
     min-height: 300px;
@@ -642,10 +653,59 @@ a {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
     border-color: #228B22;
     box-shadow: 0 0 0 2px rgba(34, 139, 34, 0.1);
+}
+
+/* Radio button group styling */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: normal;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.radio-label:hover {
+    border-color: #228B22;
+}
+
+.radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #228B22;
+}
+
+.radio-label input[type="radio"]:checked + span {
+    color: #228B22;
+    font-weight: bold;
+}
+
+.chapter-type-group {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.chapter-type-group > label {
+    margin-bottom: 12px;
+    font-size: 1.1em;
 }
 
 .form-hint {
@@ -860,5 +920,148 @@ a {
     
     .main-content {
         padding: 10px;
+    }
+}
+
+/* =============================================== */
+/* --- Multi-Chapter Story Styles --- */
+/* =============================================== */
+
+/* Chapter badge on story listing */
+.chapter-badge {
+    display: inline-block;
+    background-color: #228B22;
+    color: white;
+    font-size: 0.55em;
+    font-weight: normal;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Chapter indicator in story header */
+.chapter-indicator {
+    display: inline-block;
+    background-color: #A52A2A;
+    color: white;
+    font-size: 0.5em;
+    font-weight: normal;
+    padding: 4px 10px;
+    border-radius: 15px;
+    margin-left: 12px;
+    vertical-align: middle;
+}
+
+/* Chapter navigation at bottom of story */
+.chapter-navigation {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #A52A2A;
+}
+
+.chapter-navigation h3 {
+    margin: 0 0 15px 0;
+    color: #A52A2A;
+    font-size: 1.1em;
+}
+
+.chapter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chapter-list li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.chapter-list li a {
+    display: block;
+    padding: 8px 15px;
+    color: #228B22;
+    text-decoration: none;
+    font-weight: normal;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.chapter-list li a:hover {
+    background-color: #228B22;
+    color: white;
+}
+
+.chapter-list li.current-chapter {
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+}
+
+.chapter-list li.current-chapter a {
+    color: white;
+    font-weight: bold;
+}
+
+.chapter-list li.current-chapter a:hover {
+    background-color: #A52A2A;
+}
+
+/* Prev/Next chapter buttons */
+.chapter-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.chapter-prev,
+.chapter-next {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #228B22;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.chapter-prev:hover,
+.chapter-next:hover {
+    background-color: #1a6b1a;
+    text-decoration: none;
+}
+
+.chapter-next {
+    margin-left: auto;
+}
+
+/* Responsive chapter styles */
+@media (max-width: 600px) {
+    .chapter-badge {
+        font-size: 0.5em;
+        padding: 2px 6px;
+    }
+    
+    .chapter-indicator {
+        display: block;
+        margin: 10px 0 0 0;
+        width: fit-content;
+    }
+    
+    .chapter-list {
+        flex-direction: column;
+    }
+    
+    .chapter-nav-buttons {
+        flex-direction: column;
+    }
+    
+    .chapter-next {
+        margin-left: 0;
     }
 }

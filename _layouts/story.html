@@ -4,7 +4,7 @@ layout: default
 <div class="content-box">
   <article class="story">
     <header class="story-header">
-      <h1>{{ page.title }}</h1>
+      <h1>{{ page.title }}{% if page.chapter %} <span class="chapter-indicator">Chapter {{ page.chapter }}</span>{% endif %}</h1>
       <div class="story-meta">
         {% assign author_slug = page.author | slugify %}
         <span class="story-author">
@@ -25,6 +25,43 @@ layout: default
     <div class="story-content">
       {{ content }}
     </div>
+
+    {% comment %}Chapter Navigation{% endcomment %}
+    {% if page.story_id %}
+      {% assign story_chapters = site.stories | where: "story_id", page.story_id | sort: "chapter" %}
+      {% if story_chapters.size > 1 %}
+      <nav class="chapter-navigation">
+        <h3>Chapters</h3>
+        <ul class="chapter-list">
+          {% for ch in story_chapters %}
+            <li{% if ch.url == page.url %} class="current-chapter"{% endif %}>
+              <a href="{{ ch.url | absolute_url }}">
+                Chapter {{ ch.chapter }}{% if ch.chapter_title %}: {{ ch.chapter_title }}{% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="chapter-nav-buttons">
+          {% for ch in story_chapters %}
+            {% if ch.chapter == page.chapter %}
+              {% assign prev_chapter = page.chapter | minus: 1 %}
+              {% assign next_chapter = page.chapter | plus: 1 %}
+              {% for prev in story_chapters %}
+                {% if prev.chapter == prev_chapter %}
+                  <a href="{{ prev.url | absolute_url }}" class="chapter-prev">&larr; Previous Chapter</a>
+                {% endif %}
+              {% endfor %}
+              {% for next in story_chapters %}
+                {% if next.chapter == next_chapter %}
+                  <a href="{{ next.url | absolute_url }}" class="chapter-next">Next Chapter &rarr;</a>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </nav>
+      {% endif %}
+    {% endif %}
 
     <footer class="story-footer">
       <a href="{{ '/' | absolute_url }}" class="back-link">&larr; Back to Stories</a>

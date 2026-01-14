@@ -25,6 +25,48 @@ permalink: /submit/
     <p class="form-intro">Fill out the form below to submit your story. All fields marked with * are required.</p>
     
     <form id="storyForm">
+      <!-- Chapter Type Selection -->
+      <div class="form-group chapter-type-group">
+        <label>Story Type</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="chapterType" value="standalone" checked> 
+            <span>Standalone Story</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="chapterType" value="new-series"> 
+            <span>Start New Multi-Chapter Series</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="chapterType" value="add-chapter"> 
+            <span>Add Chapter to Existing Story</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Existing Story Selection (for adding chapters) -->
+      <div class="form-group" id="existingStoryGroup" style="display: none;">
+        <label for="existingStory">Select Existing Story *</label>
+        <select id="existingStory" name="existingStory">
+          <option value="">Loading stories...</option>
+        </select>
+        <small class="form-hint">Select the story you want to add a new chapter to.</small>
+      </div>
+
+      <!-- Chapter Number (for multi-chapter stories) -->
+      <div class="form-group" id="chapterNumberGroup" style="display: none;">
+        <label for="chapterNumber">Chapter Number *</label>
+        <input type="number" id="chapterNumber" name="chapterNumber" min="1" value="1" placeholder="1">
+        <small class="form-hint">For new series, this starts at 1. For existing stories, enter the next chapter number.</small>
+      </div>
+
+      <!-- Chapter Title (optional) -->
+      <div class="form-group" id="chapterTitleGroup" style="display: none;">
+        <label for="chapterTitle">Chapter Title (Optional)</label>
+        <input type="text" id="chapterTitle" name="chapterTitle" placeholder="e.g., The Beginning">
+        <small class="form-hint">An optional subtitle for this chapter.</small>
+      </div>
+
       <div class="form-group">
         <label for="storyTitle">Story Title *</label>
         <input type="text" id="storyTitle" name="title" required placeholder="Enter your story title">
