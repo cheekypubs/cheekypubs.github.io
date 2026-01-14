@@ -3,8 +3,8 @@
  * Handles password authentication and story submission to GitHub
  */
 
-// Netlify Function URL
-const STORY_SUBMIT_URL = 'https://cheekypub.netlify.app/.netlify/functions/submit-story';
+// Serverless function URL (relative path for Vercel)
+const STORY_SUBMIT_URL = '/api/submit-story';
 
 document.addEventListener('DOMContentLoaded', function() {
   // CONFIGURATION: Set your submission password here
@@ -108,53 +108,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const fullContent = `${frontMatter}\n${content}`;
     
     try {
-      // Submit to GitHub via API (requires a GitHub Actions workflow or serverless function)
-      await submitToGitHub(filename, fullContent, title, author);
+      // Submit to serverless function (Vercel) which will trigger GitHub Actions
+      await submitToGitHub(filename, fullContent, title, author, tags);
       
       // Show success message
       storyForm.style.display = 'none';
       document.getElementById('submissionSuccess').style.display = 'block';
       
+    try {
+      // Submit to the configured serverless endpoint
+      if (!STORY_SUBMIT_URL) throw new Error('WORKER_NOT_CONFIGURED');
+
+      const response = await fetch(STORY_SUBMIT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: title,
+          author: author,
+          content: fullContent,
+          tags: tags
+        })
+      });
+
+      if (!response.ok) {
+        const body = await response.text();
+        throw new Error(`Server error: ${response.status} ${body}`);
+      }
+
+      return await response.json();
+
     } catch (error) {
       console.error('Submission error:', error);
-      storyForm.style.display = 'none';
-      document.getElementById('submissionError').style.display = 'block';
-      document.getElementById('errorDetails').textContent = error.message;
-    } finally {
-      // Reset button state
-      btnText.style.display = 'inline';
-      btnLoading.style.display = 'none';
-      submitBtn.disabled = false;
+      if (error.message === 'WORKER_NOT_CONFIGURED') {
+        throw new Error('The submission system is not configured. Your story has been saved locally.');
+      }
+      throw error;
     }
-  }
-  
-  function generateFrontMatter(title, author, date, tags) {
-    const dateStr = date.toISOString().replace('T', ' ').substring(0, 19) + ' -0500';
-    
-    let yaml = `---
-layout: story
-title: "${title.replace(/"/g, '\\"')}"
-author: "${author.replace(/"/g, '\\"')}"
-date: ${dateStr}
-`;
-    
-    if (tags.length > 0) {
-      yaml += 'tags:\n';
-      tags.forEach(tag => {
-        yaml += `  - ${tag}\n`;
-      });
-    }
-    
-    yaml += '---\n\n';
-    return yaml;
-  }
-  
-  async function submitToGitHub(filename, content, title, author) {
-    // This function submits the story data via GitHub Issues
-    // The issue will trigger a GitHub Action that processes and commits the story
-    
-    const submissionData = {
-      filename: filename,
       content: btoa(unescape(encodeURIComponent(content))), // Base64 encode
       title: title,
       author: author,
