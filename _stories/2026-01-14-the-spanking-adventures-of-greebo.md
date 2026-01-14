@@ -1,11 +1,4 @@
 ---
-title: "The Spanking Adventures of Greebo"
-date: 2026-01-14T19:09:21.994Z
-author: "Greebo Seuss"
-tags: ["greebo","school","m/f"]
----
-
----
 layout: story
 title: "The Spanking Adventures of Greebo"
 author: "Greebo Seuss"

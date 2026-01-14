@@ -5,6 +5,9 @@ layout: default
   <article class="story">
     <header class="story-header">
       <h1>{{ page.title }}{% if page.chapter %} <span class="chapter-indicator">Chapter {{ page.chapter }}</span>{% endif %}</h1>
+      {% if page.chapter_title %}
+      <p class="chapter-title">{{ page.chapter_title }}</p>
+      {% endif %}
       <div class="story-meta">
         {% assign author_slug = page.author | slugify %}
         <span class="story-author">

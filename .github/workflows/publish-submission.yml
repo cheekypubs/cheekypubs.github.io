@@ -21,17 +21,29 @@ jobs:
           script: |
             const payload = context.payload.client_payload || {};
             const title = (payload.title || 'Untitled').trim();
-            const author = (payload.author || 'Anonymous').trim();
-            const tags = payload.tags || [];
             const content = payload.content || '';
+            const chapterNumber = payload.chapterNumber;
+            const storyId = payload.storyId;
             const now = new Date();
             const date = now.toISOString().slice(0,10);
-            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,50) || now.toISOString().replace(/[:.]/g,'-');
-            const filename = `${date}-${slug}.md`;
+            
+            // Create slug from title
+            let slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,50);
+            if (!slug) slug = now.toISOString().replace(/[:.]/g,'-');
+            
+            // Add chapter suffix for multi-chapter stories
+            let filename;
+            if (storyId && chapterNumber && chapterNumber > 1) {
+              filename = `${date}-${slug}-ch${chapterNumber}.md`;
+            } else {
+              filename = `${date}-${slug}.md`;
+            }
+            
             const filepath = `_stories/${filename}`;
-            const frontmatter = `---\ntitle: "${title.replace(/"/g,'\"')}"\ndate: ${now.toISOString()}\nauthor: "${author.replace(/"/g,'\"')}"\ntags: ${JSON.stringify(tags)}\n---\n\n`;
             const fs = require('fs');
-            fs.writeFileSync(filepath, frontmatter + content + '\n');
+            
+            // Content already includes front matter from client, just save it directly
+            fs.writeFileSync(filepath, content + '\n');
 
       - name: Commit and push
         run: |

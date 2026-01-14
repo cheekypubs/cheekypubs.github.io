@@ -1040,6 +1040,14 @@ a {
     margin-left: auto;
 }
 
+/* Chapter title below main title */
+.chapter-title {
+    font-size: 1.3em;
+    font-style: italic;
+    color: #666;
+    margin: -5px 0 15px 0;
+}
+
 /* Responsive chapter styles */
 @media (max-width: 600px) {
     .chapter-badge {
@@ -1064,4 +1072,104 @@ a {
     .chapter-next {
         margin-left: 0;
     }
+}
+
+/* =============================================== */
+/* --- Submit Info Page Styles --- */
+/* =============================================== */
+
+.submit-info {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.submit-info .intro {
+    font-size: 1.1em;
+    color: #5C4033;
+    margin-bottom: 30px;
+}
+
+.submit-info h2 {
+    color: #A52A2A;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.email-highlight {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.email-highlight a {
+    font-size: 1.4em;
+    color: #228B22;
+    text-decoration: none;
+    padding: 15px 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.email-highlight a:hover {
+    background-color: #e9ecef;
+}
+
+.submit-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.submit-checklist li {
+    padding: 12px 15px;
+    background-color: #fff;
+    border-left: 3px solid #228B22;
+    margin-bottom: 10px;
+    border-radius: 0 5px 5px 0;
+}
+
+.submit-checklist li strong {
+    color: #A52A2A;
+}
+
+.format-examples {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.format-example {
+    margin-bottom: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.format-example:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.format-example code {
+    background-color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #A52A2A;
+    margin-right: 10px;
+}
+
+.submit-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.submit-cta p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #5C4033;
 }
