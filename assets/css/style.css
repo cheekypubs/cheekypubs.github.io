@@ -16,11 +16,12 @@ body {
 /* Header Styles */
 .header {
     background-color: #FFF;
-    padding: 2px 30px;
+    padding: 2px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #A52A2A; /* Dark Crimson */
+    overflow: visible;
 }
 
 .logo a {
@@ -136,13 +137,16 @@ a {
     z-index: 1001;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 24px;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .hamburger-line {
     display: block;
-    width: 100%;
+    width: 24px;
     height: 3px;
     background-color: #5C4033;
     border-radius: 2px;
@@ -150,7 +154,7 @@ a {
 }
 
 .hamburger-btn.active .hamburger-line:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
 }
 
 .hamburger-btn.active .hamburger-line:nth-child(2) {
@@ -158,7 +162,7 @@ a {
 }
 
 .hamburger-btn.active .hamburger-line:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .hamburger-btn svg {
@@ -951,24 +955,74 @@ a {
     }
     
     .submission-form {
-        padding: 20px;
+        padding: 15px;
     }
     
-    /* Reduce padding on mobile for all containers */
-    .page-container {
+    /* Unified mobile margins for all containers */
+    .page-container,
+    .stories-page,
+    .main-content {
         padding: 0 10px;
+        box-sizing: border-box;
+        max-width: 100%;
     }
     
     .content-box {
         padding: 15px;
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
-    .stories-page {
-        padding: 0 10px;
+    .stories-sidebar {
+        margin: 0;
+        box-sizing: border-box;
     }
     
-    .main-content {
-        padding: 10px;
+    /* Submit info page mobile fixes */
+    .submit-info {
+        max-width: 100%;
+    }
+    
+    .submit-info h2 {
+        font-size: 1.1em;
+    }
+    
+    .email-highlight a {
+        font-size: 1em;
+        padding: 12px 20px;
+        word-break: break-all;
+    }
+    
+    .format-examples {
+        padding: 15px;
+    }
+    
+    .format-example {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .format-example code {
+        font-size: 0.85em;
+        word-break: break-all;
+        margin-right: 0;
+    }
+    
+    .submit-cta {
+        padding: 20px 15px;
+    }
+    
+    .submit-cta .btn-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    .submit-checklist li {
+        padding: 10px 12px;
     }
 }
 
