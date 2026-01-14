@@ -1,0 +1,37 @@
+name: Publish story from submission
+
+on:
+  repository_dispatch:
+    types: [story-submission]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create story file
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const payload = context.payload.client_payload || {};
+            const title = (payload.title || 'Untitled').trim();
+            const author = (payload.author || 'Anonymous').trim();
+            const tags = payload.tags || [];
+            const content = payload.content || '';
+            const now = new Date();
+            const date = now.toISOString().slice(0,10);
+            const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,50) || now.toISOString().replace(/[:.]/g,'-');
+            const filename = `${date}-${slug}.md`;
+            const filepath = `_stories/${filename}`;
+            const frontmatter = `---\ntitle: "${title.replace(/"/g,'\"')}"\ndate: ${now.toISOString()}\nauthor: "${author.replace(/"/g,'\"')}"\ntags: ${JSON.stringify(tags)}\n---\n\n`;
+            const fs = require('fs');
+            fs.writeFileSync(filepath, frontmatter + content + '\n');
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _stories/*.md
+          git commit -m "Add story: ${GITHUB_EVENT_CLIENT_PAYLOAD_TITLE:-Untitled}" || echo "No changes to commit"
+          git push

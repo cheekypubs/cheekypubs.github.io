@@ -84,6 +84,24 @@ a {
     color: #5C4033; /* Dark Brown */
 }
 
+/* Footer Admin Link - subtle styling */
+.footer .admin-link {
+    margin-top: 10px;
+    font-size: 0.75em;
+    opacity: 0.5;
+}
+
+.footer .admin-link a {
+    color: #999;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.footer .admin-link a:hover {
+    color: #5C4033;
+    opacity: 1;
+}
+
 /* --- Footer Social Links --- */
 .social-links {
     text-align: center;
