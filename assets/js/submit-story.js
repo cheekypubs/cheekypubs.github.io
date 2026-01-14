@@ -7,10 +7,7 @@
 const STORY_SUBMIT_URL = '/api/submit-story';
 
 document.addEventListener('DOMContentLoaded', function() {
-  // CONFIGURATION: Set your submission password here
-  // To generate a hash: in browser console, run: 
-  // crypto.subtle.digest('SHA-256', new TextEncoder().encode('yourpassword')).then(b => console.log(Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('')))
-  const PASSWORD_HASH = '9a82a0f82b48530ba7121311c23c6d895b18111d5665708b3f60c1552f24aa7b';
+  // Authentication is now server-side: POST the password to `/api/login`.
   
   const passwordGate = document.getElementById('passwordGate');
   const submissionForm = document.getElementById('submissionForm');
@@ -24,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showSubmissionForm();
   }
   
-  // Password submission
+  // Password submission now authenticates against server-side API
   if (passwordSubmit) {
     passwordSubmit.addEventListener('click', checkPassword);
     passwordInput.addEventListener('keypress', function(e) {
@@ -33,28 +30,32 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
+
   async function checkPassword() {
     const password = passwordInput.value;
-    
     if (!password) {
       showPasswordError('Please enter a password.');
       return;
     }
-    
-    // Hash the entered password and compare
-    const hash = await sha256(password);
-    
-    // Check against configured hash, or allow any 4+ char password if not configured
-    if (PASSWORD_HASH !== 'SET_YOUR_PASSWORD_HASH_HERE' && hash === PASSWORD_HASH) {
+
+    try {
+      const resp = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(()=>({}));
+        showPasswordError(err.error || 'Invalid password');
+        return;
+      }
+
+      // Authenticated — server set HttpOnly cookie; show submission form
       sessionStorage.setItem('storySubmitAuth', 'true');
       showSubmissionForm();
-    } else if (PASSWORD_HASH === 'SET_YOUR_PASSWORD_HASH_HERE' && password.length >= 4) {
-      // Fallback: accept any 4+ character password if hash not configured
-      sessionStorage.setItem('storySubmitAuth', 'true');
-      showSubmissionForm();
-    } else {
-      showPasswordError('Incorrect password. Please try again.');
+    } catch (e) {
+      showPasswordError('Authentication failed');
     }
   }
   

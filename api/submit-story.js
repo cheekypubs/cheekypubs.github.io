@@ -1,10 +1,33 @@
 // Vercel Serverless Function: api/submit-story.js
 // Accepts POST { title, author, content, tags } and triggers a repository_dispatch
 
+import crypto from 'crypto';
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Require admin session cookie
+  const cookieHeader = req.headers?.cookie || '';
+  const sessionCookie = cookieHeader.split(';').map(s=>s.trim()).find(s=>s.startsWith('session='));
+  const token = sessionCookie ? sessionCookie.split('=')[1] : null;
+  const sessionSecret = process.env.SESSION_SECRET || '';
+  if (!token || !sessionSecret) return res.status(401).json({ error: 'unauthenticated' });
+
+  // Verify token
+  const parts = token.split('.');
+  if (parts.length !== 3) return res.status(401).json({ error: 'invalid session' });
+  const [headerB, payloadB, sig] = parts;
+  try {
+    const expected = crypto.createHmac('sha256', sessionSecret).update(`${headerB}.${payloadB}`).digest('base64').replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
+    if (sig !== expected) return res.status(401).json({ error: 'invalid session' });
+    const payload = JSON.parse(Buffer.from(payloadB, 'base64').toString());
+    const now = Math.floor(Date.now() / 1000);
+    if (payload.exp && payload.exp < now) return res.status(401).json({ error: 'session expired' });
+  } catch (e) {
+    return res.status(401).json({ error: 'invalid session' });
   }
 
   const body = req.body || {};
@@ -21,8 +44,8 @@ export default async function handler(req, res) {
   const repo = 'cheekypubs.github.io';
   const url = `https://api.github.com/repos/${owner}/${repo}/dispatches`;
 
-  const token = process.env.GITHUB_PAT;
-  if (!token) return res.status(500).json({ error: 'Server not configured' });
+  const ghToken = process.env.GITHUB_PAT;
+  if (!ghToken) return res.status(500).json({ error: 'Server not configured' });
 
   const payload = {
     event_type: 'story-submission',
@@ -33,7 +56,7 @@ export default async function handler(req, res) {
     const ghResp = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `token ${token}`,
+        'Authorization': `token ${ghToken}`,
         'Accept': 'application/vnd.github+json',
         'Content-Type': 'application/json'
       },
