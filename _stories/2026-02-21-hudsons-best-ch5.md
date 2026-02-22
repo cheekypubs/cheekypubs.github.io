@@ -95,7 +95,7 @@ Triss gave a big, performative sniffle. She hated wearing the flowery nightgown,
 
 Triss, red-faced, was at last allowed to sit back down, wearing only her panties. The rest of dinner passed uneventfully. Rose served the food and then waited quietly in the corner. She was allowed to face front, so that she could attend to her sisters’ needs, refilling glasses and clearing plates. Soon she was back in the kitchen. Her stomach grumbled at the thought of all the food that was left, but she knew dinner was still a little ways off. Sighing, she rolled up her sleeves and got to work on the dishes.
 
-~*~
+---
 
 On the second floor, right off the library where the siblings would sit after school and do their homework, was a small sitting room. Ringed with couches around a small fireplace of flawless Carrara marble, the room was used for a number of purposes: naps, company, the occasional ghost story that their father, after a brandy or two, could often be compelled to perform. It was also the room that had been designated as the site of public punishments. Such events were rare; with the exception of events like the quick dinner correction, Dorothea’s preference was to spank in private and display in public. But when they did happen, public punishments tended to be memorable for all involved.
 

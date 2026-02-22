@@ -208,7 +208,7 @@ a {
 /* =============================================== */
 
 .stories-page {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -362,6 +362,9 @@ a {
     border-radius: 5px;
     margin-bottom: 20px;
     font-size: 0.95em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .clear-filter {
@@ -374,10 +377,39 @@ a {
     text-decoration: underline;
 }
 
+/* Search Bar */
+.story-search {
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+
+.story-search input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #5C4033;
+    background-color: #fff;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.story-search input:focus {
+    outline: none;
+    border-color: #A52A2A;
+}
+
+.story-search input::placeholder {
+    color: #aaa;
+}
+
 .story-list {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .story-preview {
@@ -469,8 +501,9 @@ a {
 }
 
 .story-content {
-    line-height: 1.8;
+    line-height: 1.85;
     font-size: 1.05em;
+    padding: 0 15px;
 }
 
 .story-content h2 {
@@ -479,7 +512,7 @@ a {
 }
 
 .story-content p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.6em;
 }
 
 .story-content img {
@@ -494,8 +527,20 @@ a {
 
 .story-content hr {
     border: none;
-    border-top: 2px solid #eee;
-    margin: 30px 0;
+    height: auto;
+    text-align: center;
+    margin: 40px 0;
+    overflow: visible;
+}
+
+.story-content hr::after {
+    content: '~\2009*\2009~';
+    display: inline-block;
+    font-size: 1.3em;
+    color: #A52A2A;
+    letter-spacing: 0.15em;
+    position: relative;
+    top: -0.5em;
 }
 
 .story-footer {

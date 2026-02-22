@@ -29,10 +29,84 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Search functionality
+  initSearch();
   
   // Client-side pagination for stories
   initPagination();
 });
+
+function initSearch() {
+  const searchInput = document.getElementById('storySearch');
+  const searchNotice = document.getElementById('searchNotice');
+  const searchTerm = document.getElementById('searchTerm');
+  const clearSearch = document.getElementById('clearSearch');
+  const storyList = document.querySelector('.story-list');
+
+  if (!searchInput || !storyList) return;
+
+  const stories = storyList.querySelectorAll('.story-preview');
+
+  let debounceTimer;
+  searchInput.addEventListener('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function() {
+      filterStories(searchInput.value.trim());
+    }, 200);
+  });
+
+  if (clearSearch) {
+    clearSearch.addEventListener('click', function(e) {
+      e.preventDefault();
+      searchInput.value = '';
+      filterStories('');
+      searchInput.focus();
+    });
+  }
+
+  function filterStories(query) {
+    var q = query.toLowerCase();
+    var visibleCount = 0;
+
+    stories.forEach(function(card) {
+      if (!q) {
+        card.style.display = '';
+        visibleCount++;
+        return;
+      }
+      // Search through title, author, tags, and description text visible in the card
+      var title = (card.querySelector('.story-title') || {}).textContent || '';
+      var author = (card.querySelector('.story-author') || {}).textContent || '';
+      var tags = (card.querySelector('.story-tags') || {}).textContent || '';
+      var desc = (card.querySelector('.story-excerpt') || {}).textContent || '';
+      var text = (title + ' ' + author + ' ' + tags + ' ' + desc).toLowerCase();
+
+      if (text.indexOf(q) !== -1) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Show/hide search notice
+    if (searchNotice && searchTerm) {
+      if (q) {
+        searchTerm.textContent = query;
+        searchNotice.style.display = 'block';
+      } else {
+        searchNotice.style.display = 'none';
+      }
+    }
+
+    // Hide pagination while searching
+    var pagination = document.getElementById('storiesPagination');
+    if (pagination) {
+      pagination.style.display = q ? 'none' : '';
+    }
+  }
+}
 
 function initPagination() {
   const paginationContainer = document.getElementById('storiesPagination');

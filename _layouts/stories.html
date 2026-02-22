@@ -90,6 +90,15 @@ layout: default
 
       {{ content }}
 
+      <!-- Search Bar -->
+      <div class="story-search">
+        <input type="text" id="storySearch" placeholder="Search by title, author, or tag..." aria-label="Search stories">
+      </div>
+      <p id="searchNotice" class="filter-notice" style="display: none;">
+        Showing results for "<strong id="searchTerm"></strong>"
+        <a href="#" class="clear-filter" id="clearSearch">[Clear]</a>
+      </p>
+
       <div class="story-list">
         {% assign stories_to_show = page.stories | default: site.stories %}
         {% assign sorted_stories = stories_to_show | sort: "date" | reverse %}
