@@ -6,6 +6,7 @@ date: 2026-02-21
 story_id: "hudsons-best"
 chapter: 4
 chapter_title: "Part 4"
+description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
 tags:
   - f/f
 ---

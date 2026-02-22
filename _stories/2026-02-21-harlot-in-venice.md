@@ -6,6 +6,7 @@ date: 2026-02-21
 story_id: "harlot-in-venice"
 chapter: 1
 chapter_title: "Harlot in Venice"
+description: "In Renaissance Venice, a young woman caught in scandal faces public punishment in St. Mark's Square."
 tags:
   - m/f
   - historical

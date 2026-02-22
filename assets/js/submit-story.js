@@ -216,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chapterNumber = document.getElementById('chapterNumber')?.value;
     const chapterTitle = document.getElementById('chapterTitle')?.value?.trim();
     const existingStory = document.getElementById('existingStory')?.value;
+    const description = document.getElementById('storyDescription')?.value?.trim();
 
     // Parse tags
     const tags = tagsInput
@@ -224,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generate front matter and content
     const date = new Date();
-    const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory);
+    const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory, description);
     const fullContent = `${frontMatter}\n${content}`;
 
     try {
@@ -265,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId) {
+  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId, description) {
     const dateStr = date.toISOString().replace('T', ' ').substring(0, 19) + ' -0500';
 
     let yaml = `---
@@ -274,6 +275,11 @@ title: "${title.replace(/"/g, '\\"')}"
 author: "${author.replace(/"/g, '\\"')}"
 date: ${dateStr}
 `;
+
+    // Add description if provided
+    if (description) {
+      yaml += `description: "${description.replace(/"/g, '\\"')}"\n`;
+    }
 
     // Add chapter info for multi-chapter stories
     if (chapterType === 'new-series') {

@@ -383,13 +383,15 @@ a {
 .story-preview {
     background-color: #fff;
     border: 1px solid #eee;
+    border-left: 4px solid #A52A2A;
     border-radius: 8px;
-    padding: 20px;
-    transition: box-shadow 0.2s;
+    padding: 20px 20px 20px 24px;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .story-preview:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .story-title {
@@ -1290,4 +1292,92 @@ a {
     font-size: 1.2em;
     margin-bottom: 20px;
     color: #5C4033;
+}
+
+/* ===================== Back to Top Button ===================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background-color: #A52A2A;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: #8B1A1A;
+    transform: translateY(-3px);
+}
+
+.back-to-top svg {
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ===================== About Page ===================== */
+
+.about-page {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.about-container h1 {
+    color: #A52A2A;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.about-section {
+    margin-bottom: 30px;
+}
+
+.about-section h2 {
+    color: #5C4033;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #A52A2A;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.about-section p {
+    line-height: 1.8;
+    color: #5C4033;
+    font-size: 1.05em;
+}
+
+.about-section a {
+    color: #228B22;
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
 }

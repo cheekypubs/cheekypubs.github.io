@@ -6,6 +6,7 @@ date: 2026-01-14 19:09:14 -0500
 story_id: "the-spanking-adventures-of-greebo"
 chapter: 1
 chapter_title: "Greebo and the Barista"
+description: "Greebo saunters into a café and makes an impression on the barista — and her manager."
 tags:
   - greebo
   - school

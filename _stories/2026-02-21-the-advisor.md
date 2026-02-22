@@ -6,6 +6,7 @@ date: 2026-02-21
 story_id: "the-advisor"
 chapter: 1
 chapter_title: "Part 1"
+description: "A struggling college student changes advisors and discovers that his new mentor has an unconventional approach to accountability."
 tags:
   - m/m
 ---
