@@ -180,7 +180,10 @@ a {
     box-sizing: border-box;
 }
 
-.content-box h1,
+.content-box h1 {
+    color: #A52A2A;
+}
+
 .content-box h2,
 .content-box h3 {
     color: #5C4033;
@@ -198,7 +201,7 @@ a {
 
 /* --- Global Page Width Container --- */
 .page-container {
-    max-width: 960px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -1388,7 +1391,7 @@ a {
 /* ===================== About Page ===================== */
 
 .about-page {
-    max-width: 750px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px 0;
 }
