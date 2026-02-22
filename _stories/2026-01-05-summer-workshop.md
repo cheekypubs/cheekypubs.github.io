@@ -4,7 +4,6 @@ title: "The Summer Workshop"
 author: "Sarah Mitchell"
 date: 2026-01-05
 tags:
-  - fiction
   - romance
   - summer
 ---

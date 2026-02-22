@@ -7,7 +7,6 @@ story_id: "after-hours"
 chapter: 1
 chapter_title: "Late Night"
 tags:
-  - fiction
   - office
   - drama
 ---

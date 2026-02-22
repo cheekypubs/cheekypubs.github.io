@@ -4,7 +4,6 @@ title: "The First Day of School"
 author: "Sarah Mitchell"
 date: 2026-01-10
 tags:
-  - fiction
   - school
   - drama
 ---

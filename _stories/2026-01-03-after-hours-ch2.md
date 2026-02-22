@@ -7,7 +7,6 @@ story_id: "after-hours"
 chapter: 2
 chapter_title: "Morning After"
 tags:
-  - fiction
   - office
   - drama
 ---

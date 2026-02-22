@@ -1,0 +1,101 @@
+---
+layout: story
+title: "Hudson's Best"
+author: "Conor Grayson"
+date: 2026-02-21
+story_id: "hudsons-best"
+chapter: 1
+chapter_title: "Part 1"
+tags:
+  - f/f
+---
+
+*It’s the *middle of the twentieth century,* and a young woman from a family of significant stature has behaved in a way that has brought shame to her house. Luckily, her father has employed a strict governess to make sure that these childish mistakes do not recur.*
+
+The Hawthornes were a family of means. Their residency of the grand, faded brick house known as Gray Dove Manor, on the pastoral outskirts of Tarry Hollow, was testimony enough to this fact. But while the family’s successes could be noted down several generations, a peculiar, and fiercely adhered to, philosophy persisted within those stately halls. It was, to put it simply, a belief that character must be instilled in each new generation through hard work, rigorous study, and the firm and frequent application of discipline. Too many successful families let their progeny run wild, insulated by their wealth, until the generations withered into indolence and entitlement. The hard-won successes of the past were squandered thereby, and a family’s glory gone to dust. Not so with the Hawthornes; their children would not be so tempted.
+
+To this end, Francis Hawthorne had brought in a governess for his four children, as well as for the two servant girls, not yet 20, that he employed in his household. His wife had tragically passed in a camel racing accident some years before, and Francis wanted a maternal influence to persist in his children’s lives. He also insisted on closer supervision of their daily adventures than his business affairs allowed. And so Dorothea Rampart was brought in. She was young for a governess, perhaps 35, but she had kindly eyes and a quiet authority, as well as excellent references, and Francis took a shine to her immediately. She was also, like Francis himself, an absolute believer in routine, steady constructive criticism, and the liberal application of corporal discipline as a way to mold a young person into an exemplary adult. And so she had instituted a regime amongst her six charges that prominently featured all three. It was a system to which Francis Hawthorne lent his full support.
+
+It was in the teen years, she believed, that spankings were most salutary. For here it was that a once joyful and industrious child could lose their way, as in a dark forest, and without a stern guide might never find a path out. And so it was that Rose, the 18-year-old, Francis’ second daughter, came to be standing in her room, preparing to don her required outfit for a dreaded punishment weekend. Meanwhile her governess waited impatiently downstairs.
+
+The outfit consisted of a plain white tank top, and full-back white cotton panties. There were also knee-length white socks. Each piece of the outfit was starched and immaculate, and they gleamed up at her from her purple bedspread. Rose sighed and began to undress. She knew too much delay would mean extra punishment. She had plenty before her as it was. She pulled her dress over her head, making sure to shake out any wrinkles and hang it neatly in the closet. Then she took off her bra and then her underwear, which were both surprisingly childish for her age. It was something her governess insisted on. (“You can have appropriate underwear against your bottom, or you can have my palm against it,” she had said once, and then laughed at her own self-seriousness. But Rose knew she meant it.) The outfit set out for her was intentionally a size too small, and it clung to her frame, so that the tank top revealed more than she would like, and the topography of her bottom was clear beneath the thin cotton.
+
+Rose finished dressing, and then stood for a moment in the early silence of her room. Her eyes fell on her personal paddle, hanging from a peg on the wall. Each of the teens had one. They were all the same oval shape, about a foot long, and one thick inch of dark, polished cherry. In large golden cursive the letters RAH were written: Rose Angelica Hawthorne. She had not been instructed to bring her paddle with her downstairs, but she knew it would make an appearance at some point. The contours of a punishment weekend were broadly uniform, but Dorothea customized each one at the margin, so the subject never knew exactly what to expect. The precise itinerary would be read out to her when she finally made her way downstairs, which she knew had to be soon. With a sigh, she left the room.
+
+Before she could present herself to her governess, however, there was another task required. It was a labor that filled her with despair and humiliation, but neglecting it was not an option: Dorothea would know, and the retribution would be terrible. And so, she made her way down the hallway and, instead of continuing straight and then left down the stairs, she paused at the door of her sister’s bedroom. Without hesitation, not trusting herself to persevere otherwise, she knocked three times.
+
+“Yes?” came a calm voice within.
+
+“May I come in, Christina?”
+
+“What for?”
+
+Rose wanted to cry. So Christina would be playing the game today. Of all the siblings, Christina, the eldest at 19, was the strongest believer in the household’s philosophy, and participated in their governess’ baroque rituals with what Rose thought to be a bit too much relish.
+
+“I would like to speak with you…about my correction, please.”
+
+For a moment, she wondered if more humiliation would be exacted from her here in the hallway. But to her relief, the door opened. Christina smiled back at her sympathetically, and ushered her sister inside. The oldest Hawthorne girl was tall, much taller than Rose, with her mother’s blonde mane of hair and athlete’s body. Though, like all of the Hawthorne girls, her hips had a healthy swell to them. This particular feature was well displayed at the moment, for Christina was dressed in full riding gear. “I’m late for riding, but I’ve hung out for a moment. I thought you might want to speak with me.”
+
+*“Want” is not the word I would use*, Rose thought. But yes, she did need to speak with her sister. It concerned one of Dorothea’s more creative policies. The rule was as follows: if you were in for a serious enough punishment that you were sent to your room to “prepare,” that meant that you had lost the privilege of fully completing these preparations on your own. Instead, once you were otherwise ready, you had to present yourself to someone besides the one doing the spanking (usually Dorothea, but on occasion their father) and ask them to “get you ready.” The only other rule about who to choose was that they had to be older than you, and by at least a year. With their father in Cincinnati on business and the servants preoccupied, this left Rose with only one choice: Christina. And so Rose steeled herself and did what was required of her.
+
+“Christina, I first want to apologize for imposing on you. I also want to apologize for my behavior, which I’m going to fully explain in a moment. But…but I do want to say that, um, that the sort of behavior that I, uh, the reason I’m here is that, uh, I mean it’s a shameful thing, how I acted, and making you worry and all. It’s not fair to our family, I’ve behaved so disgracefully. I am truly sorry.”
+
+Christina regarded her, a kind sternness on her face. On most 19-year-olds, such a look would be performative, even mocking. But Rose suspected that Christina was perfectly sincere when she thanked her for admitting her fault, and then asked her to elaborate on her behavior.
+
+Rose started to sigh, but then stopped herself. Christina could make this much worse if Rose failed to look contrite. So instead, she tried to hold eye contact with Christina as she explained how she had snuck out the window after bedtime two nights ago, how she retrieved a previously stolen bottle of cognac from the hedge at the edge of their property, and proceeded to make her way down the street, to the dark town beach, drinking all the while. Unfortunately, she had never had cognac or any other drink before, and did not count on the effect it would have. She fell sound asleep on the beach, and didn’t wake until nearly noon the next day, by which time a general search had commenced in the town. Needless to say, the entire family was beside themselves with worry: Rose not being in her bed, and no sign of where she’d gone. Their father had made plans to return on the first flight that morning, “and damn the deal! Damn all of Cincinnati, for all I care!” Or so he had exclaimed to the governess when she’d telephoned with the news. Indeed, after Rose had been found, Dorothea had to phone the airport directly to have them hold the plane until Francis could be found and brought to a telephone, whereupon the whole enterprise was laid bare to him. He had originally been reluctant to continue with his trip all the same; he hated to be away from the girls, even for a few days. The events of that morning confirmed his worst fears. But Dorothea was at length able to reassure him: Rose was perfectly safe, if a bit “sea sick,” as the governess put it. And what’s more, Dorothea promised her employer that the girl would be thoroughly and rigorously attended to for this stunt. And she also reminded him that he was welcome to reinforce his governess’ lessons on his felonious daughter’s hide, if he found her not sufficiently repentant. At last Francis relented, and thanking his employee for her good sense, asked to speak to his daughter. Still in the flush of relief, he could not yet summon the anger he thought was more proper in his situation, and merely told her how much he loved her, and wished her luck in what was to come. Rose was almost more cowed by this. After she had hung up, and near tears, Rose was tersely informed that she could expect a punishment weekend, starting the next day. And so here she was.
+
+All this, or at least most of it, she confessed to Christina, though the sister already knew the tale. Still, it *was *shameful, reciting it all in the light of day, knowing how worried they all had been. At last, having run through the full rosary of her infamy, she came to the worst part.
+
+“Christina, again I’m sorry for my actions. I really am. Would you…”
+
+She faltered, then stood up straight and plowed ahead.
+
+“Christina, would you please prepare my bottom for a spanking?”
+
+Christina just nodded, again looking at her with sympathy. But she did not hesitate as she turned her sister around firmly. She took Rose’s arms and crossed them against the small of her back. Then Rose felt her sister’s fingers in the waistband of her panties.
+
+“Just your bottom, or…” Though it had never happened that a punishment weekend had meant the full confiscation of someone’s underwear, they both knew it was possible. So Christina could not resist asking.
+
+“Just my bottom, yes.” In this situation full sentence answers were encouraged for even the most embarrassing of questions.
+
+And so Christina slowly pulled the panties down in back, making sure Rose’s bottom was fully exposed. Unlike Christina, Rose had her father’s coloring and build: she had dark, almost black hair, and was on the short side, with rounded features and bright hazel eyes. Her bottom was full and white, like a fresh snowbank. But Christina wasn’t finished. Stepping parallel with her sister, she put her arm around her back and bent Rose forward, like a child. Then she planted four firm swats to Rose’s bare backside, two on each cheek. Immediately two pink splotches rose where her palm had fallen. Rose grimaced, but stayed still. Christina brought her back to standing, and resting her warm palm on her sister’s bottom, asked, “Is your naughty bottom ready for a spanking, sweetie?” Her voice was cloying, teasing, but gently and lovingly so. Rose’s face burned with embarrassment, but she answered.
+
+“Yes, Christina.”
+
+“Yes what?” Another swat, this one on the sensitive outside swell where her hip met her behind. “Yes, Christina, my bott….my naughty bottom is ready for a spanking.” She said this hurriedly, but clearly, wanting to be done, resigning herself to it. “Thank you for preparing me to learn my lesson.”
+
+“Okay, sweetie, give me a hug.” And they embraced, Rose dropping her hands and hugging back, feeling comforted in that moment. Then they separated, and Christina turned her again and adjusted her panties a bit, making sure they framed her bare bottom perfectly. Then, patting her sister firmly, she led her out the door, and down the stairs to Dorothea.
+
+The governess waited in the living room. It was an elegant room, with abundant couches and ancient, quicksand duvets that were perfect for reading the afternoon away. A large bay window commanded a view of the back lawn, and beyond that the Hudson, twinkling now in the cool morning sun. A baby grand piano, often played by Rose or her sister Triss, occupied one corner. Dorothea was on the couch, her legs crossed, her handsome face arranged. She wore a smart houndstooth skirt and a wine-red blouse. On a small table next to her sat the purloined bottle of cognac, now half empty. It had been recovered at the scene by one of the officers that had escorted Rose home yesterday, after they had found her there, just waking up. Rose entered the living room and then stopped, spying the bottle first. She looked startled, like the cognac was a ghostly visitor, a relic of the past. “Come sit,” her governess instructed her, and startled from her moment of confusion, Rose quickly did so.
+
+The girl felt the soft couch material on her bare bottom as she sat. She crossed her hands in her lap, not wanting to reveal more than she absolutely had to. Her governess ignored this, regarding her silently for a moment. Dorothea’s blue eyes beheld Rose with great intent, and her kind, patient nature, normally so clearly communicated through her gaze, seemed instead sharpened now. There was no trace of anger there, nor cruelty; but Rose did infer, in her governess’ steady regard, a singleness of purpose that did not, by its nature, encompass mercy for her. Rose knew that pleading would not be useful now. The best she could do was cooperate, and hope to come out the far side intact.
+
+“Why don’t you tell me why you’re in this position, Rose. The whole of it, leave nothing out.” Rose was about to protest that she had already told this story, to Dorothea yesterday, to her father on the telephone, to her sister just now. She was getting tired of reciting her crimes like a penitent monk. But then she thought better of it, and sighed, and relayed the tale again. This time she elaborated on how she had nicked the booze from her father’s study after lessons, how she stashed it in a hedge at the far end of the property, near the road, so she could snatch it after dark and alight to freer territories. She also told Dorothea how the drink had made her feel good, at first, and then funny, and then scared, because she could not get the funny feelings to stop. And so in her nervousness she drank more of the sweet liquid, which helped for a bit. But then it stopped helping, and the next thing she knew she was being shaken awake by an officer, and it was daylight, and she was freezing. “I’m so sorry, Miss. I’m so sorry I made you worry. I’m sorry I made everyone worry. I’m sorry I stole and I’m sorry I put myself in danger and I’m just so sorry…” She was crying by now, and Dorothea had taken Rose’s hand and held it warmly in her lap. When the girl had at last finished, Dorothea put her hand on Rose’s bare thigh and gave her a reassuring rub.
+
+“Sweetheart, I appreciate you really thinking about why this was wrong, all the different ways it was wrong. But I feel I should mention that it also puts me at great risk. If I can’t prevent my charges from doing something as foolish and dangerous as what you did, then I’m not the one who should be looking after you all. It’s as simple as that. Now, your father has been kind enough to give me another chance. But if this happens again, I really don’t know how I could in good conscience remain in my post. Do you understand, Rose?”
+
+As Rose had listened to this, a sort of rushing had begun inside of her, like she was very nervous about something, but it was for something that had already happened, and she didn’t know how to stop it. She was crying harder now.
+
+“No, Miss, I didn’t mean it! Don’t leave, please, please, it’s me, I’m the wicked one.”
+
+“Hush, sweetie,” putting her hands on Rose’s shoulders and squeezing. “I’m not going anywhere. Your father understands teenagers rebel sometimes. But your safety is paramount, to him and to me, and if that continues to be put at risk, something will have to be done. You should know that, you are old enough to hear it.”
+
+Then Dorothea sat back straight, and her tone changed as she asked, “speaking of being old enough, tell me what you are not too old for, Rose.”
+
+“A spanking, Miss.”
+
+“That’s correct. As I told you yesterday, you are being punished this weekend. I’m not going to lie, dear: you have a difficult few days ahead of you. Here is how they will go.” And she took a small notebook out of the breast pocket of her blouse. Opening it, she began to read off the girl’s schedule.
+
+“Right. First off, I’m going to give you right now a quite thorough spanking with my hand. Then you’ll spend some time in the corner, I’ll decide how long. After that, you will be replacing Aoife in her duties today. Philippa will supervise. You have been gifted an enormous amount of privilege being raised in this family. Aoife and Philippa are both nearly your age, and working full time already. If you can’t appreciate your luck, you will get a small taste of the alternative. Aoife is generally relieved of her work at 6, but at 5 you will begin assisting Belinda in preparing and serving supper. Mind you, that naughty bottom of yours will remain on show for every moment of this. The rest of the family will eat at 7, but not you, not yet: you will serve the meal, and attend us. Only after we have eaten and you have cleared and cleaned the plates will you be sitting down to eat yourself. And if this seems harsh, you would do well to remember that for many girls your age, this isn’t a punishment, this is their life.”
+
+*They don’t have to work with their behinds on display for the whole household*, Rose thought, but did not say. Instead she contented herself with a mild “yes, Miss.”.
+
+“Right. After you’ve eaten, you’ll have an hour or so to yourself. You may retire to your room if you wish. But at 9 you will report back here to be spanked to tears. Then it’s straight to bed. And try to get some rest, because by 7 tomorrow morning I expect you to be bathed, dressed, prepared, and knocking on my door for your morning warm-up spanking. I’ll get your fanny nice and warm, and then we can talk about tomorrow.”
+
+Rose was nodding. It was not yet 9 am. She had a long day ahead.
+
+“Needless to say, both Philippa and Belinda have full spanking rights, so you’d better apply yourself. I’ve instructed them that this is a learning experience for you, and that unfortunately you may need to be led to learning by the bottom, so to speak. So don’t expect much leniency from them. Still, if you are diligent, they will be fair. Oh, and another thing: at one you will have an opportunity to eat quickly, but before that you owe me an hour of chaperoned corner time. I have a lot to do while your sisters are at their music lessons, so expect to be on the move.”
+
+Rose took all of this in. Two terms stuck in her head, practices that, like her moment of contrition with Christina, appeared to be Dorothea originals. The first was this phrase “spanked to tears.” In the Hawthorne household, this term had a very specific meaning: a long, hard spanking with the paddle or a similar implement, applied fast and hard to the victim’s bottom and thighs, without a warmup. She had only had a couple of these, and each one had her in tears immediately, but the spankings did not stop until initial tears became panicked desperation, and then wailing, and then miserable acceptance. Her stomach again took flight, knowing this was her eventual fate.
+
+Go to part two…
