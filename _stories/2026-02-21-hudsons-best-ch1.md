@@ -2,7 +2,7 @@
 layout: story
 title: "Hudson's Best"
 author: "Conor Grayson"
-date: 2026-02-21
+date: 2026-02-21 12:00:00 -0500
 story_id: "hudsons-best"
 chapter: 1
 chapter_title: "Part 1"

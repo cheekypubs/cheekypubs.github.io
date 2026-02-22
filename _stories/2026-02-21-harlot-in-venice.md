@@ -2,7 +2,7 @@
 layout: story
 title: "Harlot in Venice"
 author: "Conor Grayson"
-date: 2026-02-21
+date: 2026-02-21 12:00:00 -0500
 story_id: "harlot-in-venice"
 chapter: 1
 chapter_title: "Harlot in Venice"
