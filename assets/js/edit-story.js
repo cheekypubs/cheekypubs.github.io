@@ -7,6 +7,7 @@
 const API_BASE = 'https://cheekypubs.vercel.app';
 const LOGIN_URL = `${API_BASE}/api/login`;
 const EDIT_URL = `${API_BASE}/api/edit-story`;
+const DELETE_URL = `${API_BASE}/api/delete-story`;
 
 document.addEventListener('DOMContentLoaded', function() {
   const passwordGate = document.getElementById('passwordGate');
@@ -156,6 +157,64 @@ document.addEventListener('DOMContentLoaded', function() {
   // Story edit form submission
   if (storyEditForm) {
     storyEditForm.addEventListener('submit', handleEditSubmit);
+  }
+
+  // Delete button handler
+  const deleteBtn = document.getElementById('deleteBtn');
+  if (deleteBtn) {
+    deleteBtn.addEventListener('click', handleDeleteClick);
+  }
+
+  async function handleDeleteClick() {
+    const storyUrl = storySelect.value;
+    if (!storyUrl) {
+      alert('Please select a story to delete.');
+      return;
+    }
+
+    const selectedOption = storySelect.options[storySelect.selectedIndex];
+    const storyTitle = selectedOption ? selectedOption.textContent : storyUrl;
+    if (!confirm(`Are you sure you want to permanently delete "${storyTitle}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    const btnText = deleteBtn.querySelector('.btn-text');
+    const btnLoading = deleteBtn.querySelector('.btn-loading');
+
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    deleteBtn.disabled = true;
+
+    try {
+      const editToken = sessionStorage.getItem('storyEditToken') || '';
+      const response = await fetch(DELETE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(editToken && { 'Authorization': `Bearer ${editToken}` })
+        },
+        credentials: 'include',
+        body: JSON.stringify({ storyUrl })
+      });
+
+      if (!response.ok) {
+        const body = await response.text();
+        throw new Error(`Server error: ${response.status} ${body}`);
+      }
+
+      storyEditForm.style.display = 'none';
+      document.getElementById('deleteSuccess').style.display = 'block';
+
+    } catch (error) {
+      console.error('Delete error:', error);
+      storyEditForm.style.display = 'none';
+      document.getElementById('deleteError').style.display = 'block';
+      document.getElementById('deleteErrorDetails').textContent = error.message;
+    } finally {
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      deleteBtn.disabled = false;
+    }
   }
 
   async function handleEditSubmit(e) {

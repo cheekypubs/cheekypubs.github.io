@@ -1,0 +1,51 @@
+name: Delete story
+
+on:
+  repository_dispatch:
+    types: [story-delete]
+
+permissions:
+  contents: write
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete story file
+        id: delete-story-file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const payload = context.payload.client_payload || {};
+
+            // Validate storyUrl: only allow alphanumeric, hyphens, underscores (no path traversal)
+            const rawUrl = (payload.storyUrl || '').replace(/^\/|\/$/g, '');
+            if (!/^[a-zA-Z0-9_-]+$/.test(rawUrl)) {
+              core.setFailed(`Invalid storyUrl: ${rawUrl}`);
+              return;
+            }
+            const storyUrl = rawUrl;
+
+            const filepath = `_stories/${storyUrl}.md`;
+            const fs = require('fs');
+
+            if (!fs.existsSync(filepath)) {
+              core.setFailed(`Story file not found: ${filepath}`);
+              return;
+            }
+
+            fs.unlinkSync(filepath);
+            core.setOutput('filepath', filepath);
+            core.setOutput('storyUrl', storyUrl);
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _stories/
+          git commit -m "Delete story: ${{ steps.delete-story-file.outputs.storyUrl || 'story' }}" || echo "No changes to commit"
+          git push
