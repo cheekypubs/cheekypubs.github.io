@@ -28,8 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const existingStorySelect = document.getElementById('existingStory');
 
   // Check if already authenticated (session storage)
-  if (sessionStorage.getItem('storySubmitAuth') === 'true') {
+  if (sessionStorage.getItem('storySubmitAuth') === 'true' && sessionStorage.getItem('storySubmitToken')) {
     showSubmissionForm();
+  } else {
+    // Clear any stale auth state
+    sessionStorage.removeItem('storySubmitAuth');
+    sessionStorage.removeItem('storySubmitToken');
   }
 
   // Chapter type radio button handling
@@ -169,7 +173,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Authenticated — server set HttpOnly cookie; show submission form
+      // Authenticated — store token from response body (cross-origin cookies are often
+      // blocked by browsers, so we use the token directly via Authorization header)
+      const data = await resp.json().catch(() => ({}));
+      if (data.token) {
+        sessionStorage.setItem('storySubmitToken', data.token);
+      }
       sessionStorage.setItem('storySubmitAuth', 'true');
       showSubmissionForm();
     } catch (e) {
@@ -229,9 +238,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const fullContent = `${frontMatter}\n${content}`;
 
     try {
+      const submitToken = sessionStorage.getItem('storySubmitToken') || '';
       const response = await fetch(SUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(submitToken && { 'Authorization': `Bearer ${submitToken}` })
+        },
         credentials: 'include',
         body: JSON.stringify({
           title: title,

@@ -1,5 +1,6 @@
-// Vercel Serverless Function: api/submit-story.js
-// Accepts POST { title, author, content, tags } and triggers a repository_dispatch
+// Vercel Serverless Function: api/edit-story.js
+// Accepts POST { storyUrl, title, author, date, tags, description, storyId, chapter, chapterTitle, content }
+// and triggers a repository_dispatch event to update the story via GitHub Actions
 
 import crypto from 'crypto';
 
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
   const authHeader = req.headers?.authorization || '';
   const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
   const cookieHeader = req.headers?.cookie || '';
-  const sessionCookie = cookieHeader.split(';').map(s=>s.trim()).find(s=>s.startsWith('session='));
+  const sessionCookie = cookieHeader.split(';').map(s => s.trim()).find(s => s.startsWith('session='));
   const token = bearerToken || (sessionCookie ? sessionCookie.split('=')[1] : null);
   const sessionSecret = process.env.SESSION_SECRET || process.env.GITHUB_PAT || '';
   if (!token || !sessionSecret) return res.status(401).json({ error: 'unauthenticated' });
@@ -48,13 +49,19 @@ export default async function handler(req, res) {
   }
 
   const body = req.body || {};
+  const storyUrl = (body.storyUrl || '').toString().trim();
   const title = (body.title || '').toString().trim();
   const author = (body.author || 'Anonymous').toString().trim();
+  const date = (body.date || '').toString().trim();
+  const tags = Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(s => s.trim()) : []);
+  const description = (body.description || '').toString().trim();
+  const storyId = (body.storyId || '').toString().trim();
+  const chapter = body.chapter ? parseInt(body.chapter) : null;
+  const chapterTitle = (body.chapterTitle || '').toString().trim();
   const content = (body.content || '').toString();
-  const tags = Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(s=>s.trim()) : []);
 
-  if (!title || !content) {
-    return res.status(400).json({ error: 'title and content are required' });
+  if (!storyUrl || !title || !content) {
+    return res.status(400).json({ error: 'storyUrl, title and content are required' });
   }
 
   const owner = 'cheekypubs';
@@ -64,20 +71,20 @@ export default async function handler(req, res) {
   const ghToken = process.env.GITHUB_PAT;
   if (!ghToken) return res.status(500).json({ error: 'Server not configured' });
 
-  const payload = {
-    event_type: 'story-submission',
-    client_payload: { title, author, content, tags }
+  const dispatchPayload = {
+    event_type: 'story-edit',
+    client_payload: { storyUrl, title, author, date, tags, description, storyId, chapter, chapterTitle, content }
   };
 
   try {
     const ghResp = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `token ${ghToken}`,
+        'Authorization': `Bearer ${ghToken}`,
         'Accept': 'application/vnd.github+json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(dispatchPayload)
     });
 
     if (ghResp.status === 204) {
@@ -92,7 +99,3 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: 'Failed to call GitHub API' });
   }
 }
-
-// Deployment notes:
-// - In Vercel project settings, set Environment Variable `GITHUB_PAT` to a Personal Access Token
-//   from the `cheekypubs` account with permission to trigger repository dispatches.
