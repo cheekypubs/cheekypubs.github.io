@@ -7,6 +7,7 @@ layout: null
     "title": {{ story.title | jsonify }},
     "author": {{ story.author | jsonify }},
     "url": {{ story.url | absolute_url | jsonify }},
+    "path": {{ story.path | jsonify }},
     "date": {{ story.date | date: "%Y-%m-%d" | jsonify }},
     "story_id": {{ story.story_id | jsonify }},
     "chapter": {{ story.chapter | default: nil | jsonify }},
