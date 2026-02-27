@@ -1,54 +1,233 @@
-// Complete vanilla JavaScript implementation for story editing
+/**
+ * Admin Story Editing JavaScript
+ * Handles password authentication and story editing via Vercel API
+ */
 
-// Function to authenticate user
-function authenticateUser(password) {
-    const correctPassword = 'your_password'; // Change this to an environment variable
-    return password === correctPassword;
-}
+// Vercel API endpoints (absolute URLs for cross-origin from GitHub Pages)
+const API_BASE = 'https://cheekypubs.vercel.app';
+const LOGIN_URL = `${API_BASE}/api/login`;
+const EDIT_URL = `${API_BASE}/api/edit-story`;
 
-// Function to load a story
-function loadStory(storyId) {
-    fetch(`https://your-vercel-backend.com/api/stories/${storyId}`)
-    .then(response => response.json())
-    .then(data => {
-        populateForm(data);
-    })
-    .catch(error => console.error('Error loading story:', error));
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const passwordGate = document.getElementById('passwordGate');
+  const editingForm = document.getElementById('editingForm');
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordSubmit = document.getElementById('passwordSubmit');
+  const passwordError = document.getElementById('passwordError');
+  const storyEditForm = document.getElementById('storyEditForm');
+  const storySelect = document.getElementById('storySelect');
 
-// Function to populate the form with story data
-function populateForm(data) {
-    document.getElementById('storyTitle').value = data.title;
-    document.getElementById('storyContent').value = data.content;
-}
+  // Check if already authenticated (session storage)
+  if (sessionStorage.getItem('storyEditAuth') === 'true') {
+    showEditingForm();
+  }
 
-// Function to submit the form
-function submitForm(event) {
-    event.preventDefault();
-    const storyId = document.getElementById('storyId').value;
-    const title = document.getElementById('storyTitle').value;
-    const content = document.getElementById('storyContent').value;
+  // Password submission - authenticates against server-side API
+  if (passwordSubmit) {
+    passwordSubmit.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+  }
 
-    const storyData = { title, content };
-
-    fetch(`https://your-vercel-backend.com/api/stories/${storyId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(storyData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Story updated successfully!');
-    })
-    .catch(error => console.error('Error updating story:', error));
-}
-
-// Event listener for form submission
-document.getElementById('storyForm').addEventListener('submit', function(event) {
-    const password = document.getElementById('password').value;
-    if (authenticateUser(password)) {
-        submitForm(event);
-    } else {
-        alert('Incorrect password.');
+  async function checkPassword() {
+    const password = passwordInput.value;
+    if (!password) {
+      showPasswordError('Please enter a password.');
+      return;
     }
+
+    try {
+      const resp = await fetch(LOGIN_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ password })
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        showPasswordError(err.error || 'Invalid password');
+        return;
+      }
+
+      // Authenticated — server set HttpOnly cookie; show editing form
+      sessionStorage.setItem('storyEditAuth', 'true');
+      showEditingForm();
+    } catch (e) {
+      showPasswordError('Authentication failed');
+    }
+  }
+
+  function showPasswordError(message) {
+    passwordError.textContent = message;
+    passwordError.style.display = 'block';
+    passwordInput.classList.add('error');
+  }
+
+  function showEditingForm() {
+    if (passwordGate) passwordGate.style.display = 'none';
+    if (editingForm) editingForm.style.display = 'block';
+    loadStories();
+  }
+
+  // Load stories into the select dropdown
+  async function loadStories() {
+    try {
+      const response = await fetch('/stories.json');
+      if (response.ok) {
+        const stories = await response.json();
+        populateStorySelect(stories);
+      } else {
+        storySelect.innerHTML = '<option value="">Could not load stories</option>';
+      }
+    } catch (e) {
+      storySelect.innerHTML = '<option value="">Could not load stories</option>';
+    }
+  }
+
+  function populateStorySelect(stories) {
+    if (!stories || stories.length === 0) {
+      storySelect.innerHTML = '<option value="">No stories found</option>';
+      return;
+    }
+    storySelect.innerHTML = '<option value="">Select a story to edit...</option>';
+    stories.forEach(story => {
+      const option = document.createElement('option');
+      option.value = story.url;
+      let label = story.title;
+      if (story.author) label += ` — ${story.author}`;
+      if (story.chapter) label += ` (Ch. ${story.chapter})`;
+      option.textContent = label;
+      option.dataset.story = JSON.stringify(story);
+      storySelect.appendChild(option);
+    });
+
+    storySelect.addEventListener('change', function() {
+      const selected = this.options[this.selectedIndex];
+      if (selected.dataset.story) {
+        const story = JSON.parse(selected.dataset.story);
+        populateEditForm(story);
+      }
+    });
+  }
+
+  function populateEditForm(story) {
+    const storyPreview = document.getElementById('storyPreview');
+    const currentFilePath = document.getElementById('currentFilePath');
+
+    if (storyPreview) storyPreview.style.display = 'block';
+    if (currentFilePath) currentFilePath.value = story.url || '';
+
+    const editTitle = document.getElementById('editTitle');
+    const editAuthor = document.getElementById('editAuthor');
+    const editDate = document.getElementById('editDate');
+    const editTags = document.getElementById('editTags');
+    const editDescription = document.getElementById('editDescription');
+    const editStoryId = document.getElementById('editStoryId');
+    const editChapter = document.getElementById('editChapter');
+    const editChapterTitle = document.getElementById('editChapterTitle');
+
+    if (editTitle) editTitle.value = story.title || '';
+    if (editAuthor) editAuthor.value = story.author || '';
+    if (editDate) editDate.value = story.date || '';
+    if (editTags) editTags.value = Array.isArray(story.tags) ? story.tags.join(', ') : (story.tags || '');
+    if (editDescription) editDescription.value = story.description || '';
+    if (editStoryId) editStoryId.value = story.story_id || '';
+    if (editChapter) editChapter.value = story.chapter || '';
+    if (editChapterTitle) editChapterTitle.value = story.chapter_title || '';
+
+    // Clear content area (content is not available from stories.json index)
+    const editContent = document.getElementById('editContent');
+    if (editContent) editContent.value = '';
+  }
+
+  // Story edit form submission
+  if (storyEditForm) {
+    storyEditForm.addEventListener('submit', handleEditSubmit);
+  }
+
+  async function handleEditSubmit(e) {
+    e.preventDefault();
+
+    const updateBtn = document.getElementById('updateBtn');
+    const btnText = updateBtn.querySelector('.btn-text');
+    const btnLoading = updateBtn.querySelector('.btn-loading');
+
+    // Show loading state
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    updateBtn.disabled = true;
+
+    const storyUrl = storySelect.value;
+    const title = document.getElementById('editTitle').value.trim();
+    const author = document.getElementById('editAuthor').value.trim();
+    const date = document.getElementById('editDate').value;
+    const tagsInput = document.getElementById('editTags').value.trim();
+    const description = document.getElementById('editDescription').value.trim();
+    const storyId = document.getElementById('editStoryId').value.trim();
+    const chapter = document.getElementById('editChapter').value;
+    const chapterTitle = document.getElementById('editChapterTitle').value.trim();
+    const content = document.getElementById('editContent').value;
+
+    const tags = tagsInput
+      ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0)
+      : [];
+
+    try {
+      const response = await fetch(EDIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          storyUrl,
+          title,
+          author,
+          date,
+          tags,
+          description,
+          storyId,
+          chapter: chapter ? parseInt(chapter, 10) : null,
+          chapterTitle,
+          content
+        })
+      });
+
+      if (!response.ok) {
+        const body = await response.text();
+        throw new Error(`Server error: ${response.status} ${body}`);
+      }
+
+      // Show success message
+      storyEditForm.style.display = 'none';
+      document.getElementById('editSuccess').style.display = 'block';
+
+    } catch (error) {
+      console.error('Edit error:', error);
+      storyEditForm.style.display = 'none';
+      document.getElementById('editError').style.display = 'block';
+      document.getElementById('errorDetails').textContent = error.message;
+    } finally {
+      // Reset button state
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      updateBtn.disabled = false;
+    }
+  }
 });
+
+function clearForm() {
+  const storySelect = document.getElementById('storySelect');
+  if (storySelect) storySelect.value = '';
+
+  const storyPreview = document.getElementById('storyPreview');
+  if (storyPreview) storyPreview.style.display = 'none';
+
+  ['editTitle', 'editAuthor', 'editDate', 'editTags', 'editDescription',
+   'editStoryId', 'editChapter', 'editChapterTitle', 'editContent'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+}
