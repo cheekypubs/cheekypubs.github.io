@@ -1,75 +1,54 @@
-// Complete Vanilla JavaScript Implementation for Story Editing
+// Complete vanilla JavaScript implementation for story editing
 
-// Password Authentication
-function authenticate(password) {
-    const correctPassword = 'your_password'; // Change this to your password
+// Function to authenticate user
+function authenticateUser(password) {
+    const correctPassword = 'your_password'; // Change this to an environment variable
     return password === correctPassword;
 }
 
-// Load stories from stories.json
-async function loadStories() {
-    try {
-        const response = await fetch('stories.json');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const stories = await response.json();
-        return stories;
-    } catch (error) {
-        console.error('Failed to load stories:', error);
-    }
+// Function to load a story
+function loadStory(storyId) {
+    fetch(`https://your-vercel-backend.com/api/stories/${storyId}`)
+    .then(response => response.json())
+    .then(data => {
+        populateForm(data);
+    })
+    .catch(error => console.error('Error loading story:', error));
 }
 
-// Populate form with story data
-function populateForm(story) {
-    document.getElementById('title').value = story.title;
-    document.getElementById('content').value = story.content;
-    // Add more fields as necessary
+// Function to populate the form with story data
+function populateForm(data) {
+    document.getElementById('storyTitle').value = data.title;
+    document.getElementById('storyContent').value = data.content;
 }
 
-// Submit data to Vercel backend
-async function submitStory(data) {
-    try {
-        const response = await fetch('https://your-vercel-backend-url/api/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-        if (!response.ok) throw new Error('Network response was not ok');
-        const result = await response.json();
-        console.log('Story submitted successfully:', result);
-    } catch (error) {
-        console.error('Failed to submit story:', error);
-    }
+// Function to submit the form
+function submitForm(event) {
+    event.preventDefault();
+    const storyId = document.getElementById('storyId').value;
+    const title = document.getElementById('storyTitle').value;
+    const content = document.getElementById('storyContent').value;
+
+    const storyData = { title, content };
+
+    fetch(`https://your-vercel-backend.com/api/stories/${storyId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(storyData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Story updated successfully!');
+    })
+    .catch(error => console.error('Error updating story:', error));
 }
 
-// Main function to run the editing process
-async function editStory() {
-    const password = prompt('Enter the password:');
-    if (!authenticate(password)) {
-        alert('Password is incorrect!');
-        return;
+// Event listener for form submission
+document.getElementById('storyForm').addEventListener('submit', function(event) {
+    const password = document.getElementById('password').value;
+    if (authenticateUser(password)) {
+        submitForm(event);
+    } else {
+        alert('Incorrect password.');
     }
-
-    const stories = await loadStories();
-    if (stories) {
-        const storyId = '123'; // Get this ID dynamically based on selection
-        const story = stories.find(s => s.id === storyId);
-        if (story) {
-            populateForm(story);
-        }
-    }
-
-    const submitButton = document.getElementById('submit');
-    submitButton.addEventListener('click', async () => {
-        const data = {
-            title: document.getElementById('title').value,
-            content: document.getElementById('content').value,
-            // Add more fields as necessary
-        };
-        await submitStory(data);
-    });
-}
-
-// Call the editStory function to initiate
-editStory();
+});
