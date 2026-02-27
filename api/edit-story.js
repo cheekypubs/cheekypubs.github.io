@@ -29,7 +29,7 @@ export default async function handler(req, res) {
   const cookieHeader = req.headers?.cookie || '';
   const sessionCookie = cookieHeader.split(';').map(s => s.trim()).find(s => s.startsWith('session='));
   const token = sessionCookie ? sessionCookie.split('=')[1] : null;
-  const sessionSecret = process.env.SESSION_SECRET || '';
+  const sessionSecret = process.env.SESSION_SECRET || process.env.GITHUB_PAT || '';
   if (!token || !sessionSecret) return res.status(401).json({ error: 'unauthenticated' });
 
   // Verify token

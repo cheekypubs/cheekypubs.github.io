@@ -1,8 +1,9 @@
 // Server-side admin login for Vercel
 // POST { password }
-// Requires two environment variables set in Vercel:
+// Requires environment variables set in Vercel:
+// - ADMIN_PASSWORD  (the admin password in plaintext)   — OR —
 // - ADMIN_PASSWORD_HASH (sha256 hex of the admin password)
-// - SESSION_SECRET (a random secret string used to sign session tokens)
+// - SESSION_SECRET (optional — falls back to GITHUB_PAT if not set)
 
 import crypto from 'crypto';
 
@@ -61,7 +62,8 @@ export default async function handler(req, res) {
   const { password } = req.body || {};
   if (!password) return res.status(400).json({ error: 'password required' });
 
-  const configuredHash = process.env.ADMIN_PASSWORD_HASH || '';
+  const configuredHash = process.env.ADMIN_PASSWORD_HASH ||
+    (process.env.ADMIN_PASSWORD ? sha256Hex(process.env.ADMIN_PASSWORD) : '');
   const providedHash = sha256Hex(password);
 
   // Timing-safe compare
@@ -73,7 +75,9 @@ export default async function handler(req, res) {
   }
   if (!safeEqual) return res.status(401).json({ error: 'invalid credentials' });
 
-  const sessionSecret = process.env.SESSION_SECRET || '';
+  const sessionSecret = process.env.SESSION_SECRET || process.env.GITHUB_PAT || '';
+  // SESSION_SECRET is preferred; GITHUB_PAT is a fallback so no extra env var is needed.
+  // If GITHUB_PAT is rotated, users must log in again (sessions are 1 hour).
   if (!sessionSecret) return res.status(500).json({ error: 'server misconfigured' });
 
   const now = Math.floor(Date.now() / 1000);

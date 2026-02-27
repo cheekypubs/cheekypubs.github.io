@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     storySelect.innerHTML = '<option value="">Select a story to edit...</option>';
     stories.forEach(story => {
       const option = document.createElement('option');
-      option.value = story.url;
+      option.value = story.slug || story.url;
       let label = story.title;
       if (story.author) label += ` — ${story.author}`;
       if (story.chapter) label += ` (Ch. ${story.chapter})`;
