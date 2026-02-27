@@ -7,7 +7,7 @@ import crypto from 'crypto';
 function setCorsHeaders(res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://cheekypubs.github.io');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 }
 
@@ -24,10 +24,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Require admin session cookie
+  // Accept token from Authorization header (preferred for cross-origin) or cookie (fallback)
+  const authHeader = req.headers?.authorization || '';
+  const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
   const cookieHeader = req.headers?.cookie || '';
   const sessionCookie = cookieHeader.split(';').map(s=>s.trim()).find(s=>s.startsWith('session='));
-  const token = sessionCookie ? sessionCookie.split('=')[1] : null;
+  const token = bearerToken || (sessionCookie ? sessionCookie.split('=')[1] : null);
   const sessionSecret = process.env.SESSION_SECRET || process.env.GITHUB_PAT || '';
   if (!token || !sessionSecret) return res.status(401).json({ error: 'unauthenticated' });
 

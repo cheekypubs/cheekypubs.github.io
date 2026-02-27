@@ -18,8 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const storySelect = document.getElementById('storySelect');
 
   // Check if already authenticated (session storage)
-  if (sessionStorage.getItem('storyEditAuth') === 'true') {
+  if (sessionStorage.getItem('storyEditAuth') === 'true' && sessionStorage.getItem('storyEditToken')) {
     showEditingForm();
+  } else {
+    // Clear any stale auth state
+    sessionStorage.removeItem('storyEditAuth');
+    sessionStorage.removeItem('storyEditToken');
   }
 
   // Password submission - authenticates against server-side API
@@ -53,7 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Authenticated — server set HttpOnly cookie; show editing form
+      // Authenticated — store token from response body (cross-origin cookies are often
+      // blocked by browsers, so we use the token directly via Authorization header)
+      const data = await resp.json().catch(() => ({}));
+      if (data.token) {
+        sessionStorage.setItem('storyEditToken', data.token);
+      }
       sessionStorage.setItem('storyEditAuth', 'true');
       showEditingForm();
     } catch (e) {
@@ -177,9 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
       : [];
 
     try {
+      const editToken = sessionStorage.getItem('storyEditToken') || '';
       const response = await fetch(EDIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(editToken && { 'Authorization': `Bearer ${editToken}` })
+        },
         credentials: 'include',
         body: JSON.stringify({
           storyUrl,

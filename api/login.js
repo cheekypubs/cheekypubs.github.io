@@ -84,8 +84,11 @@ export default async function handler(req, res) {
   const payload = { iat: now, exp: now + 60 * 60 }; // 1 hour session
   const token = signToken(payload, sessionSecret);
 
-  // Set HttpOnly secure cookie (SameSite=None for cross-origin)
+  // Set HttpOnly secure cookie (SameSite=None for cross-origin) as a best-effort fallback.
+  // The token is also returned in the response body because browsers (especially Safari)
+  // block third-party cookies, preventing the cookie from being stored when the login
+  // request comes from a different origin (cheekypubs.github.io → cheekypubs.vercel.app).
   const cookie = `session=${token}; HttpOnly; Path=/; Max-Age=${60 * 60}; SameSite=None; Secure`;
   res.setHeader('Set-Cookie', cookie);
-  return res.status(200).json({ status: 'ok' });
+  return res.status(200).json({ status: 'ok', token });
 }
