@@ -1,28 +1,80 @@
-// JavaScript code to handle story editing
+// Complete Story Editing Functionality
 
-// Function to edit a story
-function editStory(storyId, newContent) {
-    // Simulate fetching the story
-    let story = getStoryById(storyId);
-    if (story) {
-        story.content = newContent;
-        // Simulate saving the updated story
-        saveStory(story);
-        console.log(`Story ${storyId} updated successfully.`);
-    } else {
-        console.error(`Story ${storyId} not found.`);
-    }
-}
+// Imports and Dependencies
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-// Placeholder function to simulate fetching a story by ID
-function getStoryById(id) {
-    // Fetch the story from the database or API
-    // This is just a placeholder implementation
-    return { id: id, content: "Original content." };
-}
+const EditStory = () => {
+    const [password, setPassword] = useState('');
+    const [story, setStory] = useState(null);
+    const [error, setError] = useState('');
+    const storyId = 'YOUR_STORY_ID_HERE'; // Replace with dynamic story ID or pass as props
 
-// Placeholder function to simulate saving a story
-function saveStory(story) {
-    // Save the updated story to the database or API
-    console.log(`Saving story ${story.id}...`);
-}
+    // Load story based on storyId
+    useEffect(() => {
+        const loadStory = async () => {
+            try {
+                const response = await axios.get(`/api/stories/${storyId}`);
+                setStory(response.data);
+            } catch (err) {
+                setError('Error loading story');
+            }
+        };
+        loadStory();
+    }, [storyId]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (password !== 'YOUR_PASSWORD_HERE') {
+            setError('Invalid password');
+            return;
+        }
+
+        try {
+            await axios.post(`/api/stories/${storyId}`, story);
+            alert('Story submitted successfully');
+        } catch (err) {
+            setError('Error submitting the story');
+        }
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setStory({ ...story, [name]: value });
+    };
+
+    return (
+        <div>
+            <h1>Edit Story</h1>
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit}>
+                {story && (
+                    <> 
+                        <input 
+                            type='text' 
+                            name='title' 
+                            value={story.title} 
+                            onChange={handleChange} 
+                            placeholder='Story Title' 
+                        />
+                        <textarea 
+                            name='content' 
+                            value={story.content} 
+                            onChange={handleChange} 
+                            placeholder='Story Content' 
+                        />
+                    </>
+                )}
+                <input 
+                    type='password' 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    placeholder='Enter Password' 
+                />
+                <button type='submit'>Save Changes</button>
+            </form>
+        </div>
+    );
+};
+
+export default EditStory;
