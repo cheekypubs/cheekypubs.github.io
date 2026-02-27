@@ -1,0 +1,86 @@
+name: Publish story edit
+
+on:
+  repository_dispatch:
+    types: [story-edit]
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update story file
+        id: update-story-file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const payload = context.payload.client_payload || {};
+
+            // Validate storyUrl: only allow alphanumeric, hyphens, underscores (no path traversal)
+            const rawUrl = (payload.storyUrl || '').replace(/^\/|\/$/g, '');
+            if (!/^[a-zA-Z0-9_-]+$/.test(rawUrl)) {
+              core.setFailed(`Invalid storyUrl: ${rawUrl}`);
+              return;
+            }
+            const storyUrl = rawUrl;
+
+            const title = (payload.title || '').trim();
+            const author = (payload.author || 'Anonymous').trim();
+
+            // Validate date format (YYYY-MM-DD)
+            const rawDate = (payload.date || '').trim();
+            const date = /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : new Date().toISOString().slice(0,10);
+
+            // Sanitize tags: strip YAML special characters and newlines
+            const rawTags = Array.isArray(payload.tags) ? payload.tags : [];
+            const tags = rawTags.map(t => String(t).replace(/[\r\n:#\[\]{}&*!|>'"%@`]/g, '').trim()).filter(t => t.length > 0);
+
+            const description = (payload.description || '').trim();
+            const storyId = (payload.storyId || '').trim();
+            const chapter = payload.chapter ? parseInt(payload.chapter) : null;
+            const chapterTitle = (payload.chapterTitle || '').trim();
+            const content = (payload.content || '').trim();
+
+            if (!storyUrl || !title || !content) {
+              core.setFailed('storyUrl, title, and content are required');
+              return;
+            }
+
+            const filepath = `_stories/${storyUrl}.md`;
+            const fs = require('fs');
+
+            if (!fs.existsSync(filepath)) {
+              core.setFailed(`Story file not found: ${filepath}`);
+              return;
+            }
+
+            // Build front matter
+            let frontMatter = `---\nlayout: story\ntitle: "${title.replace(/"/g, '\\"')}"\nauthor: "${author.replace(/"/g, '\\"')}"\ndate: ${date} 12:00:00 -0500\n`;
+            if (description) frontMatter += `description: "${description.replace(/"/g, '\\"')}"\n`;
+            if (storyId) frontMatter += `story_id: "${storyId}"\n`;
+            if (chapter) frontMatter += `chapter: ${chapter}\n`;
+            if (chapterTitle) frontMatter += `chapter_title: "${chapterTitle.replace(/"/g, '\\"')}"\n`;
+            if (tags.length > 0) {
+              frontMatter += 'tags:\n';
+              tags.forEach(tag => { frontMatter += `  - "${tag}"\n`; });
+            }
+            frontMatter += '---\n';
+
+            fs.writeFileSync(filepath, `${frontMatter}\n${content}\n`);
+            core.setOutput('filepath', filepath);
+            // Sanitize title for use in git commit message
+            core.setOutput('title', title.replace(/[`$\\"\n\r]/g, ''));
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _stories/
+          git commit -m "Edit story: ${{ steps.update-story-file.outputs.title || 'story' }}" || echo "No changes to commit"
+          git push
