@@ -40,7 +40,7 @@ function verifyToken(token, secret) {
 
 // CORS helper for cross-origin requests from GitHub Pages
 function setCorsHeaders(res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://cheekypubs.github.io');
+  res.setHeader('Access-Control-Allow-Origin', 'https://cheeky.pub');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
