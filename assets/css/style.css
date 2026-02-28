@@ -1387,3 +1387,110 @@ a {
         height: 42px;
     }
 }
+
+/* =============================================== */
+/* --- Admin Page Styles --- */
+/* =============================================== */
+
+.admin-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.admin-page h1 {
+    color: #A52A2A;
+    margin-bottom: 30px;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #A52A2A;
+    margin-bottom: 30px;
+}
+
+.admin-tab-btn {
+    padding: 12px 28px;
+    background-color: #f8f9fa;
+    color: #5C4033;
+    border: 2px solid #ddd;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    margin-bottom: -2px;
+}
+
+.admin-tab-btn:hover:not(.active) {
+    background-color: #f0e8e8;
+    border-color: #A52A2A;
+    color: #A52A2A;
+}
+
+.admin-tab-btn.active {
+    background-color: #A52A2A;
+    color: #fff;
+    border-color: #A52A2A;
+}
+
+.admin-tab-content {
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+.btn-danger {
+    padding: 12px 24px;
+    background-color: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background-color: #96281b;
+}
+
+.btn-danger:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.edit-success,
+.edit-error {
+    text-align: center;
+    padding: 40px;
+}
+
+.edit-success h2 {
+    color: #228B22;
+}
+
+.edit-error h2 {
+    color: #A52A2A;
+}
+
+@media (max-width: 600px) {
+    .admin-tabs {
+        flex-direction: column;
+        border-bottom: none;
+    }
+
+    .admin-tab-btn {
+        border-radius: 5px;
+        border: 2px solid #ddd;
+        margin-bottom: 4px;
+    }
+
+    .admin-tab-btn.active {
+        border-color: #A52A2A;
+    }
+}
