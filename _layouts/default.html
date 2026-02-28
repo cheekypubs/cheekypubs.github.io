@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | absolute_url }}">
     <link rel="icon" type="image/png" href="{{ '/assets/images/logo/favicon.png' | absolute_url }}">
     <link rel="apple-touch-icon" href="{{ '/assets/images/logo/apple-touch-icon.png' | absolute_url }}">
+
+    {% if site.google_analytics %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
 </head>
 <body>
 
