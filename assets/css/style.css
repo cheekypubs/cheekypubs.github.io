@@ -51,12 +51,12 @@ body {
 }
 
 .nav-links a:hover {
-    color: #228B22; /* Leafy Green */
+    color: #008B8B; /* Dark Cyan */
 }
 
 /* External link style */
 .nav-links a.external-link {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .nav-links a.external-link:hover {
@@ -64,7 +64,7 @@ body {
 }
 
 a {
-    color: #228B22; /* Leafy Green */
+    color: #008B8B; /* Dark Cyan */
     font-weight: bold;
     transition: color 0.3s;
 }
@@ -274,7 +274,7 @@ a {
 }
 
 .author-list a:hover {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .author-list .count,
@@ -311,7 +311,7 @@ a {
 .submit-link-btn {
     display: block;
     text-align: center;
-    background-color: #228B22;
+    background-color: #008B8B;
     color: #fff !important;
     padding: 12px 20px;
     border-radius: 5px;
@@ -372,7 +372,7 @@ a {
 
 .clear-filter {
     margin-left: 10px;
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
 }
 
@@ -454,7 +454,7 @@ a {
 }
 
 .story-meta .story-author a {
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
 }
 
@@ -476,7 +476,7 @@ a {
 }
 
 .read-more {
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9em;
@@ -553,7 +553,7 @@ a {
 }
 
 .back-link {
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
     font-weight: bold;
 }
@@ -735,8 +735,8 @@ a {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #228B22;
-    box-shadow: 0 0 0 2px rgba(34, 139, 34, 0.1);
+    border-color: #008B8B;
+    box-shadow: 0 0 0 2px rgba(0, 139, 139, 0.1);
 }
 
 /* Radio button group styling */
@@ -761,17 +761,17 @@ a {
 }
 
 .radio-label:hover {
-    border-color: #228B22;
+    border-color: #008B8B;
 }
 
 .radio-label input[type="radio"] {
     width: 18px;
     height: 18px;
-    accent-color: #228B22;
+    accent-color: #008B8B;
 }
 
 .radio-label input[type="radio"]:checked + span {
-    color: #228B22;
+    color: #008B8B;
     font-weight: bold;
 }
 
@@ -795,14 +795,14 @@ a {
 }
 
 .form-hint a {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .form-note {
     margin-top: 12px;
     padding: 12px 15px;
     background-color: #f8f9fa;
-    border-left: 3px solid #228B22;
+    border-left: 3px solid #008B8B;
     border-radius: 4px;
     font-size: 0.9em;
     color: #5C4033;
@@ -810,7 +810,7 @@ a {
 }
 
 .form-note a {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .form-note code {
@@ -833,7 +833,7 @@ a {
 
 .btn-primary {
     padding: 14px 30px;
-    background-color: #228B22;
+    background-color: #008B8B;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -876,7 +876,7 @@ a {
 }
 
 .submission-success h2 {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .submission-error h2 {
@@ -1098,7 +1098,7 @@ a {
 /* Chapter badge on story listing */
 .chapter-badge {
     display: inline-block;
-    background-color: #228B22;
+    background-color: #008B8B;
     color: white;
     font-size: 0.55em;
     font-weight: normal;
@@ -1153,14 +1153,14 @@ a {
 .chapter-list li a {
     display: block;
     padding: 8px 15px;
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
     font-weight: normal;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .chapter-list li a:hover {
-    background-color: #228B22;
+    background-color: #008B8B;
     color: white;
 }
 
@@ -1190,7 +1190,7 @@ a {
 .chapter-next {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #228B22;
+    background-color: #008B8B;
     color: white !important;
     text-decoration: none;
     border-radius: 5px;
@@ -1271,7 +1271,7 @@ a {
 
 .email-highlight a {
     font-size: 1.4em;
-    color: #228B22;
+    color: #008B8B;
     text-decoration: none;
     padding: 15px 30px;
     background-color: #f8f9fa;
@@ -1292,7 +1292,7 @@ a {
 .submit-checklist li {
     padding: 12px 15px;
     background-color: #fff;
-    border-left: 3px solid #228B22;
+    border-left: 3px solid #008B8B;
     margin-bottom: 10px;
     border-radius: 0 5px 5px 0;
 }
@@ -1471,7 +1471,7 @@ a {
 }
 
 .edit-success h2 {
-    color: #228B22;
+    color: #008B8B;
 }
 
 .edit-error h2 {
