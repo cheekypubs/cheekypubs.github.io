@@ -4,7 +4,7 @@
 
 /* General Body Styles */
 body {
-    background-color: #ffe3e0; /* Peachy Pink */
+    background-color: #ffffff; /* White */
     color: #5C4033; /* Dark Brown */
     font-family: Arial, sans-serif;
     margin: 0;
@@ -223,18 +223,18 @@ a {
 
 /* Sidebar Styles */
 .stories-sidebar {
-    flex: 0 0 250px;
+    flex: 0 0 180px;
     background-color: #fff;
     border: 2px solid #A52A2A;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     height: fit-content;
     position: sticky;
     top: 20px;
 }
 
 .sidebar-section {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .sidebar-section:last-child {
@@ -243,10 +243,10 @@ a {
 
 .sidebar-section h3 {
     color: #5C4033;
-    margin: 0 0 15px 0;
-    padding-bottom: 10px;
+    margin: 0 0 10px 0;
+    padding-bottom: 8px;
     border-bottom: 1px solid #eee;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .author-list {
