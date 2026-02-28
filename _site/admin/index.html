@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Cheeky Pubs</title>
+    
+    <link rel="stylesheet" href="http://localhost:4001/assets/css/style.css">
+    <link rel="icon" type="image/png" href="http://localhost:4001/assets/images/logo/favicon.png">
+    <link rel="apple-touch-icon" href="http://localhost:4001/assets/images/logo/apple-touch-icon.png">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+    <a href="http://localhost:4001/">
+        <img src="http://localhost:4001/assets/images/logo/Cheekypub.png" alt="Cheekypub Logo">
+    </a>
+</div>
+
+<nav class="nav-links" id="nav-menu">
+    <ul>
+        <li><a href="http://localhost:4001/">Stories</a></li>
+        <li><a href="http://localhost:4001/about/">About</a></li>
+        <li><a href="http://localhost:4001/submit-info/">Submit</a></li>
+        <li><a href="https://cheekyparties.github.io" target="_blank" rel="noopener noreferrer" class="external-link">Parties ↗</a></li>
+    </ul>
+</nav>
+
+<button class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+</button>
+
+    </header>
+
+    <main class="main-content">
+        <div class="page-container">
+          <div class="admin-page">
+  <h1>Admin</h1>
+
+  <!-- Password Gate -->
+  <div id="passwordGate" class="password-gate">
+    <div class="password-container">
+      <h2>🔒 Password Required</h2>
+      <p>Enter the admin password to access the publishing and editing tools.</p>
+      <div class="password-form">
+        <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        <button type="button" id="passwordSubmit" class="btn-primary">Enter</button>
+      </div>
+      <p id="passwordError" class="error-message" style="display: none;">Incorrect password. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- Admin Interface (hidden until authenticated) -->
+  <div id="adminInterface" style="display: none;">
+
+    <!-- Tab Navigation -->
+    <div class="admin-tabs" role="tablist">
+      <button type="button" class="admin-tab-btn active" id="publishTabBtn" role="tab" aria-selected="true" aria-controls="publishContent" onclick="switchTab('publish')">📝 Publish Story</button>
+      <button type="button" class="admin-tab-btn" id="editTabBtn" role="tab" aria-selected="false" aria-controls="editContent" onclick="switchTab('edit')">✏️ Edit Story</button>
+    </div>
+
+    <!-- Publish Story Tab -->
+    <div id="publishContent" class="admin-tab-content active" role="tabpanel" aria-labelledby="publishTabBtn">
+      <div class="submission-form">
+        <p class="form-intro">Fill out the form below to submit your story. All fields marked with * are required.</p>
+
+        <form id="storyForm">
+          <!-- Chapter Type Selection -->
+          <div class="form-group chapter-type-group">
+            <label>Story Type</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="chapterType" value="standalone" checked>
+                <span>Standalone Story</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="chapterType" value="new-series">
+                <span>Start New Multi-Chapter Series</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="chapterType" value="add-chapter">
+                <span>Add Chapter to Existing Story</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Existing Story Selection (for adding chapters) -->
+          <div class="form-group" id="existingStoryGroup" style="display: none;">
+            <label for="existingStory">Select Existing Story *</label>
+            <select id="existingStory" name="existingStory">
+              <option value="">Loading stories...</option>
+            </select>
+            <small class="form-hint">Select the story you want to add a new chapter to.</small>
+          </div>
+
+          <!-- Chapter Number (for multi-chapter stories) -->
+          <div class="form-group" id="chapterNumberGroup" style="display: none;">
+            <label for="chapterNumber">Chapter Number *</label>
+            <input type="number" id="chapterNumber" name="chapterNumber" min="1" value="1" placeholder="1">
+            <small class="form-hint">For new series, this starts at 1. For existing stories, enter the next chapter number.</small>
+          </div>
+
+          <!-- Chapter Title (optional) -->
+          <div class="form-group" id="chapterTitleGroup" style="display: none;">
+            <label for="chapterTitle">Chapter Title (Optional)</label>
+            <input type="text" id="chapterTitle" name="chapterTitle" placeholder="e.g., The Beginning">
+            <small class="form-hint">An optional subtitle for this chapter.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="storyTitle">Story Title *</label>
+            <input type="text" id="storyTitle" name="title" required placeholder="Enter your story title">
+          </div>
+
+          <div class="form-group">
+            <label for="storyAuthor">Author Name *</label>
+            <input type="text" id="storyAuthor" name="author" required placeholder="Your pen name">
+          </div>
+
+          <div class="form-group">
+            <label for="storyTags">Tags</label>
+            <input type="text" id="storyTags" name="tags" placeholder="e.g., romance, drama, fiction (comma separated)">
+            <small class="form-hint">Separate multiple tags with commas. All tags will be displayed in lowercase.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="storyDescription">Short Description</label>
+            <input type="text" id="storyDescription" name="description" placeholder="A one-sentence summary of the story" maxlength="200">
+            <small class="form-hint">A brief description shown on the story listing page (max 200 characters). Only needed for standalone stories or the first chapter of a series.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="storyContent">Story Content *</label>
+            <textarea id="storyContent" name="content" required rows="20" placeholder="Write or paste your story here. You can use Markdown formatting."></textarea>
+            <small class="form-hint">You can use <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a> for formatting (bold, italic, headers, etc.)</small>
+            <div class="form-note">
+              <strong>📷 Including Images:</strong> Upload your image to a free hosting service like <a href="https://imgur.com/" target="_blank" rel="noopener">Imgur</a>, <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB</a>, or <a href="https://postimages.org/" target="_blank" rel="noopener">Postimages</a>. Then copy the direct image URL and use this Markdown syntax in your story:<br>
+              <code>![Image description](https://i.imgur.com/yourimage.jpg)</code>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary btn-submit" id="submitBtn">
+              <span class="btn-text">Publish Story</span>
+              <span class="btn-loading" style="display: none;">Publishing...</span>
+            </button>
+          </div>
+        </form>
+
+        <div id="submissionSuccess" class="submission-success" style="display: none;">
+          <h2>✅ Story Published!</h2>
+          <p>Your story has been received and will be published shortly.</p>
+          <button type="button" class="btn-primary" onclick="document.getElementById('submissionSuccess').style.display='none'; document.getElementById('storyForm').style.display='block';">Publish Another</button>
+          <p><a href="http://localhost:4001/">Return to Stories</a></p>
+        </div>
+
+        <div id="submissionError" class="submission-error" style="display: none;">
+          <h2>❌ Submission Error</h2>
+          <p>There was an error submitting your story. Please try again or contact us if the problem persists.</p>
+          <p id="submitErrorDetails"></p>
+          <button type="button" class="btn-secondary" onclick="document.getElementById('submissionError').style.display='none'; document.getElementById('storyForm').style.display='block';">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Story Tab -->
+    <div id="editContent" class="admin-tab-content" role="tabpanel" aria-labelledby="editTabBtn">
+      <div class="submission-form">
+        <p class="form-intro">Select a story to edit and make your changes below.</p>
+
+        <form id="storyEditForm">
+          <!-- Story Selection -->
+          <div class="form-group">
+            <label for="storySelect">Select Story to Edit *</label>
+            <select id="storySelect" name="storySelect">
+              <option value="">Loading stories...</option>
+            </select>
+            <small class="form-hint">Choose a story to edit its details and content.</small>
+          </div>
+
+          <!-- Story Preview (disabled, for reference) -->
+          <div id="storyPreview" style="display: none;">
+            <div class="form-group">
+              <label>Current File Path</label>
+              <input type="text" id="currentFilePath" disabled style="background-color: #f0f0f0;">
+              <small class="form-hint">This shows the current filename. You can change it by editing title, author, and date.</small>
+            </div>
+          </div>
+
+          <!-- Edit Fields -->
+          <div class="form-group">
+            <label for="editTitle">Story Title *</label>
+            <input type="text" id="editTitle" name="title" required placeholder="Enter story title">
+          </div>
+
+          <div class="form-group">
+            <label for="editAuthor">Author Name *</label>
+            <input type="text" id="editAuthor" name="author" required placeholder="Author name">
+          </div>
+
+          <div class="form-group">
+            <label for="editDate">Date *</label>
+            <input type="date" id="editDate" name="date" required>
+            <small class="form-hint">Date the story was last updated.</small>
+          </div>
+
+          <!-- Tags -->
+          <div class="form-group">
+            <label for="editTags">Tags</label>
+            <input type="text" id="editTags" name="tags" placeholder="e.g., romance, drama, fiction (comma separated)">
+            <small class="form-hint">Separate multiple tags with commas. All tags will be displayed in lowercase.</small>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="editDescription">Short Description</label>
+            <input type="text" id="editDescription" name="description" placeholder="A one-sentence summary of the story" maxlength="200">
+            <small class="form-hint">A brief description shown on the story listing page (max 200 characters). Only needed for standalone stories or the first chapter of a series.</small>
+          </div>
+
+          <!-- Story ID & Chapter Info -->
+          <div class="form-group">
+            <label for="editStoryId">Story ID (for series)</label>
+            <input type="text" id="editStoryId" name="story_id" placeholder="e.g., hudsons-best">
+            <small class="form-hint">Leave blank for standalone stories. Use this for multi-chapter series.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="editChapter">Chapter Number</label>
+            <input type="number" id="editChapter" name="chapter" min="1" placeholder="1">
+            <small class="form-hint">Leave blank for standalone stories.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="editChapterTitle">Chapter Title (Optional)</label>
+            <input type="text" id="editChapterTitle" name="chapter_title" placeholder="e.g., The Beginning">
+            <small class="form-hint">An optional subtitle for this chapter.</small>
+          </div>
+
+          <!-- Story Content -->
+          <div class="form-group">
+            <label for="editContent">Story Content *</label>
+            <textarea id="editContent" name="content" required rows="20" placeholder="Story content here. You can use Markdown formatting."></textarea>
+            <small class="form-hint">You can use <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a> for formatting (bold, italic, headers, etc.)</small>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn-primary btn-submit" id="updateBtn">
+              <span class="btn-text">Update Story</span>
+              <span class="btn-loading" style="display: none;">Updating...</span>
+            </button>
+            <button type="button" class="btn-secondary" onclick="clearEditForm()">Clear Form</button>
+          </div>
+
+          <!-- Delete Story -->
+          <div class="form-group" style="margin-top: 2rem; border-top: 1px solid #e0e0e0; padding-top: 1.5rem;">
+            <label style="color: #c0392b;">Danger Zone</label>
+            <small class="form-hint">Permanently delete this story. This action cannot be undone.</small>
+            <div style="margin-top: 0.5rem;">
+              <button type="button" class="btn-danger" id="deleteBtn">
+                <span class="btn-text">Delete Story</span>
+                <span class="btn-loading" style="display: none;">Deleting...</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Edit Success Message -->
+        <div id="editSuccess" class="edit-success" style="display: none;">
+          <h2>✅ Story Updated!</h2>
+          <p>Your story has been successfully updated.</p>
+          <button type="button" class="btn-primary" onclick="location.reload();">Edit Another Story</button>
+          <p><a href="http://localhost:4001/">Return to Stories</a></p>
+        </div>
+
+        <!-- Delete Success Message -->
+        <div id="deleteSuccess" class="edit-success" style="display: none;">
+          <h2>🗑️ Story Deleted!</h2>
+          <p>The story has been permanently deleted.</p>
+          <button type="button" class="btn-primary" onclick="location.reload();">Back to Edit</button>
+          <p><a href="http://localhost:4001/">Return to Stories</a></p>
+        </div>
+
+        <!-- Edit Error Message -->
+        <div id="editError" class="edit-error" style="display: none;">
+          <h2>❌ Update Error</h2>
+          <p>There was an error updating your story. Please try again or contact us if the problem persists.</p>
+          <p id="editErrorDetails"></p>
+          <button type="button" class="btn-secondary" onclick="document.getElementById('editError').style.display='none'; document.getElementById('storyEditForm').style.display='block';">Try Again</button>
+        </div>
+
+        <!-- Delete Error Message -->
+        <div id="deleteError" class="edit-error" style="display: none;">
+          <h2>❌ Delete Error</h2>
+          <p>There was an error deleting the story. Please try again or contact us if the problem persists.</p>
+          <p id="deleteErrorDetails"></p>
+          <button type="button" class="btn-secondary" onclick="document.getElementById('deleteError').style.display='none'; document.getElementById('storyEditForm').style.display='block';">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#adminInterface -->
+</div>
+
+<script src="http://localhost:4001/assets/js/admin.js"></script>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+    <a href="https://twitter.com/cheekyspankos" target="_blank" rel="noopener">
+        <img src="http://localhost:4001/assets/images/socials/twitter.svg" alt="Twitter">
+    </a>
+    <a href="https://www.fetlife.com/groups/170517" target="_blank" rel="noopener">
+        <img src="http://localhost:4001/assets/images/socials/fetlife.svg" alt="FetLife">
+    </a>
+    <a href="mailto:cheekypubs@gmail.com">
+        <img src="http://localhost:4001/assets/images/socials/email.svg" alt="Email">
+    </a>
+</div>
+<p>&copy; 2026 Cheeky Pubs. All rights reserved.</p>
+<p class="admin-link"><a href="http://localhost:4001/submit/">Admin Login</a></p>
+
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+      </svg>
+    </button>
+    
+    <script src="http://localhost:4001/assets/js/hamburger.js"></script>
+    <script>
+      // Back to top button
+      (function() {
+        var btn = document.getElementById('backToTop');
+        if (!btn) return;
+        window.addEventListener('scroll', function() {
+          btn.classList.toggle('visible', window.scrollY > 400);
+        });
+        btn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      })();
+    </script>
+</body>
+</html>
