@@ -4,7 +4,7 @@
 
 /* General Body Styles */
 body {
-    background-color: #ffffff; /* White */
+    background-color: #FFFFF0; /* Ivory */
     color: #5C4033; /* Dark Brown */
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +15,7 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: #FFF;
+    background-color: #FFFFF0;
     padding: 2px 15px;
     display: flex;
     justify-content: space-between;
