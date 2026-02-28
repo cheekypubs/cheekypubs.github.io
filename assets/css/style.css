@@ -4,7 +4,7 @@
 
 /* General Body Styles */
 body {
-    background-color: #FFFFF0; /* Ivory */
+    background-color: #FFF5EE; /* Seashell */
     color: #5C4033; /* Dark Brown */
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,7 +15,7 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: #FFFFF0;
+    background-color: #FFF5EE;
     padding: 2px 15px;
     display: flex;
     justify-content: space-between;
@@ -77,7 +77,7 @@ a {
 
 /* Footer Styles */
 .footer {
-    background-color: #FFFFF0;
+    background-color: #FFF5EE;
     text-align: center;
     padding: 15px 20px;
     border-top: 2px solid #A52A2A; /* Dark Crimson */
@@ -896,7 +896,7 @@ a {
         left: 0;
         right: 0;
         width: 100%;
-        background-color: #FFFFF0;
+        background-color: #FFF5EE;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         border-top: 2px solid #A52A2A;
         z-index: 1000;
