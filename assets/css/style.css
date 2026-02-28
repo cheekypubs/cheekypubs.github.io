@@ -365,9 +365,6 @@ a {
     border-radius: 5px;
     margin-bottom: 20px;
     font-size: 0.95em;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .clear-filter {
@@ -382,8 +379,7 @@ a {
 
 /* Search Bar */
 .story-search {
-    max-width: 700px;
-    margin: 0 auto 20px;
+    margin: 0 0 20px;
 }
 
 .story-search input {
@@ -411,8 +407,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    max-width: 700px;
-    margin: 0 auto;
 }
 
 .story-preview {
