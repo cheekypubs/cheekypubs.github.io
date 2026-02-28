@@ -12,6 +12,11 @@
 </head>
 <body>
 
+    <div class="wip-banner" id="wipBanner" role="alert">
+        <span>🚧 This site is still a work in progress — some features may be incomplete or change without notice.</span>
+        <button class="wip-banner-close" id="wipBannerClose" aria-label="Dismiss notice">✕</button>
+    </div>
+
     <header class="header">
         {% include header.html %}
     </header>
@@ -34,6 +39,22 @@
     </button>
     
     <script src="{{ '/assets/js/hamburger.js' | absolute_url }}"></script>
+    <script>
+      // WIP banner dismiss
+      (function() {
+        var banner = document.getElementById('wipBanner');
+        var closeBtn = document.getElementById('wipBannerClose');
+        if (!banner || !closeBtn) return;
+        if (localStorage.getItem('wipBannerDismissed')) {
+          banner.remove();
+          return;
+        }
+        closeBtn.addEventListener('click', function() {
+          banner.remove();
+          localStorage.setItem('wipBannerDismissed', '1');
+        });
+      })();
+    </script>
     <script>
       // Back to top button
       (function() {
