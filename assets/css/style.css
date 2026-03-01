@@ -232,7 +232,7 @@ a {
 
 /* --- Global Page Width Container --- */
 .page-container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -422,6 +422,12 @@ a {
     max-width: 700px;
 }
 
+.welcome-info-box h1 {
+    color: #C0392B;
+    margin: 0 0 10px 0;
+    font-size: 1.35em;
+}
+
 .welcome-info-box h2 {
     color: #C0392B;
     margin: 0 0 10px 0;
@@ -439,35 +445,24 @@ a {
     margin-bottom: 0;
 }
 
-.hero-content {
-    margin-bottom: 2rem;
-    background: linear-gradient(135deg, #f4e4dc 0%, #f0d5c8 100%);
-    padding: 2rem;
-    border-radius: 8px;
+/* Stories Header Row (title + search inline) */
+.stories-header-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 20px;
 }
 
-.hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #2c1810;
+.stories-header-row h1 {
+    margin: 0;
+    white-space: nowrap;
+    color: #C0392B;
 }
 
-.hero-content p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: #4a3728;
-    margin-bottom: 0.75rem;
-}
-
-.hero-content p:first-of-type {
-    font-size: 1.15rem;
-}
-
-.hero-content p:last-child {
-    margin-bottom: 0;
+.stories-header-row .story-search {
+    flex: 1;
+    margin: 0;
 }
 
 .filter-notice {
@@ -619,7 +614,6 @@ a {
 
 /* Individual Story Page */
 .story {
-    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -1132,12 +1126,23 @@ a {
         margin-bottom: 16px;
     }
 
+    .welcome-info-box h1,
     .welcome-info-box h2 {
         font-size: 1.15em;
     }
 
     .welcome-info-box p {
         font-size: 0.9em;
+    }
+
+    .stories-header-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .stories-header-row h1 {
+        font-size: 1.3em;
     }
 
     .story-preview {

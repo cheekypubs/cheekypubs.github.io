@@ -98,15 +98,15 @@ layout: default
 
     <!-- Main Stories List -->
     <main class="stories-main">
-      {% if page.title == 'Latest Stories' and page.filter_author == nil and page.filter_tag == nil %}
-        <section class="welcome-info-box" aria-label="Welcome message">
-          <h2>Welcome to CheekyPubs!</h2>
-          <p>We are still moving everything over from our previous site so it's a little spare around here right now, but the content is still awesome.</p>
-          <p>Use the sidebar to browse by story title, author, or tag, and jump straight into what sounds fun.</p>
-        </section>
-      {% endif %}
+      {{ content }}
 
-      <h1>{{ page.title }}</h1>
+      <div class="stories-header-row">
+        <h1>{{ page.title }}</h1>
+        <!-- Search Bar -->
+        <div class="story-search">
+          <input type="text" id="storySearch" placeholder="Search by title, author, or tag..." aria-label="Search stories">
+        </div>
+      </div>
       
       {% if page.filter_author %}
         <p class="filter-notice">Showing stories by <strong>{{ page.filter_author }}</strong> 
@@ -120,12 +120,6 @@ layout: default
         </p>
       {% endif %}
 
-      {{ content }}
-
-      <!-- Search Bar -->
-      <div class="story-search">
-        <input type="text" id="storySearch" placeholder="Search by title, author, or tag..." aria-label="Search stories">
-      </div>
       <p id="searchNotice" class="filter-notice" style="display: none;">
         Showing results for "<strong id="searchTerm"></strong>"
         <a href="#" class="clear-filter" id="clearSearch">[Clear]</a>

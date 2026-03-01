@@ -20,6 +20,10 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const helpers = require('./scripts/story-helpers.js');
+            const fs = require('fs');
+            const path = require('path');
+
             const payload = context.payload.client_payload || {};
 
             // Validate storyUrl: only allow alphanumeric, hyphens, underscores (no path traversal)
@@ -58,80 +62,17 @@ jobs:
             }
 
             const filepath = `_stories/${storyUrl}.md`;
-            const fs = require('fs');
-            const path = require('path');
 
             if (!fs.existsSync(filepath)) {
               core.setFailed(`Story file not found: ${filepath}`);
               return;
             }
 
-            function parseFrontMatter(fileContent) {
-              const match = fileContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
-              return match ? match[1] : '';
-            }
-
-            function getYamlValue(yaml, key) {
-              const regex = new RegExp(`^${key}:\\s*["']?([^"'\\n]+)["']?\\s*$`, 'm');
-              const match = yaml.match(regex);
-              return match ? String(match[1]).trim() : '';
-            }
-
-            function upsertYamlValue(yaml, key, value) {
-              const safeValue = String(value || '').replace(/"/g, '\\"');
-              const line = `${key}: "${safeValue}"`;
-              const regex = new RegExp(`^${key}:.*$`, 'm');
-              if (regex.test(yaml)) return yaml.replace(regex, line);
-              return `${yaml}\n${line}`;
-            }
-
-            function splitFrontMatter(fileContent) {
-              const match = fileContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
-              if (!match) return null;
-              return { yaml: match[1], body: match[2] || '' };
-            }
-
-            function getSeriesArtwork(seriesId, currentFilePath) {
-              if (!seriesId) return null;
-              const storiesDir = '_stories';
-              if (!fs.existsSync(storiesDir)) return null;
-
-              const candidates = [];
-              for (const name of fs.readdirSync(storiesDir)) {
-                if (!name.endsWith('.md')) continue;
-                const candidatePath = path.join(storiesDir, name);
-                if (candidatePath === currentFilePath) continue;
-
-                const raw = fs.readFileSync(candidatePath, 'utf8');
-                const yaml = parseFrontMatter(raw);
-                if (!yaml) continue;
-                if (getYamlValue(yaml, 'story_id') !== seriesId) continue;
-
-                const image = getYamlValue(yaml, 'art_image');
-                if (!image) continue;
-
-                const chapterValue = parseInt(getYamlValue(yaml, 'chapter'), 10);
-                candidates.push({
-                  chapter: Number.isFinite(chapterValue) ? chapterValue : Number.MAX_SAFE_INTEGER,
-                  image,
-                  alt: getYamlValue(yaml, 'art_alt'),
-                  caption: getYamlValue(yaml, 'art_caption')
-                });
-              }
-
-              if (candidates.length === 0) return null;
-              candidates.sort((a, b) => a.chapter - b.chapter);
-              return candidates[0];
-            }
-
-            if (storyId && (!artImage || !artAlt || !artCaption)) {
-              const inheritedArtwork = getSeriesArtwork(storyId, filepath);
-              if (inheritedArtwork) {
-                if (!artImage) artImage = inheritedArtwork.image || '';
-                if (!artAlt) artAlt = inheritedArtwork.alt || '';
-                if (!artCaption) artCaption = inheritedArtwork.caption || '';
-              }
-            }
+            const artFields = { image: artImage, alt: artAlt, caption: artCaption };
+            helpers.inheritSeriesArtwork(storyId, filepath, artFields);
+            artImage = artFields.image;
+            artAlt = artFields.alt;
+            artCaption = artFields.caption;
 
             // Build front matter
             let frontMatter = `---\nlayout: story\ntitle: "${title.replace(/"/g, '\\"')}"\nauthor: "${author.replace(/"/g, '\\"')}"\ndate: ${date} 12:00:00 -0500\n`;
@@ -150,28 +91,8 @@ jobs:
 
             fs.writeFileSync(filepath, `${frontMatter}\n${content}\n`);
 
-            // Keep one shared series artwork across all chapters when story_id is present
-            if (storyId && artImage) {
-              const storiesDir = '_stories';
-              const chapterFiles = fs.readdirSync(storiesDir).filter(name => name.endsWith('.md'));
-              chapterFiles.forEach(name => {
-                const chapterPath = path.join(storiesDir, name);
-                if (chapterPath === filepath) return;
-
-                const raw = fs.readFileSync(chapterPath, 'utf8');
-                const parsed = splitFrontMatter(raw);
-                if (!parsed) return;
-                if (getYamlValue(parsed.yaml, 'story_id') !== storyId) return;
-
-                let yaml = parsed.yaml;
-                yaml = upsertYamlValue(yaml, 'art_image', artImage);
-                if (artAlt) yaml = upsertYamlValue(yaml, 'art_alt', artAlt);
-                if (artCaption) yaml = upsertYamlValue(yaml, 'art_caption', artCaption);
-
-                const rebuilt = `---\n${yaml}\n---\n\n${parsed.body.replace(/^\n+/, '')}`;
-                fs.writeFileSync(chapterPath, `${rebuilt}\n`);
-              });
-            }
+            // Keep shared series artwork across all chapters
+            helpers.propagateSeriesArtwork(storyId, filepath, artImage, artAlt, artCaption);
 
             core.setOutput('filepath', filepath);
             // Sanitize title for use in git commit message

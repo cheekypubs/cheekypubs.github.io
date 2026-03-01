@@ -16,9 +16,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create story file
-        uses: actions/github-script@v6
+        id: create-story-file
+        uses: actions/github-script@v7
         with:
           script: |
+            const helpers = require('./scripts/story-helpers.js');
+            const fs = require('fs');
+            const path = require('path');
+
             const payload = context.payload.client_payload || {};
             const title = (payload.title || 'Untitled').trim();
             let content = payload.content || '';
@@ -40,84 +45,24 @@ jobs:
             }
             
             const filepath = `_stories/${filename}`;
-            const fs = require('fs');
-            const path = require('path');
 
-            function splitFrontMatter(fileContent) {
-              const match = fileContent.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
-              if (!match) return null;
-              return { yaml: match[1], body: match[2] || '' };
-            }
-
-            function getYamlValue(yaml, key) {
-              const regex = new RegExp(`^${key}:\\s*["']?([^"'\\n]+)["']?\\s*$`, 'm');
-              const match = yaml.match(regex);
-              return match ? String(match[1]).trim() : '';
-            }
-
-            function upsertYamlValue(yaml, key, value) {
-              const safeValue = String(value || '').replace(/"/g, '\\"');
-              const line = `${key}: "${safeValue}"`;
-              const regex = new RegExp(`^${key}:.*$`, 'm');
-              if (regex.test(yaml)) return yaml.replace(regex, line);
-              return `${yaml}\n${line}`;
-            }
-
-            function getSeriesArtwork(seriesId, currentFilePath) {
-              if (!seriesId) return null;
-              const storiesDir = '_stories';
-              if (!fs.existsSync(storiesDir)) return null;
-
-              const candidates = [];
-              for (const name of fs.readdirSync(storiesDir)) {
-                if (!name.endsWith('.md')) continue;
-                const candidatePath = path.join(storiesDir, name);
-                if (candidatePath === currentFilePath) continue;
-
-                const raw = fs.readFileSync(candidatePath, 'utf8');
-                const parsed = splitFrontMatter(raw);
-                if (!parsed) continue;
-                if (getYamlValue(parsed.yaml, 'story_id') !== seriesId) continue;
-
-                const image = getYamlValue(parsed.yaml, 'art_image');
-                if (!image) continue;
-
-                const chapterValue = parseInt(getYamlValue(parsed.yaml, 'chapter'), 10);
-                candidates.push({
-                  chapter: Number.isFinite(chapterValue) ? chapterValue : Number.MAX_SAFE_INTEGER,
-                  image,
-                  alt: getYamlValue(parsed.yaml, 'art_alt'),
-                  caption: getYamlValue(parsed.yaml, 'art_caption')
-                });
-              }
-
-              if (candidates.length === 0) return null;
-              candidates.sort((a, b) => a.chapter - b.chapter);
-              return candidates[0];
-            }
-
-            const parsedIncoming = splitFrontMatter(content);
+            const parsedIncoming = helpers.splitFrontMatter(content);
             if (parsedIncoming) {
               let yaml = parsedIncoming.yaml;
               const body = parsedIncoming.body;
 
-              const inferredStoryId = getYamlValue(yaml, 'story_id') || (storyId ? String(storyId).trim() : '');
-              let artImage = getYamlValue(yaml, 'art_image');
-              let artAlt = getYamlValue(yaml, 'art_alt');
-              let artCaption = getYamlValue(yaml, 'art_caption');
+              const inferredStoryId = helpers.getYamlValue(yaml, 'story_id') || (storyId ? String(storyId).trim() : '');
+              const artFields = {
+                image: helpers.getYamlValue(yaml, 'art_image'),
+                alt: helpers.getYamlValue(yaml, 'art_alt'),
+                caption: helpers.getYamlValue(yaml, 'art_caption')
+              };
 
-              if (inferredStoryId && (!artImage || !artAlt || !artCaption)) {
-                const inheritedArtwork = getSeriesArtwork(inferredStoryId, filepath);
-                if (inheritedArtwork) {
-                  if (!artImage) artImage = inheritedArtwork.image || '';
-                  if (!artAlt) artAlt = inheritedArtwork.alt || '';
-                  if (!artCaption) artCaption = inheritedArtwork.caption || '';
-                }
-              }
+              helpers.inheritSeriesArtwork(inferredStoryId, filepath, artFields);
 
-              if (artImage) yaml = upsertYamlValue(yaml, 'art_image', artImage);
-              if (artAlt) yaml = upsertYamlValue(yaml, 'art_alt', artAlt);
-              if (artCaption) yaml = upsertYamlValue(yaml, 'art_caption', artCaption);
+              if (artFields.image) yaml = helpers.upsertYamlValue(yaml, 'art_image', artFields.image);
+              if (artFields.alt) yaml = helpers.upsertYamlValue(yaml, 'art_alt', artFields.alt);
+              if (artFields.caption) yaml = helpers.upsertYamlValue(yaml, 'art_caption', artFields.caption);
 
               content = `---\n${yaml}\n---\n\n${body.replace(/^\n+/, '')}`;
             }
@@ -125,41 +70,25 @@ jobs:
             // Content already includes front matter from client, just save it directly
             fs.writeFileSync(filepath, content + '\n');
 
-            // Keep one shared series artwork across all chapters when story_id is present
-            const savedParsed = splitFrontMatter(content);
+            // Keep shared series artwork across all chapters when story_id is present
+            const savedParsed = helpers.splitFrontMatter(content);
             if (savedParsed) {
-              const savedStoryId = getYamlValue(savedParsed.yaml, 'story_id');
-              const savedArtImage = getYamlValue(savedParsed.yaml, 'art_image');
-              const savedArtAlt = getYamlValue(savedParsed.yaml, 'art_alt');
-              const savedArtCaption = getYamlValue(savedParsed.yaml, 'art_caption');
-
-              if (savedStoryId && savedArtImage) {
-                const storiesDir = '_stories';
-                const chapterFiles = fs.readdirSync(storiesDir).filter(name => name.endsWith('.md'));
-                chapterFiles.forEach(name => {
-                  const chapterPath = path.join(storiesDir, name);
-                  if (chapterPath === filepath) return;
-
-                  const raw = fs.readFileSync(chapterPath, 'utf8');
-                  const parsed = splitFrontMatter(raw);
-                  if (!parsed) return;
-                  if (getYamlValue(parsed.yaml, 'story_id') !== savedStoryId) return;
-
-                  let yaml = parsed.yaml;
-                  yaml = upsertYamlValue(yaml, 'art_image', savedArtImage);
-                  if (savedArtAlt) yaml = upsertYamlValue(yaml, 'art_alt', savedArtAlt);
-                  if (savedArtCaption) yaml = upsertYamlValue(yaml, 'art_caption', savedArtCaption);
-
-                  const rebuilt = `---\n${yaml}\n---\n\n${parsed.body.replace(/^\n+/, '')}`;
-                  fs.writeFileSync(chapterPath, `${rebuilt}\n`);
-                });
-              }
+              const savedStoryId = helpers.getYamlValue(savedParsed.yaml, 'story_id');
+              helpers.propagateSeriesArtwork(
+                savedStoryId, filepath,
+                helpers.getYamlValue(savedParsed.yaml, 'art_image'),
+                helpers.getYamlValue(savedParsed.yaml, 'art_alt'),
+                helpers.getYamlValue(savedParsed.yaml, 'art_caption')
+              );
             }
+
+            // Pass title to commit step
+            core.setOutput('title', title.replace(/[`$\\"\n\r]/g, ''));
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add _stories/*.md
-          git commit -m "Add story: ${GITHUB_EVENT_CLIENT_PAYLOAD_TITLE:-Untitled}" || echo "No changes to commit"
+          git commit -m "Add story: ${{ steps.create-story-file.outputs.title || 'Untitled' }}" || echo "No changes to commit"
           git push
