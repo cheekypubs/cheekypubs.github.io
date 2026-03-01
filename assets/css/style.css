@@ -536,7 +536,7 @@ a {
     display: block;
     text-decoration: none;
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 1 / -1;
 }
 
 .story-thumb {
@@ -1146,6 +1146,7 @@ a {
 
     .story-thumb-link {
         width: 100%;
+        grid-row: 1;
     }
 
     .story-preview-content {
