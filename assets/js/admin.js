@@ -10,6 +10,8 @@ const LOGIN_URL = `${API_BASE}/api/login`;
 const SUBMIT_URL = `${API_BASE}/api/submit-story`;
 const EDIT_URL = `${API_BASE}/api/edit-story`;
 const DELETE_URL = `${API_BASE}/api/delete-story`;
+const GET_STORY_CONTENT_URL = `${API_BASE}/api/get-story-content`;
+const UPLOAD_ARTWORK_URL = `${API_BASE}/api/upload-artwork`;
 
 // Session storage key for the unified admin token
 const TOKEN_KEY = 'adminToken';
@@ -148,6 +150,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const chapterTitleGroup = document.getElementById('chapterTitleGroup');
     const existingStorySelect = document.getElementById('existingStory');
     const publishArtworkPreview = ensureArtworkPreviewContainer('publishStoryArtworkPreview', existingStoryGroup);
+    setupArtworkUploader({
+      fileInputId: 'storyArtFile',
+      uploadBtnId: 'storyArtUploadBtn',
+      statusId: 'storyArtUploadStatus',
+      urlInputId: 'storyArtImage',
+      titleInputId: 'storyTitle'
+    });
 
     if (chapterTypeRadios) {
       chapterTypeRadios.forEach(function(radio) {
@@ -364,6 +373,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const storySelect = document.getElementById('storySelect');
     const editArtworkPreview = ensureArtworkPreviewContainer('editStoryArtworkPreview', storySelect ? storySelect.parentElement : null);
     let contentLoadToken = 0;
+    setupArtworkUploader({
+      fileInputId: 'editArtFile',
+      uploadBtnId: 'editArtUploadBtn',
+      statusId: 'editArtUploadStatus',
+      urlInputId: 'editArtImage',
+      titleInputId: 'editTitle'
+    });
     loadStories();
 
     async function loadStories() {
@@ -461,13 +477,30 @@ document.addEventListener('DOMContentLoaded', function() {
       editContent.value = 'Loading story content...';
 
       try {
-        const rawUrl = 'https://raw.githubusercontent.com/cheekypubs/cheekypubs.github.io/main/_stories/' + encodeURIComponent(slug) + '.md';
-        const resp = await fetch(rawUrl, { cache: 'no-store' });
-        if (!resp.ok) {
-          throw new Error('Could not load source (' + resp.status + ')');
+        const token = sessionStorage.getItem(TOKEN_KEY) || '';
+        const response = await fetch(GET_STORY_CONTENT_URL, {
+          method: 'POST',
+          headers: Object.assign(
+            { 'Content-Type': 'application/json' },
+            token ? { 'Authorization': 'Bearer ' + token } : {}
+          ),
+          credentials: 'include',
+          body: JSON.stringify({ slug: slug })
+        });
+
+        let markdown = '';
+        if (response.ok) {
+          const payload = await response.json();
+          markdown = payload.content || '';
+        } else {
+          const rawUrl = 'https://raw.githubusercontent.com/cheekypubs/cheekypubs.github.io/main/_stories/' + encodeURIComponent(slug) + '.md';
+          const rawResp = await fetch(rawUrl, { cache: 'no-store' });
+          if (!rawResp.ok) {
+            throw new Error('Could not load source (' + rawResp.status + ')');
+          }
+          markdown = await rawResp.text();
         }
 
-        const markdown = await resp.text();
         if (thisLoadToken !== contentLoadToken) return;
 
         const contentOnly = markdown.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
@@ -730,5 +763,78 @@ document.addEventListener('DOMContentLoaded', function() {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function setupArtworkUploader(config) {
+    const fileInput = document.getElementById(config.fileInputId);
+    const uploadBtn = document.getElementById(config.uploadBtnId);
+    const statusEl = document.getElementById(config.statusId);
+    const urlInput = document.getElementById(config.urlInputId);
+
+    if (!fileInput || !uploadBtn || !statusEl || !urlInput) return;
+
+    uploadBtn.addEventListener('click', async function() {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) {
+        statusEl.textContent = 'Please select a file first.';
+        return;
+      }
+
+      const extMatch = (file.name || '').toLowerCase().match(/\.(svg|png|jpe?g|webp|gif)$/);
+      if (!extMatch) {
+        statusEl.textContent = 'Unsupported file type. Use svg, png, jpg, jpeg, webp, or gif.';
+        return;
+      }
+
+      uploadBtn.disabled = true;
+      statusEl.textContent = 'Uploading artwork...';
+
+      try {
+        const dataUrl = await readFileAsDataUrl(file);
+        const parts = dataUrl.split(',');
+        const base64Data = parts.length > 1 ? parts[1] : '';
+        if (!base64Data) {
+          throw new Error('Invalid file data');
+        }
+
+        const titleInput = config.titleInputId ? document.getElementById(config.titleInputId) : null;
+        const titleStem = titleInput && titleInput.value ? slugify(titleInput.value) : 'artwork';
+        const finalName = `${titleStem || 'artwork'}-${Date.now()}.${extMatch[1] === 'jpeg' ? 'jpg' : extMatch[1]}`;
+
+        const token = sessionStorage.getItem(TOKEN_KEY) || '';
+        const response = await fetch(UPLOAD_ARTWORK_URL, {
+          method: 'POST',
+          headers: Object.assign(
+            { 'Content-Type': 'application/json' },
+            token ? { 'Authorization': 'Bearer ' + token } : {}
+          ),
+          credentials: 'include',
+          body: JSON.stringify({ fileName: finalName, fileDataBase64: base64Data })
+        });
+
+        if (!response.ok) {
+          const body = await response.text();
+          throw new Error(body || ('Upload failed: ' + response.status));
+        }
+
+        const payload = await response.json();
+        urlInput.value = payload.path || '';
+        statusEl.textContent = payload.path ? `Uploaded: ${payload.path}` : 'Upload complete.';
+      } catch (error) {
+        console.error('Artwork upload failed:', error);
+        statusEl.textContent = 'Upload failed. Check file and try again.';
+      } finally {
+        uploadBtn.disabled = false;
+      }
+    });
+  }
+
+  function readFileAsDataUrl(file) {
+    return new Promise(function(resolve, reject) {
+      const reader = new FileReader();
+      reader.onload = function() { resolve(reader.result || ''); };
+      reader.onerror = function() { reject(new Error('Failed to read file')); };
+      reader.readAsDataURL(file);
+    });
   }
 });

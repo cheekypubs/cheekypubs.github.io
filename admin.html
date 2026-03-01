@@ -106,6 +106,15 @@ permalink: /admin/
           </div>
 
           <div class="form-group">
+            <label for="storyArtFile">Upload New Artwork File</label>
+            <input type="file" id="storyArtFile" accept=".svg,.png,.jpg,.jpeg,.webp,.gif,image/*">
+            <div class="art-upload-actions">
+              <button type="button" class="btn-secondary" id="storyArtUploadBtn">Upload Artwork</button>
+              <span class="form-hint" id="storyArtUploadStatus">Choose a file, then click Upload Artwork.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="storyArtAlt">Artwork Alt Text</label>
             <input type="text" id="storyArtAlt" name="art_alt" placeholder="Short accessibility description of the artwork">
             <small class="form-hint">Optional alt text for accessibility.</small>
@@ -216,6 +225,15 @@ permalink: /admin/
             <label for="editArtImage">Artwork Image URL</label>
             <input type="text" id="editArtImage" name="art_image" placeholder="/assets/images/story-art/example.svg or https://...">
             <small class="form-hint">Optional hero artwork image path or URL for the story page and story cards.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="editArtFile">Upload New Artwork File</label>
+            <input type="file" id="editArtFile" accept=".svg,.png,.jpg,.jpeg,.webp,.gif,image/*">
+            <div class="art-upload-actions">
+              <button type="button" class="btn-secondary" id="editArtUploadBtn">Upload Artwork</button>
+              <span class="form-hint" id="editArtUploadStatus">Choose a file, then click Upload Artwork.</span>
+            </div>
           </div>
 
           <div class="form-group">

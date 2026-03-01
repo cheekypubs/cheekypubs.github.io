@@ -1652,6 +1652,14 @@ a {
     border-top: 1px solid #FFE4D1;
 }
 
+.art-upload-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
 @media (max-width: 600px) {
     .admin-tabs {
         flex-direction: column;
