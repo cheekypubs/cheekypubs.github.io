@@ -3,13 +3,13 @@ layout: story
 title: "The Advisor"
 author: "Alex Reynolds"
 date: 2026-02-21 12:00:00 -0500
+description: "A struggling college student changes advisors and discovers that his new mentor has an unconventional approach to accountability."
+art_image: "/assets/images/story-art/the-advisor-1772408792618.jpg"
 story_id: "the-advisor"
 chapter: 1
 chapter_title: "Part 1"
-description: "A struggling college student changes advisors and discovers that his new mentor has an unconventional approach to accountability."
-art_image: "/assets/images/story-art/the-advisor.svg"
 tags:
-  - m/m
+  - "m/m"
 ---
 
 ## Chapter 1
