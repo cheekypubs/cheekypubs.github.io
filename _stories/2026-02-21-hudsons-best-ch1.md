@@ -4,7 +4,7 @@ title: "Hudson's Best"
 author: "Conor Grayson"
 date: 2026-02-21 12:00:00 -0500
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772377478713.png"
+art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 story_id: "hudsons-best"
