@@ -471,14 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadStoryContentForEdit(story, editContent) {
       const statusEl = document.getElementById('editContentLoadStatus');
-      const inlineContent = (story && typeof story.raw_content === 'string') ? story.raw_content : '';
-      if (inlineContent) {
-        editContent.disabled = false;
-        editContent.value = inlineContent;
-        if (statusEl) statusEl.textContent = 'Loaded story markdown.';
-        return;
-      }
-
+      
       const slug = (story && story.slug ? String(story.slug).trim() : '');
       if (!slug) {
         editContent.disabled = false;
@@ -493,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (statusEl) statusEl.textContent = 'Loading story markdown...';
 
       try {
+        // Always fetch fresh content from API or GitHub to get latest edits
         const token = sessionStorage.getItem(TOKEN_KEY) || '';
         const response = await fetch(GET_STORY_CONTENT_URL, {
           method: 'POST',
@@ -509,6 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const payload = await response.json();
           markdown = payload.content || '';
         } else {
+          // Fallback to GitHub raw (with no-cache to get latest)
           const rawUrl = 'https://raw.githubusercontent.com/cheekypubs/cheekypubs.github.io/main/_stories/' + encodeURIComponent(slug) + '.md';
           const rawResp = await fetch(rawUrl, { cache: 'no-store' });
           if (!rawResp.ok) {
