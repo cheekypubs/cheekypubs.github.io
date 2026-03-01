@@ -625,6 +625,7 @@ a {
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
+    overflow: hidden;
 }
 
 .story-header h1 {
@@ -633,12 +634,13 @@ a {
 }
 
 .story-hero-art {
-    margin: 0 auto 26px;
-    max-width: 760px;
+    float: right;
+    width: 180px;
+    margin: 0 0 12px 20px;
     border: 1px solid #FFE4D1;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #FFE4D1;
 }
 
 .story-hero-art img {
@@ -648,8 +650,8 @@ a {
 }
 
 .story-hero-art figcaption {
-    padding: 10px 14px;
-    font-size: 0.88em;
+    padding: 6px 10px;
+    font-size: 0.8em;
     color: #5C4033;
     border-top: 1px solid #FFE4D1;
 }
@@ -1152,10 +1154,11 @@ a {
     .story-preview {
         padding: 12px;
         flex-wrap: wrap;
+        gap: 12px;
     }
 
     .story-thumb-link {
-        width: 90px;
+        width: calc(50% - 6px);
         flex-shrink: 0;
     }
 
@@ -1164,12 +1167,23 @@ a {
         min-width: 0;
     }
 
-    .story-preview-content .story-excerpt {
+    .story-preview .story-excerpt {
+        width: 100%;
+        flex-basis: 100%;
+        margin-top: 0;
+    }
+
+    .story-preview .read-more {
+        width: 100%;
         flex-basis: 100%;
     }
     
     .story-title {
         font-size: 1.1em;
+    }
+
+    .story-hero-art {
+        display: none;
     }
     
     .story-meta {
