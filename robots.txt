@@ -1,0 +1,15 @@
+# robots.txt
+# Allow search engines to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /edit.html
+Disallow: /submit.html
+Disallow: /admin-info.html
+
+# Sitemaps
+Sitemap: https://cheeky.pub/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
