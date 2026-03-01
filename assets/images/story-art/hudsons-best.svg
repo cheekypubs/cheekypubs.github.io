@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Hudson's Best artwork</title>
+  <desc id="desc">Original abstract artwork with manor silhouettes and vintage tones for Hudson's Best.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFE4D1"/>
+      <stop offset="100%" stop-color="#FFF5EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#sky)"/>
+  <rect y="360" width="1200" height="160" fill="#008B8B" opacity="0.16"/>
+
+  <g fill="#5C4033" opacity="0.95">
+    <rect x="120" y="190" width="200" height="170"/>
+    <rect x="160" y="150" width="120" height="40"/>
+    <rect x="380" y="170" width="260" height="190"/>
+    <rect x="470" y="120" width="80" height="50"/>
+    <rect x="700" y="200" width="170" height="160"/>
+    <rect x="740" y="165" width="90" height="35"/>
+    <rect x="910" y="185" width="170" height="175"/>
+    <rect x="965" y="135" width="60" height="50"/>
+  </g>
+
+  <g stroke="#C0392B" stroke-width="6" opacity="0.45">
+    <line x1="90" y1="390" x2="1110" y2="390"/>
+    <line x1="120" y1="425" x2="1080" y2="425"/>
+    <line x1="150" y1="460" x2="1050" y2="460"/>
+  </g>
+
+  <text x="60" y="492" font-size="42" fill="#5C4033" font-family="Arial, sans-serif">Hudson's Best</text>
+</svg>

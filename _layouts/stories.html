@@ -101,7 +101,7 @@ layout: default
       {% if page.title == 'Latest Stories' and page.filter_author == nil and page.filter_tag == nil %}
         <section class="welcome-info-box" aria-label="Welcome message">
           <h2>Welcome to CheekyPubs!</h2>
-          <p>We are still moving everything over from our previous site so it's a little spare around here right now, but the content is still awesome. Settle in and explore our latest stories from a growing lineup of writers and genres.</p>
+          <p>We are still moving everything over from our previous site so it's a little spare around here right now, but the content is still awesome.</p>
           <p>Use the sidebar to browse by story title, author, or tag, and jump straight into what sounds fun.</p>
         </section>
       {% endif %}
@@ -170,6 +170,13 @@ layout: default
             {% assign chapter_count = 0 %}
           {% endif %}
           <article class="story-preview">
+            {% if story.art_image %}
+            <a href="{{ story.url | absolute_url }}" class="story-thumb-link" aria-label="Open {{ story.title }}">
+              <figure class="story-thumb">
+                <img src="{{ story.art_image | absolute_url }}" alt="{{ story.art_alt | default: story.title | escape }}">
+              </figure>
+            </a>
+            {% endif %}
             <h2 class="story-title">
               <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
               {% if chapter_count > 1 %}

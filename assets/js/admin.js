@@ -53,9 +53,18 @@ function clearEditForm() {
   if (storyPreview) storyPreview.style.display = 'none';
 
   ['editTitle', 'editAuthor', 'editDate', 'editTags', 'editDescription',
+   'editArtImage', 'editArtAlt', 'editArtCaption',
    'editStoryId', 'editChapter', 'editChapterTitle', 'editContent'].forEach(function(id) {
     const el = document.getElementById(id);
     if (el) el.value = '';
+  });
+
+  ['editStoryArtworkPreview', 'publishStoryArtworkPreview'].forEach(function(id) {
+    const preview = document.getElementById(id);
+    if (preview) {
+      preview.innerHTML = '';
+      preview.style.display = 'none';
+    }
   });
 }
 
@@ -137,6 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const existingStoryGroup = document.getElementById('existingStoryGroup');
     const chapterNumberGroup = document.getElementById('chapterNumberGroup');
     const chapterTitleGroup = document.getElementById('chapterTitleGroup');
+    const existingStorySelect = document.getElementById('existingStory');
+    const publishArtworkPreview = ensureArtworkPreviewContainer('publishStoryArtworkPreview', existingStoryGroup);
 
     if (chapterTypeRadios) {
       chapterTypeRadios.forEach(function(radio) {
@@ -155,6 +166,13 @@ document.addEventListener('DOMContentLoaded', function() {
         chapterNumberGroup.style.display = 'block';
         chapterTitleGroup.style.display = 'block';
         document.getElementById('chapterNumber').value = '1';
+        const artImageInput = document.getElementById('storyArtImage');
+        const artAltInput = document.getElementById('storyArtAlt');
+        const artCaptionInput = document.getElementById('storyArtCaption');
+        if (artImageInput) artImageInput.value = '';
+        if (artAltInput) artAltInput.value = '';
+        if (artCaptionInput) artCaptionInput.value = '';
+        renderStoryArtworkPreview(publishArtworkPreview, null);
       } else if (type === 'add-chapter') {
         existingStoryGroup.style.display = 'block';
         chapterNumberGroup.style.display = 'block';
@@ -193,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
               title: story.title,
               story_id: story.story_id,
               author: story.author,
+              art_image: story.art_image || '',
+              art_alt: story.art_alt || '',
+              art_caption: story.art_caption || '',
               chapters: []
             };
           }
@@ -216,17 +237,47 @@ document.addEventListener('DOMContentLoaded', function() {
         option.dataset.nextChapter = maxChapter + 1;
         option.dataset.title = group.title;
         option.dataset.author = group.author;
+        option.dataset.artImage = group.art_image;
+        option.dataset.artAlt = group.art_alt;
+        option.dataset.artCaption = group.art_caption;
         select.appendChild(option);
       });
 
       select.addEventListener('change', function() {
         const selected = this.options[this.selectedIndex];
+        const artImageInput = document.getElementById('storyArtImage');
+        const artAltInput = document.getElementById('storyArtAlt');
+        const artCaptionInput = document.getElementById('storyArtCaption');
+
         if (selected.dataset.nextChapter) {
           document.getElementById('chapterNumber').value = selected.dataset.nextChapter;
           document.getElementById('storyTitle').value = selected.dataset.title || '';
           document.getElementById('storyAuthor').value = selected.dataset.author || '';
+          if (artImageInput) artImageInput.value = selected.dataset.artImage || '';
+          if (artAltInput) artAltInput.value = selected.dataset.artAlt || '';
+          if (artCaptionInput) artCaptionInput.value = selected.dataset.artCaption || '';
+        } else {
+          if (artImageInput) artImageInput.value = '';
+          if (artAltInput) artAltInput.value = '';
+          if (artCaptionInput) artCaptionInput.value = '';
         }
+        renderStoryArtworkPreview(publishArtworkPreview, {
+          title: selected.dataset.title || '',
+          art_image: selected.dataset.artImage || '',
+          art_alt: selected.dataset.artAlt || '',
+          art_caption: selected.dataset.artCaption || ''
+        });
       });
+
+      if (existingStorySelect) {
+        const initial = existingStorySelect.options[existingStorySelect.selectedIndex];
+        renderStoryArtworkPreview(publishArtworkPreview, {
+          title: (initial && initial.dataset && initial.dataset.title) || '',
+          art_image: (initial && initial.dataset && initial.dataset.artImage) || '',
+          art_alt: (initial && initial.dataset && initial.dataset.artAlt) || '',
+          art_caption: (initial && initial.dataset && initial.dataset.artCaption) || ''
+        });
+      }
     }
 
     const storyForm = document.getElementById('storyForm');
@@ -254,13 +305,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const chapterTitle = document.getElementById('chapterTitle') ? document.getElementById('chapterTitle').value.trim() : '';
       const existingStory = document.getElementById('existingStory') ? document.getElementById('existingStory').value : '';
       const description = document.getElementById('storyDescription') ? document.getElementById('storyDescription').value.trim() : '';
+      const artImage = document.getElementById('storyArtImage') ? document.getElementById('storyArtImage').value.trim() : '';
+      const artAlt = document.getElementById('storyArtAlt') ? document.getElementById('storyArtAlt').value.trim() : '';
+      const artCaption = document.getElementById('storyArtCaption') ? document.getElementById('storyArtCaption').value.trim() : '';
 
       const tags = tagsInput
         ? tagsInput.split(',').map(function(tag) { return tag.trim(); }).filter(function(tag) { return tag.length > 0; })
         : [];
 
       const date = new Date();
-      const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory, description);
+      const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory, description, artImage, artAlt, artCaption);
       const fullContent = frontMatter + '\n' + content;
 
       try {
@@ -308,6 +362,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function initEditForm() {
     const storySelect = document.getElementById('storySelect');
+    const editArtworkPreview = ensureArtworkPreviewContainer('editStoryArtworkPreview', storySelect ? storySelect.parentElement : null);
+    let contentLoadToken = 0;
     loadStories();
 
     async function loadStories() {
@@ -346,6 +402,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selected.dataset.story) {
           const story = JSON.parse(selected.dataset.story);
           populateEditForm(story);
+          renderStoryArtworkPreview(editArtworkPreview, story);
+        } else {
+          renderStoryArtworkPreview(editArtworkPreview, null);
         }
       });
     }
@@ -355,13 +414,18 @@ document.addEventListener('DOMContentLoaded', function() {
       const currentFilePath = document.getElementById('currentFilePath');
 
       if (storyPreview) storyPreview.style.display = 'block';
-      if (currentFilePath) currentFilePath.value = story.url || '';
+      if (currentFilePath) {
+        currentFilePath.value = story.slug ? `_stories/${story.slug}.md` : (story.url || '');
+      }
 
       const editTitle = document.getElementById('editTitle');
       const editAuthor = document.getElementById('editAuthor');
       const editDate = document.getElementById('editDate');
       const editTags = document.getElementById('editTags');
       const editDescription = document.getElementById('editDescription');
+      const editArtImage = document.getElementById('editArtImage');
+      const editArtAlt = document.getElementById('editArtAlt');
+      const editArtCaption = document.getElementById('editArtCaption');
       const editStoryId = document.getElementById('editStoryId');
       const editChapter = document.getElementById('editChapter');
       const editChapterTitle = document.getElementById('editChapterTitle');
@@ -371,12 +435,53 @@ document.addEventListener('DOMContentLoaded', function() {
       if (editDate) editDate.value = story.date || '';
       if (editTags) editTags.value = Array.isArray(story.tags) ? story.tags.join(', ') : (story.tags || '');
       if (editDescription) editDescription.value = story.description || '';
+      if (editArtImage) editArtImage.value = story.art_image || '';
+      if (editArtAlt) editArtAlt.value = story.art_alt || '';
+      if (editArtCaption) editArtCaption.value = story.art_caption || '';
       if (editStoryId) editStoryId.value = story.story_id || '';
       if (editChapter) editChapter.value = story.chapter || '';
       if (editChapterTitle) editChapterTitle.value = story.chapter_title || '';
 
       const editContent = document.getElementById('editContent');
-      if (editContent) editContent.value = '';
+      if (editContent) {
+        loadStoryContentForEdit(story, editContent);
+      }
+    }
+
+    async function loadStoryContentForEdit(story, editContent) {
+      const slug = (story && story.slug ? String(story.slug).trim() : '');
+      if (!slug) {
+        editContent.disabled = false;
+        editContent.value = '';
+        return;
+      }
+
+      const thisLoadToken = ++contentLoadToken;
+      editContent.disabled = true;
+      editContent.value = 'Loading story content...';
+
+      try {
+        const rawUrl = 'https://raw.githubusercontent.com/cheekypubs/cheekypubs.github.io/main/_stories/' + encodeURIComponent(slug) + '.md';
+        const resp = await fetch(rawUrl, { cache: 'no-store' });
+        if (!resp.ok) {
+          throw new Error('Could not load source (' + resp.status + ')');
+        }
+
+        const markdown = await resp.text();
+        if (thisLoadToken !== contentLoadToken) return;
+
+        const contentOnly = markdown.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
+        editContent.value = contentOnly;
+      } catch (error) {
+        if (thisLoadToken !== contentLoadToken) return;
+        editContent.value = '';
+        editContent.placeholder = 'Could not auto-load story content. You can paste content manually.';
+        console.error('Failed to load story content for edit:', error);
+      } finally {
+        if (thisLoadToken === contentLoadToken) {
+          editContent.disabled = false;
+        }
+      }
     }
 
     const storyEditForm = document.getElementById('storyEditForm');
@@ -458,6 +563,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const date = document.getElementById('editDate').value;
       const tagsInput = document.getElementById('editTags').value.trim();
       const description = document.getElementById('editDescription').value.trim();
+      const artImage = document.getElementById('editArtImage').value.trim();
+      const artAlt = document.getElementById('editArtAlt').value.trim();
+      const artCaption = document.getElementById('editArtCaption').value.trim();
       const storyId = document.getElementById('editStoryId').value.trim();
       const chapter = document.getElementById('editChapter').value;
       const chapterTitle = document.getElementById('editChapterTitle').value.trim();
@@ -483,6 +591,9 @@ document.addEventListener('DOMContentLoaded', function() {
             date: date,
             tags: tags,
             description: description,
+            artImage: artImage,
+            artAlt: artAlt,
+            artCaption: artCaption,
             storyId: storyId,
             chapter: chapter ? parseInt(chapter, 10) : null,
             chapterTitle: chapterTitle,
@@ -513,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
-  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId, description) {
+  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId, description, artImage, artAlt, artCaption) {
     const dateStr = date.toISOString().replace('T', ' ').substring(0, 19) + ' -0500';
 
     function escapeYaml(str) {
@@ -528,6 +639,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (description) {
       yaml += 'description: "' + escapeYaml(description) + '"\n';
+    }
+
+    if (artImage) {
+      yaml += 'art_image: "' + escapeYaml(artImage) + '"\n';
+    }
+
+    if (artAlt) {
+      yaml += 'art_alt: "' + escapeYaml(artAlt) + '"\n';
+    }
+
+    if (artCaption) {
+      yaml += 'art_caption: "' + escapeYaml(artCaption) + '"\n';
     }
 
     if (chapterType === 'new-series') {
@@ -562,5 +685,50 @@ document.addEventListener('DOMContentLoaded', function() {
       .replace(/[\s_-]+/g, '-')
       .replace(/^-+|-+$/g, '')
       .substring(0, 50);
+  }
+
+  function ensureArtworkPreviewContainer(id, parent) {
+    if (!parent) return null;
+    let container = document.getElementById(id);
+    if (container) return container;
+
+    container = document.createElement('div');
+    container.id = id;
+    container.className = 'admin-story-artwork-preview';
+    container.style.display = 'none';
+    parent.appendChild(container);
+    return container;
+  }
+
+  function renderStoryArtworkPreview(container, story) {
+    if (!container) return;
+
+    if (!story || !story.art_image) {
+      container.innerHTML = '';
+      container.style.display = 'none';
+      return;
+    }
+
+    const title = escapeHtml(story.title || 'Selected story');
+    const src = escapeHtml(story.art_image);
+    const alt = escapeHtml(story.art_alt || story.title || 'Story artwork');
+    const caption = story.art_caption ? '<figcaption>' + escapeHtml(story.art_caption) + '</figcaption>' : '';
+
+    container.innerHTML = ''
+      + '<p class="admin-story-artwork-label">Artwork preview for <strong>' + title + '</strong></p>'
+      + '<figure class="admin-story-artwork-figure">'
+      + '<img src="' + src + '" alt="' + alt + '">'
+      + caption
+      + '</figure>';
+    container.style.display = 'block';
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 });

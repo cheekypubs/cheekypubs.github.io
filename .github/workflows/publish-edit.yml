@@ -42,6 +42,9 @@ jobs:
             const tags = rawTags.map(t => String(t).replace(/[\r\n:#\[\]{}&*!|>'"%@`]/g, '').trim()).filter(t => t.length > 0);
 
             const description = (payload.description || '').trim();
+            const artImage = (payload.artImage || '').trim();
+            const artAlt = (payload.artAlt || '').trim();
+            const artCaption = (payload.artCaption || '').trim();
             const storyId = (payload.storyId || '').trim();
             const chapter = payload.chapter ? parseInt(payload.chapter) : null;
             const chapterTitle = (payload.chapterTitle || '').trim();
@@ -63,6 +66,9 @@ jobs:
             // Build front matter
             let frontMatter = `---\nlayout: story\ntitle: "${title.replace(/"/g, '\\"')}"\nauthor: "${author.replace(/"/g, '\\"')}"\ndate: ${date} 12:00:00 -0500\n`;
             if (description) frontMatter += `description: "${description.replace(/"/g, '\\"')}"\n`;
+            if (artImage) frontMatter += `art_image: "${artImage.replace(/"/g, '\\"')}"\n`;
+            if (artAlt) frontMatter += `art_alt: "${artAlt.replace(/"/g, '\\"')}"\n`;
+            if (artCaption) frontMatter += `art_caption: "${artCaption.replace(/"/g, '\\"')}"\n`;
             if (storyId) frontMatter += `story_id: "${storyId}"\n`;
             if (chapter) frontMatter += `chapter: ${chapter}\n`;
             if (chapterTitle) frontMatter += `chapter_title: "${chapterTitle.replace(/"/g, '\\"')}"\n`;

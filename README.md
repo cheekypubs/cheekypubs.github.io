@@ -1,4 +1,4 @@
-# Cheeky Pubs - Stories Site
+# Cheeky.Pub - Stories Site
 
 A Jekyll-based stories publication site with user submissions.
 

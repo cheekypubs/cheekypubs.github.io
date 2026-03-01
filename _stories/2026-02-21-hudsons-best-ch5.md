@@ -7,6 +7,9 @@ story_id: "hudsons-best"
 chapter: 5
 chapter_title: "Part 5"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
+art_image: "/assets/images/story-art/hudsons-best.svg"
+art_alt: "Original artwork for Hudson's Best featuring manor silhouettes and vintage tones"
+art_caption: "Original artwork for Hudson's Best"
 tags:
   - f/f
 ---
