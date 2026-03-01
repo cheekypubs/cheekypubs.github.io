@@ -73,7 +73,7 @@ layout: default
     </aside>
 
     <!-- Main Stories List -->
-    <main class="stories-main">
+    <div class="stories-main">
       <h1>{{ page.title }}</h1>
       
       {% if page.filter_author %}
@@ -170,7 +170,7 @@ layout: default
       <div class="stories-pagination" id="storiesPagination" data-per-page="{{ per_page }}" data-total="{{ total_stories }}">
         <!-- Pagination will be handled by JavaScript for client-side pagination -->
       </div>
-    </main>
+    </div>
   </div>
 </div>
 
