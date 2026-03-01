@@ -14,7 +14,7 @@ tags:
   - "f/f"
 ---
 
-<p><em>It’s the *middle of the twentieth century, and a young woman from a family of significant stature has behaved in a way that has brought shame to her house. Luckily, her father has employed a strict governess to make sure that these childish mistakes do not recur.</em></p>
+<p><em>It’s the *middle of the twentieth century, and a young woman from a family of significant stature has behaved in a way that has brought shame to her house. Luckily, her father has employed a strict governess to make sure that these childish mistakes do not recur.*</em></p>
 
 <p><hr></p>
 
