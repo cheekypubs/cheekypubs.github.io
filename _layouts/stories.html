@@ -17,9 +17,24 @@ layout: default
       <div class="sidebar-section">
         <h3>Stories</h3>
         <ul class="stories-menu">
-          <li>
-            <a href="{{ '/' | absolute_url }}">All Stories</a>
-          </li>
+          {% assign sorted_stories = site.stories | sort: "date" | reverse %}
+          {% assign displayed_story_ids = "" | split: "" %}
+          {% for story in sorted_stories %}
+            {% if story.story_id %}
+              {% unless displayed_story_ids contains story.story_id %}
+                {% assign story_chapters = sorted_stories | where: "story_id", story.story_id | sort: "chapter" %}
+                {% assign first_chapter = story_chapters | first %}
+                <li>
+                  <a href="{{ first_chapter.url | absolute_url }}">{{ first_chapter.title }}</a>
+                </li>
+                {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
+              {% endunless %}
+            {% else %}
+              <li>
+                <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
         </ul>
       </div>
 

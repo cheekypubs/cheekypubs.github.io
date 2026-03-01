@@ -293,9 +293,9 @@ a {
 .stories-menu a {
     color: #5C4033;
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 0.8em;
     display: block;
-    padding: 5px 0;
+    padding: 3px 0;
     transition: color 0.2s;
 }
 
