@@ -466,6 +466,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadStoryContentForEdit(story, editContent) {
       const statusEl = document.getElementById('editContentLoadStatus');
+      const inlineContent = (story && typeof story.raw_content === 'string') ? story.raw_content : '';
+      if (inlineContent) {
+        editContent.disabled = false;
+        editContent.value = inlineContent;
+        if (statusEl) statusEl.textContent = 'Loaded story markdown.';
+        return;
+      }
+
       const slug = (story && story.slug ? String(story.slug).trim() : '');
       if (!slug) {
         editContent.disabled = false;

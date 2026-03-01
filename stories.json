@@ -13,6 +13,7 @@ layout: null
     "chapter": {{ story.chapter | default: nil | jsonify }},
     "chapter_title": {{ story.chapter_title | jsonify }},
     "description": {{ story.description | jsonify }},
+    "raw_content": {{ story.content | jsonify }},
     "art_image": {{ story.art_image | jsonify }},
     "art_alt": {{ story.art_alt | jsonify }},
     "art_caption": {{ story.art_caption | jsonify }},
