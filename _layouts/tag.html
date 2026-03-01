@@ -144,7 +144,6 @@ layout: default
             <p class="story-excerpt">
               {% if story.description %}{{ story.description }}{% else %}{{ story.excerpt | strip_html | truncatewords: 50 }}{% endif %}
             </p>
-            <a href="{{ story.url | absolute_url }}" class="read-more">Read more &rarr;</a>
           </article>
         {% endfor %}
       </div>

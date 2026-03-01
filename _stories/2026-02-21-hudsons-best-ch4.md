@@ -8,8 +8,6 @@ chapter: 4
 chapter_title: "Part 4"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
 art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
-art_alt: "Original artwork for Hudson"
-art_caption: "Original artwork for Hudson"
 tags:
   - f/f
 ---

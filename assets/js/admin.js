@@ -55,7 +55,7 @@ function clearEditForm() {
   if (storyPreview) storyPreview.style.display = 'none';
 
   ['editTitle', 'editAuthor', 'editDate', 'editTags', 'editDescription',
-   'editArtImage', 'editArtAlt', 'editArtCaption',
+   'editArtImage',
    'editStoryId', 'editChapter', 'editChapterTitle', 'editContent'].forEach(function(id) {
     const el = document.getElementById(id);
     if (el) el.value = '';
@@ -176,11 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         chapterTitleGroup.style.display = 'block';
         document.getElementById('chapterNumber').value = '1';
         const artImageInput = document.getElementById('storyArtImage');
-        const artAltInput = document.getElementById('storyArtAlt');
-        const artCaptionInput = document.getElementById('storyArtCaption');
         if (artImageInput) artImageInput.value = '';
-        if (artAltInput) artAltInput.value = '';
-        if (artCaptionInput) artCaptionInput.value = '';
         renderStoryArtworkPreview(publishArtworkPreview, null);
       } else if (type === 'add-chapter') {
         existingStoryGroup.style.display = 'block';
@@ -221,19 +217,11 @@ document.addEventListener('DOMContentLoaded', function() {
               story_id: story.story_id,
               author: story.author,
               art_image: story.art_image || '',
-              art_alt: story.art_alt || '',
-              art_caption: story.art_caption || '',
               chapters: []
             };
           }
           if (!storyGroups[story.story_id].art_image && story.art_image) {
             storyGroups[story.story_id].art_image = story.art_image;
-          }
-          if (!storyGroups[story.story_id].art_alt && story.art_alt) {
-            storyGroups[story.story_id].art_alt = story.art_alt;
-          }
-          if (!storyGroups[story.story_id].art_caption && story.art_caption) {
-            storyGroups[story.story_id].art_caption = story.art_caption;
           }
           storyGroups[story.story_id].chapters.push(story.chapter || 1);
         }
@@ -256,34 +244,24 @@ document.addEventListener('DOMContentLoaded', function() {
         option.dataset.title = group.title;
         option.dataset.author = group.author;
         option.dataset.artImage = group.art_image;
-        option.dataset.artAlt = group.art_alt;
-        option.dataset.artCaption = group.art_caption;
         select.appendChild(option);
       });
 
       select.addEventListener('change', function() {
         const selected = this.options[this.selectedIndex];
         const artImageInput = document.getElementById('storyArtImage');
-        const artAltInput = document.getElementById('storyArtAlt');
-        const artCaptionInput = document.getElementById('storyArtCaption');
 
         if (selected.dataset.nextChapter) {
           document.getElementById('chapterNumber').value = selected.dataset.nextChapter;
           document.getElementById('storyTitle').value = selected.dataset.title || '';
           document.getElementById('storyAuthor').value = selected.dataset.author || '';
           if (artImageInput) artImageInput.value = selected.dataset.artImage || '';
-          if (artAltInput) artAltInput.value = selected.dataset.artAlt || '';
-          if (artCaptionInput) artCaptionInput.value = selected.dataset.artCaption || '';
         } else {
           if (artImageInput) artImageInput.value = '';
-          if (artAltInput) artAltInput.value = '';
-          if (artCaptionInput) artCaptionInput.value = '';
         }
         renderStoryArtworkPreview(publishArtworkPreview, {
           title: selected.dataset.title || '',
-          art_image: selected.dataset.artImage || '',
-          art_alt: selected.dataset.artAlt || '',
-          art_caption: selected.dataset.artCaption || ''
+          art_image: selected.dataset.artImage || ''
         });
       });
 
@@ -291,9 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const initial = existingStorySelect.options[existingStorySelect.selectedIndex];
         renderStoryArtworkPreview(publishArtworkPreview, {
           title: (initial && initial.dataset && initial.dataset.title) || '',
-          art_image: (initial && initial.dataset && initial.dataset.artImage) || '',
-          art_alt: (initial && initial.dataset && initial.dataset.artAlt) || '',
-          art_caption: (initial && initial.dataset && initial.dataset.artCaption) || ''
+          art_image: (initial && initial.dataset && initial.dataset.artImage) || ''
         });
       }
     }
@@ -324,15 +300,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const existingStory = document.getElementById('existingStory') ? document.getElementById('existingStory').value : '';
       const description = document.getElementById('storyDescription') ? document.getElementById('storyDescription').value.trim() : '';
       const artImage = document.getElementById('storyArtImage') ? document.getElementById('storyArtImage').value.trim() : '';
-      const artAlt = document.getElementById('storyArtAlt') ? document.getElementById('storyArtAlt').value.trim() : '';
-      const artCaption = document.getElementById('storyArtCaption') ? document.getElementById('storyArtCaption').value.trim() : '';
 
       const tags = tagsInput
         ? tagsInput.split(',').map(function(tag) { return tag.trim(); }).filter(function(tag) { return tag.length > 0; })
         : [];
 
       const date = new Date();
-      const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory, description, artImage, artAlt, artCaption);
+      const frontMatter = generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStory, description, artImage);
       const fullContent = frontMatter + '\n' + content;
 
       try {
@@ -454,8 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const editTags = document.getElementById('editTags');
       const editDescription = document.getElementById('editDescription');
       const editArtImage = document.getElementById('editArtImage');
-      const editArtAlt = document.getElementById('editArtAlt');
-      const editArtCaption = document.getElementById('editArtCaption');
       const editStoryId = document.getElementById('editStoryId');
       const editChapter = document.getElementById('editChapter');
       const editChapterTitle = document.getElementById('editChapterTitle');
@@ -466,8 +438,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (editTags) editTags.value = Array.isArray(story.tags) ? story.tags.join(', ') : (story.tags || '');
       if (editDescription) editDescription.value = story.description || '';
       if (editArtImage) editArtImage.value = story.art_image || '';
-      if (editArtAlt) editArtAlt.value = story.art_alt || '';
-      if (editArtCaption) editArtCaption.value = story.art_caption || '';
       if (editStoryId) editStoryId.value = story.story_id || '';
       if (editChapter) editChapter.value = story.chapter || '';
       if (editChapterTitle) editChapterTitle.value = story.chapter_title || '';
@@ -530,17 +500,11 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // Parse artwork fields from front matter
           const artImageMatch = frontMatter.match(/art_image:\s*["']?([^"'\n]+)["']?/);
-          const artAltMatch = frontMatter.match(/art_alt:\s*["']?([^"'\n]+)["']?/);
-          const artCaptionMatch = frontMatter.match(/art_caption:\s*["']?([^"'\n]+)["']?/);
           
           // Update artwork fields with fresh values
           const editArtImage = document.getElementById('editArtImage');
-          const editArtAlt = document.getElementById('editArtAlt');
-          const editArtCaption = document.getElementById('editArtCaption');
           
           if (editArtImage && artImageMatch) editArtImage.value = artImageMatch[1].trim();
-          if (editArtAlt && artAltMatch) editArtAlt.value = artAltMatch[1].trim();
-          if (editArtCaption && artCaptionMatch) editArtCaption.value = artCaptionMatch[1].trim();
         }
 
         const contentOnly = markdown.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
@@ -642,8 +606,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const tagsInput = document.getElementById('editTags').value.trim();
       const description = document.getElementById('editDescription').value.trim();
       const artImage = document.getElementById('editArtImage').value.trim();
-      const artAlt = document.getElementById('editArtAlt').value.trim();
-      const artCaption = document.getElementById('editArtCaption').value.trim();
       const storyId = document.getElementById('editStoryId').value.trim();
       const chapter = document.getElementById('editChapter').value;
       const chapterTitle = document.getElementById('editChapterTitle').value.trim();
@@ -670,8 +632,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: tags,
             description: description,
             artImage: artImage,
-            artAlt: artAlt,
-            artCaption: artCaption,
             storyId: storyId,
             chapter: chapter ? parseInt(chapter, 10) : null,
             chapterTitle: chapterTitle,
@@ -702,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ── Helpers ─────────────────────────────────────────────────────────────────
 
-  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId, description, artImage, artAlt, artCaption) {
+  function generateFrontMatter(title, author, date, tags, chapterType, chapterNumber, chapterTitle, existingStoryId, description, artImage) {
     const dateStr = date.toISOString().replace('T', ' ').substring(0, 19) + ' -0500';
 
     function escapeYaml(str) {
@@ -721,14 +681,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (artImage) {
       yaml += 'art_image: "' + escapeYaml(artImage) + '"\n';
-    }
-
-    if (artAlt) {
-      yaml += 'art_alt: "' + escapeYaml(artAlt) + '"\n';
-    }
-
-    if (artCaption) {
-      yaml += 'art_caption: "' + escapeYaml(artCaption) + '"\n';
     }
 
     if (chapterType === 'new-series') {
@@ -789,14 +741,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const title = escapeHtml(story.title || 'Selected story');
     const src = escapeHtml(story.art_image);
-    const alt = escapeHtml(story.art_alt || story.title || 'Story artwork');
-    const caption = story.art_caption ? '<figcaption>' + escapeHtml(story.art_caption) + '</figcaption>' : '';
+    const alt = escapeHtml('Preview image for ' + (story.title || 'Story artwork'));
 
     container.innerHTML = ''
       + '<p class="admin-story-artwork-label">Artwork preview for <strong>' + title + '</strong></p>'
       + '<figure class="admin-story-artwork-figure">'
       + '<img src="' + src + '" alt="' + alt + '">'
-      + caption
       + '</figure>';
     container.style.display = 'block';
   }

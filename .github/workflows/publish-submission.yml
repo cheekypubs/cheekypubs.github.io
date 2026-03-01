@@ -53,16 +53,12 @@ jobs:
 
               const inferredStoryId = helpers.getYamlValue(yaml, 'story_id') || (storyId ? String(storyId).trim() : '');
               const artFields = {
-                image: helpers.getYamlValue(yaml, 'art_image'),
-                alt: helpers.getYamlValue(yaml, 'art_alt'),
-                caption: helpers.getYamlValue(yaml, 'art_caption')
+                image: helpers.getYamlValue(yaml, 'art_image')
               };
 
               helpers.inheritSeriesArtwork(inferredStoryId, filepath, artFields);
 
               if (artFields.image) yaml = helpers.upsertYamlValue(yaml, 'art_image', artFields.image);
-              if (artFields.alt) yaml = helpers.upsertYamlValue(yaml, 'art_alt', artFields.alt);
-              if (artFields.caption) yaml = helpers.upsertYamlValue(yaml, 'art_caption', artFields.caption);
 
               content = `---\n${yaml}\n---\n\n${body.replace(/^\n+/, '')}`;
             }
@@ -76,9 +72,7 @@ jobs:
               const savedStoryId = helpers.getYamlValue(savedParsed.yaml, 'story_id');
               helpers.propagateSeriesArtwork(
                 savedStoryId, filepath,
-                helpers.getYamlValue(savedParsed.yaml, 'art_image'),
-                helpers.getYamlValue(savedParsed.yaml, 'art_alt'),
-                helpers.getYamlValue(savedParsed.yaml, 'art_caption')
+                helpers.getYamlValue(savedParsed.yaml, 'art_image')
               );
             }
 

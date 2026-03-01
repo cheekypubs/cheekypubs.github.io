@@ -24,16 +24,12 @@ layout: default
     <header class="story-header">
       {% assign story_chapters = "" %}
       {% assign effective_art_image = page.art_image %}
-      {% assign effective_art_alt = page.art_alt %}
-      {% assign effective_art_caption = page.art_caption %}
       {% if page.story_id %}
         {% assign story_chapters = site.stories | where: "story_id", page.story_id | sort: "chapter" %}
         {% if effective_art_image == blank %}
           {% for ch in story_chapters %}
             {% if ch.art_image and ch.art_image != blank %}
               {% assign effective_art_image = ch.art_image %}
-              {% if effective_art_alt == blank %}{% assign effective_art_alt = ch.art_alt %}{% endif %}
-              {% if effective_art_caption == blank %}{% assign effective_art_caption = ch.art_caption %}{% endif %}
               {% break %}
             {% endif %}
           {% endfor %}
@@ -42,10 +38,7 @@ layout: default
 
       {% if effective_art_image and effective_art_image != blank %}
       <figure class="story-hero-art">
-        <img src="{{ effective_art_image | absolute_url }}" alt="{{ effective_art_alt | default: page.title | escape }}">
-        {% if effective_art_caption %}
-        <figcaption>{{ effective_art_caption }}</figcaption>
-        {% endif %}
+        <img src="{{ effective_art_image | absolute_url }}" alt="Preview image for {{ page.title | escape }}">
       </figure>
       {% endif %}
 

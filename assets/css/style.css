@@ -602,18 +602,7 @@ a {
 .story-excerpt {
     color: #5C4033;
     line-height: 1.6;
-    margin: 0 0 15px 0;
-}
-
-.read-more {
-    color: #008B8B;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-
-.read-more:hover {
-    text-decoration: underline;
+    margin: 0;
 }
 
 /* Individual Story Page */
@@ -647,13 +636,6 @@ a {
     display: block;
     width: 100%;
     height: auto;
-}
-
-.story-hero-art figcaption {
-    padding: 6px 10px;
-    font-size: 0.8em;
-    color: #5C4033;
-    border-top: 1px solid #FFE4D1;
 }
 
 .story-content {
@@ -1170,12 +1152,8 @@ a {
     .story-preview .story-excerpt {
         width: 100%;
         flex-basis: 100%;
+        order: 1;
         margin-top: 0;
-    }
-
-    .story-preview .read-more {
-        width: 100%;
-        flex-basis: 100%;
     }
     
     .story-title {
@@ -1707,13 +1685,6 @@ a {
     width: 100%;
     max-width: 380px;
     height: auto;
-}
-
-.admin-story-artwork-figure figcaption {
-    padding: 8px 10px;
-    font-size: 0.85em;
-    color: #5C4033;
-    border-top: 1px solid #FFE4D1;
 }
 
 .art-upload-actions {

@@ -48,8 +48,6 @@ jobs:
             const description = (payload.description || '').trim();
             const artwork = payload.artwork || {};
             let artImage = (artwork.image || '').trim();
-            let artAlt = (artwork.alt || '').trim();
-            let artCaption = (artwork.caption || '').trim();
             const series = payload.series || {};
             const storyId = (series.id || '').trim();
             const chapter = series.chapter ? parseInt(series.chapter) : null;
@@ -68,18 +66,14 @@ jobs:
               return;
             }
 
-            const artFields = { image: artImage, alt: artAlt, caption: artCaption };
+            const artFields = { image: artImage };
             helpers.inheritSeriesArtwork(storyId, filepath, artFields);
             artImage = artFields.image;
-            artAlt = artFields.alt;
-            artCaption = artFields.caption;
 
             // Build front matter
             let frontMatter = `---\nlayout: story\ntitle: "${title.replace(/"/g, '\\"')}"\nauthor: "${author.replace(/"/g, '\\"')}"\ndate: ${date} 12:00:00 -0500\n`;
             if (description) frontMatter += `description: "${description.replace(/"/g, '\\"')}"\n`;
             if (artImage) frontMatter += `art_image: "${artImage.replace(/"/g, '\\"')}"\n`;
-            if (artAlt) frontMatter += `art_alt: "${artAlt.replace(/"/g, '\\"')}"\n`;
-            if (artCaption) frontMatter += `art_caption: "${artCaption.replace(/"/g, '\\"')}"\n`;
             if (storyId) frontMatter += `story_id: "${storyId}"\n`;
             if (chapter) frontMatter += `chapter: ${chapter}\n`;
             if (chapterTitle) frontMatter += `chapter_title: "${chapterTitle.replace(/"/g, '\\"')}"\n`;
@@ -92,7 +86,7 @@ jobs:
             fs.writeFileSync(filepath, `${frontMatter}\n${content}\n`);
 
             // Keep shared series artwork across all chapters
-            helpers.propagateSeriesArtwork(storyId, filepath, artImage, artAlt, artCaption);
+            helpers.propagateSeriesArtwork(storyId, filepath, artImage);
 
             core.setOutput('filepath', filepath);
             // Sanitize title for use in git commit message

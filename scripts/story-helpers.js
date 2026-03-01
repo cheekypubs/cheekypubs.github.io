@@ -41,7 +41,7 @@ function upsertYamlValue(yaml, key, value) {
 
 /**
  * Look up artwork from the earliest chapter of a series that has art set.
- * Returns { image, alt, caption } or null.
+ * Returns { image } or null.
  */
 function getSeriesArtwork(seriesId, currentFilePath) {
   if (!seriesId) return null;
@@ -65,9 +65,7 @@ function getSeriesArtwork(seriesId, currentFilePath) {
     const chapterValue = parseInt(getYamlValue(parsed.yaml, 'chapter'), 10);
     candidates.push({
       chapter: Number.isFinite(chapterValue) ? chapterValue : Number.MAX_SAFE_INTEGER,
-      image,
-      alt: getYamlValue(parsed.yaml, 'art_alt'),
-      caption: getYamlValue(parsed.yaml, 'art_caption')
+      image
     });
   }
 
@@ -78,24 +76,22 @@ function getSeriesArtwork(seriesId, currentFilePath) {
 
 /**
  * Inherit missing artwork fields from an existing series chapter.
- * Mutates artFields in place: { image, alt, caption }.
+ * Mutates artFields in place: { image }.
  */
 function inheritSeriesArtwork(storyId, filepath, artFields) {
   if (!storyId) return;
-  if (artFields.image && artFields.alt && artFields.caption) return;
+  if (artFields.image) return;
 
   const inherited = getSeriesArtwork(storyId, filepath);
   if (!inherited) return;
 
   if (!artFields.image) artFields.image = inherited.image || '';
-  if (!artFields.alt) artFields.alt = inherited.alt || '';
-  if (!artFields.caption) artFields.caption = inherited.caption || '';
 }
 
 /**
  * Propagate artwork from one story to all sibling chapters in the same series.
  */
-function propagateSeriesArtwork(storyId, filepath, artImage, artAlt, artCaption) {
+function propagateSeriesArtwork(storyId, filepath, artImage) {
   if (!storyId || !artImage) return;
 
   const storiesDir = '_stories';
@@ -112,8 +108,6 @@ function propagateSeriesArtwork(storyId, filepath, artImage, artAlt, artCaption)
 
     let yaml = parsed.yaml;
     yaml = upsertYamlValue(yaml, 'art_image', artImage);
-    if (artAlt) yaml = upsertYamlValue(yaml, 'art_alt', artAlt);
-    if (artCaption) yaml = upsertYamlValue(yaml, 'art_caption', artCaption);
 
     const rebuilt = `---\n${yaml}\n---\n\n${parsed.body.replace(/^\n+/, '')}`;
     fs.writeFileSync(chapterPath, `${rebuilt}\n`);

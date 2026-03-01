@@ -8,8 +8,6 @@ chapter: 1
 chapter_title: "Part 1"
 description: "A struggling college student changes advisors and discovers that his new mentor has an unconventional approach to accountability."
 art_image: "/assets/images/story-art/the-advisor.svg"
-art_alt: "Abstract art for The Advisor featuring structured geometric forms"
-art_caption: "Original artwork for The Advisor"
 tags:
   - m/m
 ---

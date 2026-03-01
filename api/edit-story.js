@@ -1,5 +1,5 @@
 // Vercel Serverless Function: api/edit-story.js
-// Accepts POST { storyUrl, title, author, date, tags, description, artImage, artAlt, artCaption, storyId, chapter, chapterTitle, content }
+// Accepts POST { storyUrl, title, author, date, tags, description, artImage, storyId, chapter, chapterTitle, content }
 // and triggers a repository_dispatch event to update the story via GitHub Actions
 
 import { setCorsHeaders, rejectUnauthenticated } from './lib/auth.js';
@@ -24,8 +24,6 @@ export default async function handler(req, res) {
   const tags = Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(s => s.trim()) : []);
   const description = (body.description || '').toString().trim();
   const artImage = (body.artImage || '').toString().trim();
-  const artAlt = (body.artAlt || '').toString().trim();
-  const artCaption = (body.artCaption || '').toString().trim();
   const storyId = (body.storyId || '').toString().trim();
   const chapter = body.chapter ? parseInt(body.chapter) : null;
   const chapterTitle = (body.chapterTitle || '').toString().trim();
@@ -52,7 +50,7 @@ export default async function handler(req, res) {
       tags,
       description,
       content,
-      artwork: { image: artImage, alt: artAlt, caption: artCaption },
+      artwork: { image: artImage },
       series: { id: storyId, chapter: chapter, title: chapterTitle }
     }
   };
