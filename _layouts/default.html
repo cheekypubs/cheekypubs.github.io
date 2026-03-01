@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} | {{ site.title }}</title>
-    <meta name="description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories, erotic fiction, and adult fiction across romance, drama, and more. Quality adult content for mature readers.{% endif %}">
-    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}spanking stories, erotic fiction, adult fiction, spanking erotica{% endif %}">
+    <meta name="description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories across romance, drama, fantasy, and more.{% endif %}">
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}spanking stories, discipline fiction, spanking punishment{% endif %}">
     
     <!-- Open Graph Tags for Social Sharing -->
     <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories, erotic fiction, and adult fiction.{% endif %}">
+    <meta property="og:description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories.{% endif %}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:type" content="{% if page.layout == 'story' or layout == 'story' %}article{% else %}website{% endif %}">
     <meta property="og:image" content="{% if page.art_image %}{{ page.art_image | absolute_url }}{% else %}{{ '/assets/images/logo/Cheekypub.png' | absolute_url }}{% endif %}">
