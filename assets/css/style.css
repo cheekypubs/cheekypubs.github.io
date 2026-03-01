@@ -413,6 +413,32 @@ a {
     margin: 0 0 20px 0;
 }
 
+.welcome-info-box {
+    background-color: #fff;
+    border: 2px solid #FFE4D1;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 0 auto 20px;
+    max-width: 700px;
+}
+
+.welcome-info-box h2 {
+    color: #C0392B;
+    margin: 0 0 10px 0;
+    font-size: 1.35em;
+}
+
+.welcome-info-box p {
+    margin: 0 0 8px 0;
+    color: #5C4033;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.welcome-info-box p:last-child {
+    margin-bottom: 0;
+}
+
 .filter-notice {
     background-color: #f9f9f9;
     padding: 10px 15px;
@@ -1028,6 +1054,19 @@ a {
 }
 
 @media (max-width: 600px) {
+    .welcome-info-box {
+        padding: 14px 16px;
+        margin-bottom: 16px;
+    }
+
+    .welcome-info-box h2 {
+        font-size: 1.15em;
+    }
+
+    .welcome-info-box p {
+        font-size: 0.9em;
+    }
+
     .story-preview {
         padding: 15px;
     }
