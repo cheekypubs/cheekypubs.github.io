@@ -465,16 +465,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function loadStoryContentForEdit(story, editContent) {
+      const statusEl = document.getElementById('editContentLoadStatus');
       const slug = (story && story.slug ? String(story.slug).trim() : '');
       if (!slug) {
         editContent.disabled = false;
         editContent.value = '';
+        if (statusEl) statusEl.textContent = '';
         return;
       }
 
       const thisLoadToken = ++contentLoadToken;
       editContent.disabled = true;
       editContent.value = 'Loading story content...';
+      if (statusEl) statusEl.textContent = 'Loading story markdown...';
 
       try {
         const token = sessionStorage.getItem(TOKEN_KEY) || '';
@@ -505,10 +508,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const contentOnly = markdown.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
         editContent.value = contentOnly;
+        if (statusEl) statusEl.textContent = 'Loaded story markdown.';
       } catch (error) {
         if (thisLoadToken !== contentLoadToken) return;
         editContent.value = '';
         editContent.placeholder = 'Could not auto-load story content. You can paste content manually.';
+        if (statusEl) statusEl.textContent = 'Could not auto-load markdown for this story.';
         console.error('Failed to load story content for edit:', error);
       } finally {
         if (thisLoadToken === contentLoadToken) {

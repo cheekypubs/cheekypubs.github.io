@@ -237,6 +237,15 @@ permalink: /admin/
           </div>
 
           <div class="form-group">
+            <label for="editArtFile">Upload New Artwork File</label>
+            <input type="file" id="editArtFile" accept=".svg,.png,.jpg,.jpeg,.webp,.gif,image/*">
+            <div class="art-upload-actions">
+              <button type="button" class="btn-secondary" id="editArtUploadBtn">Upload Artwork</button>
+              <span class="form-hint" id="editArtUploadStatus">Choose a file, then click Upload Artwork.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label for="editArtAlt">Artwork Alt Text</label>
             <input type="text" id="editArtAlt" name="art_alt" placeholder="Short accessibility description of the artwork">
             <small class="form-hint">Optional alt text for accessibility.</small>
@@ -272,6 +281,7 @@ permalink: /admin/
             <label for="editContent">Story Content *</label>
             <textarea id="editContent" name="content" required rows="20" placeholder="Story content here. You can use Markdown formatting."></textarea>
             <small class="form-hint">You can use <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a> for formatting (bold, italic, headers, etc.)</small>
+            <small class="form-hint" id="editContentLoadStatus"></small>
           </div>
 
           <!-- Form Actions -->

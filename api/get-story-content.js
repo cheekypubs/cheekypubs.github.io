@@ -73,7 +73,7 @@ export default async function handler(req, res) {
   if (!ghToken) return res.status(500).json({ error: 'Server not configured' });
 
   const path = `_stories/${slug}.md`;
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}`;
+  const url = `https://api.github.com/repos/${owner}/${repo}/contents/_stories/${encodeURIComponent(slug)}.md`;
 
   try {
     const ghResp = await fetch(url, {
