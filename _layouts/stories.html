@@ -185,6 +185,7 @@ layout: default
                 <img src="{{ thumb_src | absolute_url }}" alt="{{ thumb_alt | escape }}">
               </figure>
             </a>
+            <div class="story-preview-content">
             <h2 class="story-title">
               <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
               {% if chapter_count > 1 %}
@@ -209,6 +210,7 @@ layout: default
               {% if story.description %}{{ story.description }}{% else %}{{ story.excerpt | strip_html | truncatewords: 50 }}{% endif %}
             </p>
             <a href="{{ story.url | absolute_url }}" class="read-more">Read more &rarr;</a>
+            </div>
           </article>
         {% endfor %}
       </div>
