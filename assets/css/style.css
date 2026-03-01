@@ -280,6 +280,29 @@ a {
     font-size: 1em;
 }
 
+.stories-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stories-menu li {
+    margin-bottom: 4px;
+}
+
+.stories-menu a {
+    color: #5C4033;
+    text-decoration: none;
+    font-size: 0.95em;
+    display: block;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.stories-menu a:hover {
+    color: #008B8B;
+}
+
 .author-list {
     list-style: none;
     margin: 0;
@@ -287,7 +310,7 @@ a {
 }
 
 .author-list li {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .author-list li.active a {
@@ -298,9 +321,9 @@ a {
 .author-list a {
     color: #5C4033;
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 0.85em;
     display: block;
-    padding: 5px 0;
+    padding: 3px 0;
     transition: color 0.2s;
 }
 

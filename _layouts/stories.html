@@ -15,6 +15,15 @@ layout: default
     <!-- Sidebar with Authors and Tags -->
     <aside class="stories-sidebar" id="storiesSidebar">
       <div class="sidebar-section">
+        <h3>Stories</h3>
+        <ul class="stories-menu">
+          <li>
+            <a href="{{ '/' | absolute_url }}">All Stories</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
         <h3>Authors</h3>
         <ul class="author-list">
           {% assign authors = site.stories | map: "author" | uniq | sort %}
