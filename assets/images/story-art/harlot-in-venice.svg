@@ -1,18 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
   <title id="title">Harlot in Venice artwork</title>
   <desc id="desc">Abstract Venetian-inspired artwork with arches, water lines, and warm renaissance tones.</desc>
-  <rect width="1200" height="520" fill="#FFF5EE"/>
-  <rect x="0" y="320" width="1200" height="200" fill="#008B8B" opacity="0.2"/>
+  <rect width="600" height="600" fill="#FFF5EE"/>
+  <rect x="0" y="360" width="600" height="240" fill="#008B8B" opacity="0.2"/>
   <g fill="#C0392B" opacity="0.85">
-    <path d="M130 330 V170 a70 70 0 0 1 140 0 v160z"/>
-    <path d="M370 330 V150 a90 90 0 0 1 180 0 v180z"/>
-    <path d="M670 330 V165 a75 75 0 0 1 150 0 v165z"/>
-    <path d="M910 330 V180 a65 65 0 0 1 130 0 v150z"/>
+    <path d="M40 380 V200 a75 75 0 0 1 150 0 v180z"/>
+    <path d="M230 380 V170 a95 95 0 0 1 190 0 v210z"/>
+    <path d="M460 380 V195 a70 70 0 0 1 140 0 v185z"/>
   </g>
   <g stroke="#5C4033" stroke-width="6" opacity="0.6">
-    <line x1="0" y1="370" x2="1200" y2="370"/>
-    <line x1="0" y1="410" x2="1200" y2="410"/>
-    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="420" x2="600" y2="420"/>
+    <line x1="0" y1="460" x2="600" y2="460"/>
+    <line x1="0" y1="500" x2="600" y2="500"/>
   </g>
-  <text x="60" y="490" font-size="42" fill="#5C4033" font-family="Arial, sans-serif">Harlot in Venice</text>
+  <text x="300" y="560" text-anchor="middle" font-size="40" fill="#5C4033" font-family="Arial, sans-serif">Harlot in Venice</text>
 </svg>

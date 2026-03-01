@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
   <title id="title">Joanna artwork</title>
   <desc id="desc">Abstract artwork with layered arcs and soft tones, suggesting reflection and consequence.</desc>
-  <rect width="1200" height="520" fill="#FFF5EE"/>
+  <rect width="600" height="600" fill="#FFF5EE"/>
   <g>
-    <circle cx="300" cy="260" r="280" fill="#FFE4D1"/>
-    <circle cx="700" cy="240" r="250" fill="#008B8B" opacity="0.25"/>
-    <circle cx="940" cy="300" r="200" fill="#C0392B" opacity="0.22"/>
-    <path d="M120 390 C280 270, 390 500, 560 350 C690 240, 820 420, 1080 260" stroke="#5C4033" stroke-width="12" fill="none"/>
-    <path d="M120 340 C290 220, 430 420, 600 290 C760 170, 930 300, 1080 190" stroke="#C0392B" stroke-width="8" fill="none" opacity="0.8"/>
+    <circle cx="180" cy="260" r="240" fill="#FFE4D1"/>
+    <circle cx="400" cy="250" r="210" fill="#008B8B" opacity="0.25"/>
+    <circle cx="480" cy="340" r="170" fill="#C0392B" opacity="0.22"/>
+    <path d="M60 400 C160 280, 240 480, 340 350 C430 240, 480 400, 550 290" stroke="#5C4033" stroke-width="10" fill="none"/>
+    <path d="M60 350 C170 230, 270 400, 370 290 C460 180, 510 300, 550 220" stroke="#C0392B" stroke-width="7" fill="none" opacity="0.8"/>
   </g>
-  <text x="60" y="490" font-size="42" fill="#5C4033" font-family="Arial, sans-serif">Joanna</text>
+  <text x="300" y="560" text-anchor="middle" font-size="42" fill="#5C4033" font-family="Arial, sans-serif">Joanna</text>
 </svg>
