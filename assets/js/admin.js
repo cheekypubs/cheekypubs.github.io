@@ -53,7 +53,7 @@ function clearEditForm() {
   if (storyPreview) storyPreview.style.display = 'none';
 
   ['editTitle', 'editAuthor', 'editDate', 'editTags', 'editDescription',
-   'editStoryId', 'editChapter', 'editChapterTitle', 'editContent'].forEach(function(id) {
+   'editStoryId', 'editChapter', 'editChapterTitle', 'editStoryContent'].forEach(function(id) {
     const el = document.getElementById(id);
     if (el) el.value = '';
   });
@@ -375,8 +375,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (editChapter) editChapter.value = story.chapter || '';
       if (editChapterTitle) editChapterTitle.value = story.chapter_title || '';
 
-      const editContent = document.getElementById('editContent');
-      if (editContent) editContent.value = '';
+      const editStoryContent = document.getElementById('editStoryContent');
+      if (editStoryContent) editStoryContent.value = '';
     }
 
     const storyEditForm = document.getElementById('storyEditForm');
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const storyId = document.getElementById('editStoryId').value.trim();
       const chapter = document.getElementById('editChapter').value;
       const chapterTitle = document.getElementById('editChapterTitle').value.trim();
-      const content = document.getElementById('editContent').value;
+      const content = document.getElementById('editStoryContent').value;
 
       const tags = tagsInput
         ? tagsInput.split(',').map(function(tag) { return tag.trim(); }).filter(function(tag) { return tag.length > 0; })
