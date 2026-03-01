@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 3
 chapter_title: "Part 3"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
+art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 tags:
@@ -53,3 +53,4 @@ At last it stopped, and Rose lay across the servant girl’s knee and sobbed. Bu
 With one last swat, Philippa dismissed her, and Rose rushed through several large rooms until, just before the clock struck 12:01, she presented herself to a waiting Dorothea.
 
 *Part 4*
+

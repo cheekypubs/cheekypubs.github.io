@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 2
 chapter_title: "Part 2"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
+art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 tags:
@@ -55,3 +55,4 @@ By the time she was released, it was nearly 9:30. She was allowed to pull her pa
 Here Philippa was sitting, at a long wooden table, on which was piled many types of cutlery, plates, and cups. She held a small spoon, and was polishing it with great attention, a small pile of rags and an old bottle of polish beside her. Also on the table was a gnarled old cooking spoon, almost two feet long. Rose did not need to ask what this was for.
 
 *Click here for part 3*
+

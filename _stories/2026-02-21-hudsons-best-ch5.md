@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 5
 chapter_title: "Part 5"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
+art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 tags:
@@ -121,3 +121,4 @@ All this her siblings watched with sympathy. Even Christina’s face had a look 
 Rose was still expected to maintain her punishment outfit, and after about a minute, she remembered her lack of frontal modesty and turned to look for where her panties had flown off her. Alanah spied them and handed them to Rose, who quickly slipped them on. Triss gingerly pulled them down in back as she did so, and for once Rose was grateful. She didn’t want anything in contact with her smoldering butt. Everyone remained in the room for a while, chatting, Rose slowly coming back to herself. Eventually Triss thought to go get some cream, and Rose, again past the point of modesty, let herself be draped over the shared laps of Triss and Alanah, who very gingerly worked the cool cream into her bottom and thighs. The crimson splotches that had populated her skin were already purpling into bruises, but the cream would prevent the worst of it. As the fire burned down, the group rehashed the day’s events, gently teasing Triss for her dinner outburst. And even Christina laughed goodnaturedly when Rose related how Dorothea had humbled Christina in front of her guest. By the time Dorothea came in to start shuffling them off to bed, the fire had faded to coals, and the clock had chimed eleven times. Rose was rising to go upstairs when she remembered: the sheets. A renewed sense of panic began to rise in her, she was nearly asleep on her feet, and could not imagine laboring all night only to be woken up with a spanking. But then she felt a hand on her elbow, and her governess smiled at her. “My dear, you have made me proud today. You have another difficult day tomorrow, so let us make a deal. You will have those sheets clean by this time next Saturday. One week, and I expect them scrubbed until they’re shining. Do you understand?” Rose, consumed with relief, only nodded, starting to cry again as she let herself be folded into yet another hug. Then Dorothea gently extracted herself, gave the girl a warm kiss on the forehead, and sent her off towards her bed with a gentle swat. She watched with a feeling of satisfaction as a girl with a red, shiny bottom climbed up the stairs in the dark, and disappeared into her room.
 
 *Part six coming soon…*
+

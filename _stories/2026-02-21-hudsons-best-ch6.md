@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 6
 chapter_title: "Part 6"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
+art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 tags:
@@ -181,3 +181,4 @@ Dorothea took a bite of her sausage, chewed for a moment. Then she swallowed and
 Dorothea sighed, lost for a moment in her thoughts. The low, unsteady light of the firepit gilded her still-youthful face as she emerged from her reverie, and looked around at her gathered charges. Then her eyes settled on Rose.
 
 “I tell you this story because every time I look at you, at all of you, that’s exactly what I think. Here you all stand! I know you’re not perfect, and I know this weekend’s events won’t be the last time a lesson needs to be taught in this house. But my goodness, if you all aren’t the Best of the Hudson! Let you be proclaimed!”
+

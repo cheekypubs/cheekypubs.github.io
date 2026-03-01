@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 4
 chapter_title: "Part 4"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772378532627.png"
+art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
 art_alt: "Original artwork for Hudson"
 art_caption: "Original artwork for Hudson"
 tags:
@@ -79,3 +79,4 @@ They had returned to the drawing room, where she was ordered to stand before the
 The rest of the afternoon passed in a similar pageant of small humiliations and unending work. Some of the chores to which Rose was set were tasks she had seen Philippa perform a hundred times. Never once had she considered how difficult they might be. Dusting, for example, had always seemed so simple, so mindless. But in Rose’s unpracticed hands, it was decidedly not. The dust did not respond to her brush, it clumped, it fell in raspy clouds onto the carpet. Every time this happened she could expect a sharp smack from her supervisor. Far from being mindless, Rose found the relentless micro-attentions the labor demanded almost unbearable. Her wrists were sore and her back was too; but the greater challenge was keeping her mind bent on something so dull. As the day progressed, she became more and more aware of how these chores robbed her of a luxury she had not realized was such: the luxury of the daydream. Instead, chained to the realities of her day, there was no distractions from her present discomfort, nor from the reckonings to come.
 
 *Part 5 coming soon*…
+
