@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const storySelect = document.getElementById('storySelect');
     const editArtworkPreview = ensureArtworkPreviewContainer('editStoryArtworkPreview', storySelect ? storySelect.parentElement : null);
     let contentLoadToken = 0;
+    let editStoriesByKey = {};
     setupArtworkUploader({
       fileInputId: 'editArtFile',
       uploadBtnId: 'editArtUploadBtn',
@@ -401,22 +402,26 @@ document.addEventListener('DOMContentLoaded', function() {
         storySelect.innerHTML = '<option value="">No stories found</option>';
         return;
       }
+      editStoriesByKey = {};
       storySelect.innerHTML = '<option value="">Select a story to edit...</option>';
       stories.forEach(function(story) {
         const option = document.createElement('option');
-        option.value = story.slug || story.url;
+        const optionKey = story.slug || story.url;
+        option.value = optionKey;
         let label = story.title;
         if (story.author) label += ' \u2014 ' + story.author;
         if (story.chapter) label += ' (Ch. ' + story.chapter + ')';
         option.textContent = label;
-        option.dataset.story = JSON.stringify(story);
         storySelect.appendChild(option);
+        if (optionKey) {
+          editStoriesByKey[optionKey] = story;
+        }
       });
 
       storySelect.addEventListener('change', function() {
-        const selected = this.options[this.selectedIndex];
-        if (selected.dataset.story) {
-          const story = JSON.parse(selected.dataset.story);
+        const selectedKey = this.value;
+        const story = selectedKey ? editStoriesByKey[selectedKey] : null;
+        if (story) {
           populateEditForm(story);
           renderStoryArtworkPreview(editArtworkPreview, story);
         } else {
@@ -521,7 +526,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (thisLoadToken !== contentLoadToken) return;
         editContent.value = '';
         editContent.placeholder = 'Could not auto-load story content. You can paste content manually.';
-        if (statusEl) statusEl.textContent = 'Could not auto-load markdown for this story.';
+        if (statusEl) {
+          const msg = (error && error.message) ? error.message : 'unknown error';
+          statusEl.textContent = 'Could not auto-load markdown for this story (' + msg + ').';
+        }
         console.error('Failed to load story content for edit:', error);
       } finally {
         if (thisLoadToken === contentLoadToken) {
