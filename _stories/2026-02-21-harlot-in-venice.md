@@ -7,6 +7,9 @@ story_id: "harlot-in-venice"
 chapter: 1
 chapter_title: "Harlot in Venice"
 description: "In Renaissance Venice, a young woman caught in scandal faces public punishment in St. Mark's Square."
+art_image: "/assets/images/story-art/harlot-in-venice.svg"
+art_alt: "Abstract Venetian-inspired art with arches and canal lines"
+art_caption: "Original artwork for Harlot in Venice"
 tags:
   - m/f
   - historical

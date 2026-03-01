@@ -25,6 +25,15 @@ layout: default
       {% endif %}
     </header>
 
+    {% if page.art_image %}
+    <figure class="story-hero-art">
+      <img src="{{ page.art_image | absolute_url }}" alt="{{ page.art_alt | default: page.title | escape }}">
+      {% if page.art_caption %}
+      <figcaption>{{ page.art_caption }}</figcaption>
+      {% endif %}
+    </figure>
+    {% endif %}
+
     <div class="story-content">
       {{ content }}
     </div>

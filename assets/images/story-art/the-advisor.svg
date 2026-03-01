@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">The Advisor artwork</title>
+  <desc id="desc">Abstract geometric artwork in warm and teal tones representing guidance and structure.</desc>
+  <rect width="1200" height="520" fill="#FFF5EE"/>
+  <rect x="0" y="0" width="1200" height="520" fill="url(#bg)"/>
+  <g opacity="0.95">
+    <path d="M120 450 L400 70 L680 450 Z" fill="#C0392B"/>
+    <path d="M360 450 L640 120 L920 450 Z" fill="#008B8B"/>
+    <rect x="515" y="90" width="170" height="310" rx="10" fill="#5C4033"/>
+    <rect x="548" y="140" width="104" height="10" fill="#FFF5EE"/>
+    <rect x="548" y="175" width="104" height="10" fill="#FFF5EE"/>
+    <rect x="548" y="210" width="104" height="10" fill="#FFF5EE"/>
+    <rect x="548" y="245" width="104" height="10" fill="#FFF5EE"/>
+  </g>
+  <text x="60" y="490" font-size="42" fill="#5C4033" font-family="Arial, sans-serif">The Advisor</text>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFF5EE"/>
+      <stop offset="100%" stop-color="#FFE4D1"/>
+    </linearGradient>
+  </defs>
+</svg>

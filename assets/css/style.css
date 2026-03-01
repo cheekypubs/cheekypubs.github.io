@@ -583,6 +583,28 @@ a {
     margin: 0 0 15px 0;
 }
 
+.story-hero-art {
+    margin: 0 auto 26px;
+    max-width: 760px;
+    border: 1px solid #FFE4D1;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.story-hero-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.story-hero-art figcaption {
+    padding: 10px 14px;
+    font-size: 0.88em;
+    color: #5C4033;
+    border-top: 1px solid #FFE4D1;
+}
+
 .story-content {
     line-height: 1.85;
     font-size: 1.05em;
