@@ -125,6 +125,37 @@ jobs:
             // Content already includes front matter from client, just save it directly
             fs.writeFileSync(filepath, content + '\n');
 
+            // Keep one shared series artwork across all chapters when story_id is present
+            const savedParsed = splitFrontMatter(content);
+            if (savedParsed) {
+              const savedStoryId = getYamlValue(savedParsed.yaml, 'story_id');
+              const savedArtImage = getYamlValue(savedParsed.yaml, 'art_image');
+              const savedArtAlt = getYamlValue(savedParsed.yaml, 'art_alt');
+              const savedArtCaption = getYamlValue(savedParsed.yaml, 'art_caption');
+
+              if (savedStoryId && savedArtImage) {
+                const storiesDir = '_stories';
+                const chapterFiles = fs.readdirSync(storiesDir).filter(name => name.endsWith('.md'));
+                chapterFiles.forEach(name => {
+                  const chapterPath = path.join(storiesDir, name);
+                  if (chapterPath === filepath) return;
+
+                  const raw = fs.readFileSync(chapterPath, 'utf8');
+                  const parsed = splitFrontMatter(raw);
+                  if (!parsed) return;
+                  if (getYamlValue(parsed.yaml, 'story_id') !== savedStoryId) return;
+
+                  let yaml = parsed.yaml;
+                  yaml = upsertYamlValue(yaml, 'art_image', savedArtImage);
+                  if (savedArtAlt) yaml = upsertYamlValue(yaml, 'art_alt', savedArtAlt);
+                  if (savedArtCaption) yaml = upsertYamlValue(yaml, 'art_caption', savedArtCaption);
+
+                  const rebuilt = `---\n${yaml}\n---\n\n${parsed.body.replace(/^\n+/, '')}`;
+                  fs.writeFileSync(chapterPath, `${rebuilt}\n`);
+                });
+              }
+            }
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
