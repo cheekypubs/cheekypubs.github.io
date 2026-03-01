@@ -42,12 +42,14 @@ jobs:
             const tags = rawTags.map(t => String(t).replace(/[\r\n:#\[\]{}&*!|>'"%@`]/g, '').trim()).filter(t => t.length > 0);
 
             const description = (payload.description || '').trim();
-            const artImage = (payload.artImage || '').trim();
-            const artAlt = (payload.artAlt || '').trim();
-            const artCaption = (payload.artCaption || '').trim();
-            const storyId = (payload.storyId || '').trim();
-            const chapter = payload.chapter ? parseInt(payload.chapter) : null;
-            const chapterTitle = (payload.chapterTitle || '').trim();
+            const artwork = payload.artwork || {};
+            const artImage = (artwork.image || '').trim();
+            const artAlt = (artwork.alt || '').trim();
+            const artCaption = (artwork.caption || '').trim();
+            const series = payload.series || {};
+            const storyId = (series.id || '').trim();
+            const chapter = series.chapter ? parseInt(series.chapter) : null;
+            const chapterTitle = (series.title || '').trim();
             const content = (payload.content || '').trim();
 
             if (!storyUrl || !title || !content) {

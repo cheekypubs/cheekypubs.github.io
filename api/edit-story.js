@@ -76,7 +76,17 @@ export default async function handler(req, res) {
 
   const dispatchPayload = {
     event_type: 'story-edit',
-    client_payload: { storyUrl, title, author, date, tags, description, artImage, artAlt, artCaption, storyId, chapter, chapterTitle, content }
+    client_payload: {
+      storyUrl,
+      title,
+      author,
+      date,
+      tags,
+      description,
+      content,
+      artwork: { image: artImage, alt: artAlt, caption: artCaption },
+      series: { id: storyId, chapter: chapter, title: chapterTitle }
+    }
   };
 
   try {
