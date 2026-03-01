@@ -514,6 +514,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (thisLoadToken !== contentLoadToken) return;
 
+        // Extract front matter and update artwork fields with fresh data
+        const frontMatterMatch = markdown.match(/^---\s*\n([\s\S]*?)\n---\s*\n?/);
+        if (frontMatterMatch) {
+          const frontMatter = frontMatterMatch[1];
+          
+          // Parse artwork fields from front matter
+          const artImageMatch = frontMatter.match(/art_image:\s*["']?([^"'\n]+)["']?/);
+          const artAltMatch = frontMatter.match(/art_alt:\s*["']?([^"'\n]+)["']?/);
+          const artCaptionMatch = frontMatter.match(/art_caption:\s*["']?([^"'\n]+)["']?/);
+          
+          // Update artwork fields with fresh values
+          const editArtImage = document.getElementById('editArtImage');
+          const editArtAlt = document.getElementById('editArtAlt');
+          const editArtCaption = document.getElementById('editArtCaption');
+          
+          if (editArtImage && artImageMatch) editArtImage.value = artImageMatch[1].trim();
+          if (editArtAlt && artAltMatch) editArtAlt.value = artAltMatch[1].trim();
+          if (editArtCaption && artCaptionMatch) editArtCaption.value = artCaptionMatch[1].trim();
+        }
+
         const contentOnly = markdown.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
         editContent.value = contentOnly;
         if (statusEl) statusEl.textContent = 'Loaded story markdown.';
