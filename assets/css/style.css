@@ -232,7 +232,7 @@ a {
 
 /* --- Global Page Width Container --- */
 .page-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -242,7 +242,7 @@ a {
 /* =============================================== */
 
 .stories-page {
-    max-width: 1300px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -418,8 +418,7 @@ a {
     border: 2px solid #FFE4D1;
     border-radius: 10px;
     padding: 18px 22px;
-    margin: 0 auto 20px;
-    max-width: 700px;
+    margin: 0 0 20px;
 }
 
 .welcome-info-box h1 {
@@ -450,8 +449,7 @@ a {
     display: flex;
     align-items: center;
     gap: 20px;
-    max-width: 700px;
-    margin: 0 auto 20px;
+    margin: 0 0 20px;
 }
 
 .stories-header-row h1 {
@@ -471,9 +469,6 @@ a {
     border-radius: 5px;
     margin-bottom: 20px;
     font-size: 0.95em;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .clear-filter {
@@ -488,8 +483,7 @@ a {
 
 /* Search Bar */
 .story-search {
-    max-width: 700px;
-    margin: 0 auto 20px;
+    margin: 0 0 20px;
 }
 
 .story-search input {
@@ -517,8 +511,6 @@ a {
     display: flex;
     flex-direction: column;
     gap: 25px;
-    max-width: 700px;
-    margin: 0 auto;
 }
 
 .story-preview {
@@ -546,13 +538,15 @@ a {
     border: 1px solid #FFE4D1;
     border-radius: 8px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #FFE4D1;
+    aspect-ratio: 16 / 9;
 }
 
 .story-thumb img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
 }
 
 .story-title {
@@ -774,7 +768,7 @@ a {
 /* =============================================== */
 
 .submit-page {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -1422,8 +1416,7 @@ a {
 /* =============================================== */
 
 .submit-info {
-    max-width: 700px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .submit-info .intro {
@@ -1568,7 +1561,7 @@ a {
 /* =============================================== */
 
 .admin-page {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 

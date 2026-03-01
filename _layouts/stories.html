@@ -164,13 +164,27 @@ layout: default
             {% assign chapter_count = 0 %}
           {% endif %}
           <article class="story-preview">
-            {% if story.art_image %}
+            {% comment %}Resolve artwork: story's own, inherited from series, or default{% endcomment %}
+            {% assign thumb_image = story.art_image %}
+            {% assign thumb_alt = story.art_alt | default: story.title %}
+            {% if thumb_image == blank or thumb_image == nil %}
+              {% if story.story_id %}
+                {% assign sibling_chapters = site.stories | where: "story_id", story.story_id %}
+                {% for sibling in sibling_chapters %}
+                  {% if sibling.art_image and sibling.art_image != blank %}
+                    {% assign thumb_image = sibling.art_image %}
+                    {% assign thumb_alt = sibling.art_alt | default: story.title %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endif %}
+            {% assign thumb_src = thumb_image | default: '/assets/images/default-story-thumb.svg' %}
             <a href="{{ story.url | absolute_url }}" class="story-thumb-link" aria-label="Open {{ story.title }}">
               <figure class="story-thumb">
-                <img src="{{ story.art_image | absolute_url }}" alt="{{ story.art_alt | default: story.title | escape }}">
+                <img src="{{ thumb_src | absolute_url }}" alt="{{ thumb_alt | escape }}">
               </figure>
             </a>
-            {% endif %}
             <h2 class="story-title">
               <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
               {% if chapter_count > 1 %}
