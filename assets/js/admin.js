@@ -226,6 +226,15 @@ document.addEventListener('DOMContentLoaded', function() {
               chapters: []
             };
           }
+          if (!storyGroups[story.story_id].art_image && story.art_image) {
+            storyGroups[story.story_id].art_image = story.art_image;
+          }
+          if (!storyGroups[story.story_id].art_alt && story.art_alt) {
+            storyGroups[story.story_id].art_alt = story.art_alt;
+          }
+          if (!storyGroups[story.story_id].art_caption && story.art_caption) {
+            storyGroups[story.story_id].art_caption = story.art_caption;
+          }
           storyGroups[story.story_id].chapters.push(story.chapter || 1);
         }
       });
