@@ -15,30 +15,6 @@ layout: default
     <!-- Sidebar with Authors and Tags -->
     <aside class="stories-sidebar" id="storiesSidebar">
       <div class="sidebar-section">
-        <h3>Stories</h3>
-        <ul class="stories-menu">
-          {% assign sorted_stories = site.stories | sort: "date" | reverse %}
-          {% assign displayed_story_ids = "" | split: "" %}
-          {% for story in sorted_stories %}
-            {% if story.story_id %}
-              {% unless displayed_story_ids contains story.story_id %}
-                {% assign story_chapters = sorted_stories | where: "story_id", story.story_id | sort: "chapter" %}
-                {% assign first_chapter = story_chapters | first %}
-                <li>
-                  <a href="{{ first_chapter.url | absolute_url }}">{{ first_chapter.title }}</a>
-                </li>
-                {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
-              {% endunless %}
-            {% else %}
-              <li>
-                <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
         <h3>Authors</h3>
         <ul class="author-list">
           {% assign authors = site.stories | map: "author" | uniq | sort %}
@@ -93,6 +69,30 @@ layout: default
             </a>
           {% endfor %}
         </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Stories</h3>
+        <ul class="stories-menu">
+          {% assign sorted_stories = site.stories | sort: "date" | reverse %}
+          {% assign displayed_story_ids = "" | split: "" %}
+          {% for story in sorted_stories %}
+            {% if story.story_id %}
+              {% unless displayed_story_ids contains story.story_id %}
+                {% assign story_chapters = sorted_stories | where: "story_id", story.story_id | sort: "chapter" %}
+                {% assign first_chapter = story_chapters | first %}
+                <li>
+                  <a href="{{ first_chapter.url | absolute_url }}">{{ first_chapter.title }}</a>
+                </li>
+                {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
+              {% endunless %}
+            {% else %}
+              <li>
+                <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       </div>
     </aside>
 
@@ -185,7 +185,7 @@ layout: default
             </a>
             <div class="story-preview-content">
             <h2 class="story-title">
-              <a href="{{ story.url | absolute_url }}">{{ story.title }}</a>
+              <a href="{{ story.url | absolute_url }}">{{ story.title | truncate: 50 }}</a>
               {% if chapter_count > 1 %}
                 <span class="chapter-badge">{{ chapter_count }} chapters</span>
               {% endif %}
@@ -204,10 +204,10 @@ layout: default
               {% endfor %}
             </div>
             {% endif %}
-            <p class="story-excerpt">
-              {% if story.description %}{{ story.description }}{% else %}{{ story.excerpt | strip_html | truncatewords: 50 }}{% endif %}
-            </p>
             </div>
+            <p class="story-excerpt">
+              {% if story.description %}{{ story.description | truncate: 150 }}{% else %}{{ story.excerpt | strip_html | truncatewords: 50 }}{% endif %}
+            </p>
           </article>
         {% endfor %}
       </div>

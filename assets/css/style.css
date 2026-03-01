@@ -520,9 +520,11 @@ a {
     border-radius: 8px;
     padding: 20px 20px 20px 24px;
     transition: box-shadow 0.2s, transform 0.2s;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 20px;
+    align-items: start;
 }
 
 .story-preview:hover {
@@ -533,8 +535,8 @@ a {
 .story-thumb-link {
     display: block;
     text-decoration: none;
-    flex-shrink: 0;
-    width: 180px;
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .story-thumb {
@@ -555,7 +557,8 @@ a {
 }
 
 .story-preview-content {
-    flex: 1;
+    grid-column: 2;
+    grid-row: 1;
     min-width: 0;
 }
 
@@ -603,6 +606,8 @@ a {
     color: #5C4033;
     line-height: 1.6;
     margin: 0;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 /* Individual Story Page */
@@ -1135,25 +1140,21 @@ a {
 
     .story-preview {
         padding: 12px;
-        flex-wrap: wrap;
-        gap: 12px;
+        grid-template-columns: calc(33% - 5px) 1fr;
+        gap: 0 10px;
     }
 
     .story-thumb-link {
-        width: calc(50% - 6px);
-        flex-shrink: 0;
+        width: 100%;
     }
 
     .story-preview-content {
-        flex: 1;
         min-width: 0;
     }
 
     .story-preview .story-excerpt {
-        width: 100%;
-        flex-basis: 100%;
-        order: 1;
-        margin-top: 0;
+        grid-column: 1 / -1;
+        margin-top: 6px;
     }
     
     .story-title {

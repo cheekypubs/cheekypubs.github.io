@@ -1,43 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f4e4dc"/>
-      <stop offset="100%" style="stop-color:#f0d5c8"/>
-    </linearGradient>
-  </defs>
+  <!-- Warm background -->
+  <rect width="600" height="600" fill="#f4e4dc"/>
 
-  <!-- Background -->
-  <rect width="600" height="600" fill="url(#bg)"/>
-
-  <!-- Decorative borders -->
-  <rect x="0" y="0" width="600" height="4" fill="#C0392B" opacity="0.5"/>
-  <rect x="0" y="596" width="600" height="4" fill="#C0392B" opacity="0.5"/>
-
-  <!-- Open book icon -->
-  <g transform="translate(300, 220)" fill="none" stroke="#C0392B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
-    <path d="M0,-45 C0,-45 -70,-52 -78,-30 L-78,45 C-70,30 0,38 0,38"/>
-    <path d="M0,-45 C0,-45 70,-52 78,-30 L78,45 C70,30 0,38 0,38"/>
-    <line x1="0" y1="-45" x2="0" y2="38"/>
-    <line x1="-56" y1="-15" x2="-16" y2="-15" opacity="0.4"/>
-    <line x1="-58" y1="0" x2="-16" y2="0" opacity="0.4"/>
-    <line x1="-54" y1="15" x2="-16" y2="15" opacity="0.4"/>
-    <line x1="16" y1="-15" x2="56" y2="-15" opacity="0.4"/>
-    <line x1="16" y1="0" x2="58" y2="0" opacity="0.4"/>
-    <line x1="16" y1="15" x2="54" y2="15" opacity="0.4"/>
+  <!-- Book body -->
+  <g transform="translate(300, 280)">
+    <!-- Left page -->
+    <path d="M-8,-90 C-8,-90 -120,-100 -130,-70 L-130,90 C-120,70 -8,80 -8,80 Z" fill="#fff" stroke="#C0392B" stroke-width="4" opacity="0.85"/>
+    <!-- Right page -->
+    <path d="M8,-90 C8,-90 120,-100 130,-70 L130,90 C120,70 8,80 8,80 Z" fill="#fff" stroke="#C0392B" stroke-width="4" opacity="0.85"/>
+    <!-- Spine -->
+    <line x1="0" y1="-90" x2="0" y2="80" stroke="#C0392B" stroke-width="3"/>
+    <!-- Left page lines -->
+    <line x1="-100" y1="-30" x2="-25" y2="-30" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="-105" y1="-5" x2="-25" y2="-5" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="-105" y1="20" x2="-25" y2="20" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="-100" y1="45" x2="-25" y2="45" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <!-- Right page lines -->
+    <line x1="25" y1="-30" x2="100" y2="-30" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="25" y1="-5" x2="105" y2="-5" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="25" y1="20" x2="105" y2="20" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
+    <line x1="25" y1="45" x2="100" y2="45" stroke="#C0392B" stroke-width="2" opacity="0.25"/>
   </g>
-
-  <!-- Site name -->
-  <text x="300" y="340" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#5C4033" font-weight="bold" letter-spacing="2">
-    Cheeky Pubs
-  </text>
-
-  <!-- Decorative divider -->
-  <text x="300" y="375" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#C0392B" opacity="0.6">
-    ~&#160;&#8226;&#160;~
-  </text>
-
-  <!-- Tagline -->
-  <text x="300" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#5C4033" opacity="0.65">
-    Quality Spanking Stories
-  </text>
 </svg>
