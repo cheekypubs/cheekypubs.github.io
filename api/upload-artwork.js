@@ -1,64 +1,19 @@
 // Vercel Serverless Function: api/upload-artwork.js
 // Accepts POST { fileName, fileDataBase64 } and writes to assets/images/story-art/
 
-import crypto from 'crypto';
-
-function setCorsHeaders(res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://cheeky.pub');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-}
-
-function verifySession(req) {
-  const authHeader = req.headers?.authorization || '';
-  const bearerToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
-  const cookieHeader = req.headers?.cookie || '';
-  const sessionCookie = cookieHeader.split(';').map(s => s.trim()).find(s => s.startsWith('session='));
-  const token = bearerToken || (sessionCookie ? sessionCookie.split('=')[1] : null);
-  const sessionSecret = process.env.SESSION_SECRET || process.env.GITHUB_PAT || '';
-
-  if (!token || !sessionSecret) return false;
-
-  const parts = token.split('.');
-  if (parts.length !== 3) return false;
-  const [headerB, payloadB, sig] = parts;
-
-  try {
-    const expected = crypto.createHmac('sha256', sessionSecret)
-      .update(`${headerB}.${payloadB}`)
-      .digest('base64')
-      .replace(/=+$/, '')
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_');
-
-    if (sig !== expected) return false;
-
-    const payload = JSON.parse(Buffer.from(payloadB, 'base64').toString());
-    const now = Math.floor(Date.now() / 1000);
-    if (payload.exp && payload.exp < now) return false;
-
-    return true;
-  } catch {
-    return false;
-  }
-}
+import { setCorsHeaders, rejectUnauthenticated } from './lib/auth.js';
 
 export default async function handler(req, res) {
   setCorsHeaders(res);
 
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST, OPTIONS');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (!verifySession(req)) {
-    return res.status(401).json({ error: 'unauthenticated' });
-  }
+  if (rejectUnauthenticated(req, res)) return;
 
   const body = req.body || {};
   const rawName = (body.fileName || '').toString().trim().toLowerCase();
