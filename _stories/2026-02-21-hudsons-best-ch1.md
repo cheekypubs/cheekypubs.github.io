@@ -4,7 +4,7 @@ title: "Hudson's Best"
 author: "Conor Grayson"
 date: 2026-02-21 12:00:00 -0500
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772376911525.png"
+art_image: "/assets/images/story-art/hudsons-best.svg"
 art_alt: "Original artwork for Hudson's Best featuring manor silhouettes and vintage tones"
 art_caption: "Original artwork for Hudson's Best"
 story_id: "hudsons-best"
@@ -14,7 +14,9 @@ tags:
   - "f/f"
 ---
 
-<p><em>It’s the *middle of the twentieth century,</em> and a young woman from a family of significant stature has behaved in a way that has brought shame to her house. Luckily, her father has employed a strict governess to make sure that these childish mistakes do not recur.*</p>
+<p><em>It’s the *middle of the twentieth century, and a young woman from a family of significant stature has behaved in a way that has brought shame to her house. Luckily, her father has employed a strict governess to make sure that these childish mistakes do not recur.</em></p>
+
+<p><hr></p>
 
 <p>The Hawthornes were a family of means. Their residency of the grand, faded brick house known as Gray Dove Manor, on the pastoral outskirts of Tarry Hollow, was testimony enough to this fact. But while the family’s successes could be noted down several generations, a peculiar, and fiercely adhered to, philosophy persisted within those stately halls. It was, to put it simply, a belief that character must be instilled in each new generation through hard work, rigorous study, and the firm and frequent application of discipline. Too many successful families let their progeny run wild, insulated by their wealth, until the generations withered into indolence and entitlement. The hard-won successes of the past were squandered thereby, and a family’s glory gone to dust. Not so with the Hawthornes; their children would not be so tempted.</p>
 
