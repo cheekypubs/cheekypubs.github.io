@@ -390,6 +390,35 @@ a {
     margin: 0 0 20px 0;
 }
 
+/* Welcome Zone */
+.welcome-zone {
+    background: linear-gradient(135deg, #fff 0%, #FFF8F0 100%);
+    border: 2px solid #FFE4D1;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 0 auto 30px;
+    max-width: 700px;
+    box-shadow: 0 2px 8px rgba(192, 57, 43, 0.08);
+}
+
+.welcome-zone h2 {
+    color: #C0392B;
+    margin: 0 0 16px 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.welcome-zone p {
+    color: #5C4033;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+    font-size: 1.05em;
+}
+
+.welcome-zone p:last-child {
+    margin-bottom: 0;
+}
+
 .filter-notice {
     background-color: #f9f9f9;
     padding: 10px 15px;
@@ -1022,6 +1051,21 @@ a {
     .story-meta .story-author {
         margin-right: 0;
     }
+    
+        .welcome-zone {
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+    
+        .welcome-zone h2 {
+            font-size: 1.5em;
+            margin-bottom: 12px;
+        }
+    
+        .welcome-zone p {
+            font-size: 1em;
+        }
     
     .pagination-controls {
         flex-direction: column;
