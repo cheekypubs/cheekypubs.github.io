@@ -26,7 +26,7 @@ function switchTab(tab) {
   const publishBtn = document.getElementById('publishTabBtn');
   const editBtn = document.getElementById('editTabBtn');
   const publishContent = document.getElementById('publishContent');
-  const editContent = document.getElementById('editContent');
+  const editContent = document.getElementById('editTabContent');
 
   if (tab === 'publish') {
     publishBtn.classList.add('active');
