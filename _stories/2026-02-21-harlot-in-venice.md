@@ -3,14 +3,14 @@ layout: story
 title: "Harlot in Venice"
 author: "Conor Grayson"
 date: 2026-02-21 12:00:00 -0500
+description: "In Renaissance Venice, a young woman caught in scandal faces public punishment in St. Mark's Square."
+art_image: "/assets/images/story-art/harlot-in-venice-1772508224012.png"
 story_id: "harlot-in-venice"
 chapter: 1
 chapter_title: "Harlot in Venice"
-description: "In Renaissance Venice, a young woman caught in scandal faces public punishment in St. Mark's Square."
-art_image: "/assets/images/story-art/harlot-in-venice.svg"
 tags:
-  - m/f
-  - historical
+  - "m/f"
+  - "historical"
 ---
 
 **The Harlot, the Prince, and the Kitchen Boys**
