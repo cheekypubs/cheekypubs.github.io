@@ -3,12 +3,13 @@ layout: story
 title: "Down She Fell"
 author: "Conor Grayson"
 date: 2026-02-21 12:00:00 -0500
+description: "Ferry worker Norah's quiet routine is upended when her partner Drew discovers a troubling lapse in judgment."
+art_image: "/assets/images/story-art/down-she-fell-1772600188183.png"
 story_id: "down-she-fell"
 chapter: 1
 chapter_title: "Down She Fell"
-description: "Ferry worker Norah's quiet routine is upended when her partner Drew discovers a troubling lapse in judgment."
 tags:
-  - f/f
+  - "f/f"
 ---
 
 Norah was stacking: creamer, coffee grounds, small cardboard koozies still folded flat. She loved stacking, and organizing her shabby little counter, which was already neat and wiped clean, though no one was around to see it. A minor rumble gathered somewhere beneath her feet, as props stirred the ferry from the dock and into the channel. It was the weary downslope of an autumn day, and the great steel boat flashed in the afternoon sun and came gradually about. Norah, unencumbered by customers, settled into a chair and opened her books, content to pass the time burrowed in her thesis. Drew often remarked that Norah was happiest at times like this, being productive twice over, working while at work.
