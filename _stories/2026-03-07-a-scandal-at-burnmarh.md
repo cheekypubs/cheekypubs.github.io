@@ -16,8 +16,8 @@ tags:
 
 It was a notebook that undid them. Emma Cawthorne, a teacher at Burnmarsh Academy, had been tidying her classroom late one afternoon, when she almost tripped over a composition book splayed open on the ground. Thinking one of her students had left it, she picked it up and started flipping through it for a name. At first the pages were empty. But towards the middle Emma suddenly came upon something strange. There was a list of names, first and last initial, written in a neat hand. And after each name was a brief jumble of other writing, which she assumed was information. For example:
 
-Joe S. – E, king lear, 8p, $48
-Tanya R. – H, g. washington, 4p, $24
+Joe S. – E, king lear, 8p, $48<br>
+Tanya R. – H, g. washington, 4p, $24<br>
 Mike H. –S, running of bulls, 6p, $60
 
 And then after some of the entries there were green check marks that looked like they’d been made in marker. The entries continued for several pages. Emma thought about a conversation she’d had in the lounge yesterday with some colleagues: about how everyone had noticed an improvement in paper quality the last couple months, about how this current class seemed so bright. She didn’t want to assume the worst, but could this accidental discovery be why? Was this situation actually what it looked like?
