@@ -88,3 +88,4 @@ But Emma did not intend to spare them, no matter how this little girl took her s
 With Josephina aligned next to Isabel, Emma walked back to the couch. Sitting down, she said, “Alex, would you come to me, please? It’s your turn to get a spanking.”
 
 
+

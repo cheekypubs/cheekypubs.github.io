@@ -53,3 +53,4 @@ Alex, humiliated but obedient, turned back around and took up his place beside J
 
 “Okay, Isabel. Please come to me for your spanking.”
 
+
