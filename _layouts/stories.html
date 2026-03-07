@@ -79,7 +79,7 @@ layout: default
           {% for story in sorted_stories %}
             {% if story.story_id %}
               {% unless displayed_story_ids contains story.story_id %}
-                {% assign story_chapters = sorted_stories | where: "story_id", story.story_id | sort: "chapter" %}
+                {% assign story_chapters = site.stories | where: "story_id", story.story_id | sort: "chapter" %}
                 {% assign first_chapter = story_chapters | first %}
                 <li>
                   <a href="{{ first_chapter.url | absolute_url }}">{{ first_chapter.title }}</a>
@@ -135,8 +135,7 @@ layout: default
         {% for story in sorted_stories %}
           {% if story.story_id %}
             {% unless displayed_story_ids contains story.story_id %}
-              {% comment %}Find chapter 1 of this story{% endcomment %}
-              {% assign story_chapters = sorted_stories | where: "story_id", story.story_id | sort: "chapter" %}
+              {% assign story_chapters = site.stories | where: "story_id", story.story_id | sort: "chapter" %}
               {% assign first_chapter = story_chapters | first %}
               {% assign filtered_stories = filtered_stories | push: first_chapter %}
               {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
