@@ -1,5 +1,5 @@
 // Vercel Serverless Function: api/submit-story.js
-// Accepts POST { title, author, content, tags } and triggers a repository_dispatch
+// Accepts POST { title, author, content, tags, chapterNumber, storyId } and triggers a repository_dispatch
 
 import { setCorsHeaders, rejectUnauthenticated } from './lib/auth.js';
 
@@ -20,6 +20,9 @@ export default async function handler(req, res) {
   const author = (body.author || 'Anonymous').toString().trim();
   const content = (body.content || '').toString();
   const tags = Array.isArray(body.tags) ? body.tags : (body.tags ? String(body.tags).split(',').map(s=>s.trim()) : []);
+  const chapterNumberRaw = parseInt(body.chapterNumber, 10);
+  const chapterNumber = Number.isFinite(chapterNumberRaw) ? chapterNumberRaw : null;
+  const storyId = (body.storyId || '').toString().trim() || null;
 
   if (!title || !content) {
     return res.status(400).json({ error: 'title and content are required' });
@@ -34,7 +37,7 @@ export default async function handler(req, res) {
 
   const payload = {
     event_type: 'story-submission',
-    client_payload: { title, author, content, tags }
+    client_payload: { title, author, content, tags, chapterNumber, storyId }
   };
 
   try {
