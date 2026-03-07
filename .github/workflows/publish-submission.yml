@@ -27,18 +27,39 @@ jobs:
             const payload = context.payload.client_payload || {};
             const title = (payload.title || 'Untitled').trim();
             let content = payload.content || '';
-            const chapterNumber = payload.chapterNumber;
-            const storyId = payload.storyId;
             const now = new Date();
             const date = now.toISOString().slice(0,10);
-            
+
+            // Parse incoming front matter first so we can extract metadata needed for filename
+            const parsedIncoming = helpers.splitFrontMatter(content);
+
+            // Resolve chapter number and story_id: payload fields take precedence,
+            // but fall back to values embedded in the front matter so that chapter 2+
+            // always gets a unique filename even when the API layer omits these fields.
+            let chapterNumber = null;
+            if (payload.chapterNumber !== undefined && payload.chapterNumber !== null) {
+              const n = parseInt(payload.chapterNumber, 10);
+              if (Number.isFinite(n)) chapterNumber = n;
+            }
+            let storyId = payload.storyId ? String(payload.storyId).trim() : '';
+            if (parsedIncoming) {
+              if (!chapterNumber) {
+                const ch = parseInt(helpers.getYamlValue(parsedIncoming.yaml, 'chapter'), 10);
+                if (Number.isFinite(ch)) chapterNumber = ch;
+              }
+              if (!storyId) {
+                storyId = helpers.getYamlValue(parsedIncoming.yaml, 'story_id');
+              }
+            }
+
             // Create slug from title
             let slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'').slice(0,50);
             if (!slug) slug = now.toISOString().replace(/[:.]/g,'-');
             
-            // Add chapter suffix for multi-chapter stories
+            // Add chapter suffix for multi-chapter stories (chapter 2+) to prevent
+            // same-day uploads of different chapters from overwriting each other
             let filename;
-            if (storyId && chapterNumber && chapterNumber > 1) {
+            if (storyId && Number.isFinite(chapterNumber) && chapterNumber > 1) {
               filename = `${date}-${slug}-ch${chapterNumber}.md`;
             } else {
               filename = `${date}-${slug}.md`;
@@ -46,12 +67,11 @@ jobs:
             
             const filepath = `_stories/${filename}`;
 
-            const parsedIncoming = helpers.splitFrontMatter(content);
             if (parsedIncoming) {
               let yaml = parsedIncoming.yaml;
               const body = parsedIncoming.body;
 
-              const inferredStoryId = helpers.getYamlValue(yaml, 'story_id') || (storyId ? String(storyId).trim() : '');
+              const inferredStoryId = helpers.getYamlValue(yaml, 'story_id') || storyId;
               const artFields = {
                 image: helpers.getYamlValue(yaml, 'art_image')
               };
