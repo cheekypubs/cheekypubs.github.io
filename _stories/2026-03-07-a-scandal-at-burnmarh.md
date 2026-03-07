@@ -1,17 +1,17 @@
 ---
 layout: story
-title: "A Scandal at Burnmarh"
+title: "A Scandal at Burnmarsh"
 author: "Conor Grayson"
-date: 2026-03-07 01:56:19 -0500
+date: 2026-03-07 12:00:00 -0500
 description: "A young teacher uncovers a cheating scandal at a local school"
 art_image: "/assets/images/story-art/a-scandal-at-burnmarh-1772848575416.png"
 story_id: "a-scandal-at-burnmarh"
 chapter: 1
 chapter_title: "The Crime"
 tags:
-  - f/f
-  - f/m
-  - school
+  - "f/f"
+  - "f/m"
+  - "school"
 ---
 
 It was a notebook that undid them. Emma Cawthorne, a teacher at Burnmarsh Academy, had been tidying her classroom late one afternoon, when she almost tripped over a composition book splayed open on the ground. Thinking one of her students had left it, she picked it up and started flipping through it for a name. At first the pages were empty. But towards the middle Emma suddenly came upon something strange. There was a list of names, first and last initial, written in a neat hand. And after each name was a brief jumble of other writing, which she assumed was information. For example:
@@ -34,5 +34,4 @@ Emma had two specific requests. First, in addition to whatever level of paddling
 
 Her second request was to be able to keep the students’ bottoms undressed after the spankings had concluded. She had various chores that needed doing in her classroom, and there was also an essay she planned to require each student to write. The first half of the essay would be all about the moral and practical pitfalls of cheating in school. The second half of the essay would be a detailed description of the discipline each student had received as a consequence of their decision to cheat, both in school and at home. And of course, each student would read their respective essay aloud during the next class session, in its entirety. As it happens, the group of miscreants featured one student from each of her three classes, so it should all work out quite conveniently. And how better to focus the students’ attentions, than for them to write out the essays, longhand and neatly, while sitting their sore bare bottoms down on the old wooden chairs of her classroom. 
 
-Of course, all the parents she reached were suitably appalled at their offspring’s choices. And they readily agreed to all of Ms. Cawthorne’s requests, promising that whatever spankings they received in her classroom would be just the beginning of their disciplinary journey that day. In fact, one of the student’s mothers had a specific request for Emma. “Can you keep track of roughly how much time she spends with her bottom undressed in your classroom? See, in our household, if you get spanked at school, you get spanked double at home, at a minimum. So however long she spends with her bottom on display with you, she owes me double that amount of bare bottom time at home.” Emma readily agreed. Another parent told her to have her son ask for his spanking “just like he does at home.” And the parent said that afterwards Emma should text her exactly what he said, and if it wasn’t the full question he asks at home, she encouraged Ms. Cawthorne to have him ask again, this time in front of the whole classroom tomorrow. Emma agreed to this as well. In fact, she spent quite a bit of time on the phone with each of these mothers. Then, her phone calls done at last, she stood up, dusted off her dress, closed her notebook, and headed to the classroom to get on with it. 
-
+Of course, all the parents she reached were suitably appalled at their offspring’s choices. And they readily agreed to all of Ms. Cawthorne’s requests, promising that whatever spankings they received in her classroom would be just the beginning of their disciplinary journey that day. In fact, one of the student’s mothers had a specific request for Emma. “Can you keep track of roughly how much time she spends with her bottom undressed in your classroom? See, in our household, if you get spanked at school, you get spanked double at home, at a minimum. So however long she spends with her bottom on display with you, she owes me double that amount of bare bottom time at home.” Emma readily agreed. Another parent told her to have her son ask for his spanking “just like he does at home.” And the parent said that afterwards Emma should text her exactly what he said, and if it wasn’t the full question he asks at home, she encouraged Ms. Cawthorne to have him ask again, this time in front of the whole classroom tomorrow. Emma agreed to this as well. In fact, she spent quite a bit of time on the phone with each of these mothers. Then, her phone calls done at last, she stood up, dusted off her dress, closed her notebook, and headed to the classroom to get on with it.
