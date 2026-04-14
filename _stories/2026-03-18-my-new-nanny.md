@@ -2,11 +2,13 @@
 layout: story
 title: "My New Nanny"
 author: "Karole"
-date: 2026-03-18 02:39:57 -0500
+date: 2026-03-18 12:00:00 -0500
+description: "It's maintenance day, and there's a new Nanny waiting..."
+art_image: "/assets/images/story-art/my-new-nanny-1776199048269.png"
 tags:
-  - age play
-  - m/f
-  - f/f
+  - "age play"
+  - "m/f"
+  - "f/f"
 ---
 
 It’s maintenance day. A few nervous butterflies dance in my tummy as I enter the front door. I come home expecting my Daddy to be waiting for me, but instead, I’m greeted warmly by a tall matronly woman. A bit caught off guard, I’m rude when I ask her what she’s doing in my house. She scolds me, telling me she doesn’t appreciate my tone. Apparently, Daddy is out and she is there to prepare me for his return. When I try to get more details she tells me that was for the adults to know, and that I only needed to focus on being an obedient little girl. 
