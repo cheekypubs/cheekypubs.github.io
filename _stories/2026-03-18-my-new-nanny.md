@@ -3,8 +3,7 @@ layout: story
 title: "My New Nanny"
 author: "Karole"
 date: 2026-03-18 12:00:00 -0500
-description: "It's maintenance day, and there's a new Nanny waiting..."
-art_image: "/assets/images/story-art/my-new-nanny-1776199048269.png"
+art_image: "/assets/images/story-art/my-new-nanny-1776199234055.png"
 tags:
   - "age play"
   - "m/f"
