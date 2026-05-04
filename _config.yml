@@ -9,8 +9,8 @@ baseurl: ""
 # Google Analytics
 google_analytics: "G-06VR2CPVFH"
 
-# Email signup (paste your Mailchimp/Buttondown/ConvertKit form action URL here)
-email_signup_action: "#"
+# Email signup
+email_signup_action: "https://emailoctopus.com/lists/00b2114a-47e4-11f1-a85b-97bcd90c99b6/members/embedded/1.3/add"
 
 # Build Settings
 markdown: kramdown
