@@ -12,6 +12,7 @@ permalink: /pages/authors/
       {% assign author_pages = site.pages | where: "layout", "author" | sort: "author" %}
       {% for author_page in author_pages %}
         {% assign author_stories = site.stories | where: "author", author_page.author %}
+        {% if author_stories.size == 0 %}{% continue %}{% endif %}
         {% assign story_count = author_stories | map: "story_id" | uniq | size %}
         {% assign standalone = author_stories | where_exp: "s", "s.story_id == nil" | size %}
         {% assign total = story_count | plus: standalone %}
