@@ -561,6 +561,7 @@ a {
     inset: 0;
     background: linear-gradient(to top, rgba(10, 3, 0, 0.88) 0%, rgba(10,3,0,0.45) 45%, transparent 80%);
     pointer-events: none;
+    z-index: 0;
 }
 
 .story-thumb img {
@@ -652,7 +653,7 @@ a {
     padding: 10px 14px 14px;
     font-size: 0.88em;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     min-width: 0;
@@ -1190,10 +1191,6 @@ a {
 
     .story-list {
         grid-template-columns: 1fr;
-    }
-
-    .story-excerpt {
-        -webkit-line-clamp: 2;
     }
     
     .story-title {
