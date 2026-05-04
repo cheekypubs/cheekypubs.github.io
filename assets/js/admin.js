@@ -12,6 +12,8 @@ const EDIT_URL = `${API_BASE}/api/edit-story`;
 const DELETE_URL = `${API_BASE}/api/delete-story`;
 const GET_STORY_CONTENT_URL = `${API_BASE}/api/get-story-content`;
 const UPLOAD_ARTWORK_URL = `${API_BASE}/api/upload-artwork`;
+const GET_AUTHOR_CONTENT_URL = `${API_BASE}/api/get-author-content`;
+const EDIT_AUTHOR_URL = `${API_BASE}/api/edit-author`;
 
 // Session storage key for the unified admin token
 const TOKEN_KEY = 'adminToken';
@@ -23,26 +25,20 @@ let multiChapterStories = [];
 // ─── Tab Switching ────────────────────────────────────────────────────────────
 
 function switchTab(tab) {
-  const publishBtn = document.getElementById('publishTabBtn');
-  const editBtn = document.getElementById('editTabBtn');
-  const publishContent = document.getElementById('publishContent');
-  const editContent = document.getElementById('editTabContent');
-
-  if (tab === 'publish') {
-    publishBtn.classList.add('active');
-    publishBtn.setAttribute('aria-selected', 'true');
-    editBtn.classList.remove('active');
-    editBtn.setAttribute('aria-selected', 'false');
-    publishContent.classList.add('active');
-    editContent.classList.remove('active');
-  } else {
-    editBtn.classList.add('active');
-    editBtn.setAttribute('aria-selected', 'true');
-    publishBtn.classList.remove('active');
-    publishBtn.setAttribute('aria-selected', 'false');
-    editContent.classList.add('active');
-    publishContent.classList.remove('active');
-  }
+  const tabs = [
+    { id: 'publish', btn: 'publishTabBtn', content: 'publishContent' },
+    { id: 'edit',    btn: 'editTabBtn',    content: 'editTabContent' },
+    { id: 'author',  btn: 'authorTabBtn',  content: 'authorTabContent' }
+  ];
+  tabs.forEach(function(t) {
+    const btn = document.getElementById(t.btn);
+    const content = document.getElementById(t.content);
+    if (!btn || !content) return;
+    const active = t.id === tab;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', String(active));
+    content.classList.toggle('active', active);
+  });
 }
 
 // ─── Clear edit form ──────────────────────────────────────────────────────────
@@ -139,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (adminInterface) adminInterface.style.display = 'block';
     initPublishForm();
     initEditForm();
+    initAuthorForm();
   }
 
   // ── Publish Form ────────────────────────────────────────────────────────────
@@ -832,4 +829,203 @@ document.addEventListener('DOMContentLoaded', function() {
       reader.readAsDataURL(file);
     });
   }
+
+  // ── Author Form ─────────────────────────────────────────────────────────────
+
+  function initAuthorForm() {
+    const authorSelect = document.getElementById('authorSelect');
+    const authorFields = document.getElementById('authorFields');
+    const kuTitlesList = document.getElementById('kuTitlesList');
+    const addKuTitleBtn = document.getElementById('addKuTitleBtn');
+    const authorForm = document.getElementById('authorForm');
+    if (!authorSelect) return;
+
+    // Populate author dropdown from stories.json
+    fetch('/stories.json')
+      .then(function(r) { return r.ok ? r.json() : []; })
+      .then(function(stories) {
+        const seen = {};
+        const authors = [];
+        stories.forEach(function(s) {
+          if (s.author && !seen[s.author]) {
+            seen[s.author] = true;
+            authors.push(s.author);
+          }
+        });
+        authors.sort();
+        authorSelect.innerHTML = '<option value="">Select an author...</option>';
+        authors.forEach(function(name) {
+          const slug = slugify(name);
+          const opt = document.createElement('option');
+          opt.value = slug;
+          opt.textContent = name;
+          opt.dataset.name = name;
+          authorSelect.appendChild(opt);
+        });
+      })
+      .catch(function() {
+        authorSelect.innerHTML = '<option value="">Could not load authors</option>';
+      });
+
+    authorSelect.addEventListener('change', function() {
+      const slug = this.value;
+      if (!slug) {
+        authorFields.style.display = 'none';
+        return;
+      }
+      loadAuthorData(slug);
+    });
+
+    async function loadAuthorData(slug) {
+      authorFields.style.display = 'none';
+      kuTitlesList.innerHTML = '<p style="color:#999;font-size:0.9em;">Loading...</p>';
+
+      try {
+        const token = sessionStorage.getItem(TOKEN_KEY) || '';
+        const resp = await fetch(GET_AUTHOR_CONTENT_URL, {
+          method: 'POST',
+          headers: Object.assign({ 'Content-Type': 'application/json' }, token ? { 'Authorization': 'Bearer ' + token } : {}),
+          credentials: 'include',
+          body: JSON.stringify({ slug })
+        });
+
+        let bio = '', photo = '', amazonUrl = '', kuTitles = [];
+
+        if (resp.ok) {
+          const payload = await resp.json();
+          const content = payload.content || '';
+          const fmMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
+          if (fmMatch) {
+            const yaml = fmMatch[1];
+            bio = extractYamlString(yaml, 'bio');
+            photo = extractYamlString(yaml, 'photo');
+            amazonUrl = extractYamlString(yaml, 'amazon_author_url');
+            kuTitles = parseYamlKuTitles(yaml);
+          }
+        }
+
+        document.getElementById('authorBio').value = bio;
+        document.getElementById('authorPhoto').value = photo;
+        document.getElementById('authorAmazonUrl').value = amazonUrl;
+
+        kuTitlesList.innerHTML = '';
+        kuTitles.forEach(function(book) { addKuTitleRow(book); });
+
+        authorFields.style.display = 'block';
+      } catch (e) {
+        kuTitlesList.innerHTML = '';
+        authorFields.style.display = 'block';
+      }
+    }
+
+    if (addKuTitleBtn) {
+      addKuTitleBtn.addEventListener('click', function() { addKuTitleRow({}); });
+    }
+
+    function addKuTitleRow(book) {
+      const row = document.createElement('div');
+      row.className = 'ku-title-row';
+      row.innerHTML = ''
+        + '<div class="ku-title-row-fields">'
+        + '<input type="text" class="ku-title-input" placeholder="Book title *" value="' + escapeHtml(book.title || '') + '">'
+        + '<input type="text" class="ku-amazon-input" placeholder="Amazon URL *" value="' + escapeHtml(book.amazon_url || '') + '">'
+        + '<input type="text" class="ku-cover-input" placeholder="Cover image URL (optional)" value="' + escapeHtml(book.cover || '') + '">'
+        + '<input type="text" class="ku-desc-input" placeholder="Short description (optional)" value="' + escapeHtml(book.description || '') + '">'
+        + '</div>'
+        + '<button type="button" class="ku-remove-btn" title="Remove">✕</button>';
+
+      row.querySelector('.ku-remove-btn').addEventListener('click', function() { row.remove(); });
+      kuTitlesList.appendChild(row);
+    }
+
+    if (authorForm) {
+      authorForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const slug = authorSelect.value;
+        if (!slug) return;
+
+        const saveBtn = document.getElementById('saveAuthorBtn');
+        const btnText = saveBtn.querySelector('.btn-text');
+        const btnLoading = saveBtn.querySelector('.btn-loading');
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        saveBtn.disabled = true;
+
+        const bio = document.getElementById('authorBio').value.trim();
+        const photo = document.getElementById('authorPhoto').value.trim();
+        const amazon_author_url = document.getElementById('authorAmazonUrl').value.trim();
+
+        const ku_titles = [];
+        kuTitlesList.querySelectorAll('.ku-title-row').forEach(function(row) {
+          const title = row.querySelector('.ku-title-input').value.trim();
+          const amazon_url = row.querySelector('.ku-amazon-input').value.trim();
+          const cover = row.querySelector('.ku-cover-input').value.trim();
+          const description = row.querySelector('.ku-desc-input').value.trim();
+          if (title && amazon_url) {
+            ku_titles.push({ title, amazon_url, cover, description });
+          }
+        });
+
+        try {
+          const token = sessionStorage.getItem(TOKEN_KEY) || '';
+          const resp = await fetch(EDIT_AUTHOR_URL, {
+            method: 'POST',
+            headers: Object.assign({ 'Content-Type': 'application/json' }, token ? { 'Authorization': 'Bearer ' + token } : {}),
+            credentials: 'include',
+            body: JSON.stringify({ slug, bio, photo, amazon_author_url, ku_titles })
+          });
+
+          if (!resp.ok) {
+            const body = await resp.text();
+            throw new Error('Server error: ' + resp.status + ' ' + body);
+          }
+
+          authorForm.style.display = 'none';
+          document.getElementById('authorSuccess').style.display = 'block';
+        } catch (err) {
+          authorForm.style.display = 'none';
+          document.getElementById('authorError').style.display = 'block';
+          document.getElementById('authorErrorDetails').textContent = err.message;
+        } finally {
+          btnText.style.display = 'inline';
+          btnLoading.style.display = 'none';
+          saveBtn.disabled = false;
+        }
+      });
+    }
+
+    // Parse a simple scalar YAML string value
+    function extractYamlString(yaml, key) {
+      const match = yaml.match(new RegExp('^' + key + ':\\s*["\']?([^"\'\\n]+)["\']?', 'm'));
+      return match ? match[1].trim() : '';
+    }
+
+    // Parse ku_titles block from YAML frontmatter
+    function parseYamlKuTitles(yaml) {
+      const blockMatch = yaml.match(/^ku_titles:\s*\n((?:[ \t]+-[\s\S]*?)(?=\n\S|\n*$))/m);
+      if (!blockMatch) return [];
+
+      const block = blockMatch[1];
+      const books = [];
+      const entries = block.split(/(?=[ \t]+-\s)/);
+
+      entries.forEach(function(entry) {
+        if (!entry.trim()) return;
+        const get = function(k) {
+          const m = entry.match(new RegExp('[ \t]+' + k + ':\\s*["\']?([^"\'\\n]+)["\']?'));
+          return m ? m[1].trim() : '';
+        };
+        const title = get('title');
+        const amazon_url = get('amazon_url');
+        if (title || amazon_url) {
+          books.push({ title, amazon_url, cover: get('cover'), description: get('description') });
+        }
+      });
+
+      return books;
+    }
+  }
+
 });
+

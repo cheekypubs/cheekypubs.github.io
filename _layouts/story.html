@@ -103,6 +103,87 @@ layout: default
       {% endif %}
     {% endif %}
 
+    {% comment %}Also by this author{% endcomment %}
+    {% assign author_slug = page.author | slugify %}
+    {% assign other_stories = site.stories | where: "author", page.author | sort: "date" | reverse %}
+    {% assign displayed_story_ids = "" | split: "" %}
+    {% assign other_filtered = "" | split: "" %}
+    {% for s in other_stories %}
+      {% if s.url == page.url %}{% continue %}{% endif %}
+      {% if s.story_id %}
+        {% unless displayed_story_ids contains s.story_id %}
+          {% assign s_chapters = site.stories | where: "story_id", s.story_id | sort: "chapter" %}
+          {% assign s_first = s_chapters | first %}
+          {% if s_first.url != page.url %}
+            {% assign other_filtered = other_filtered | push: s_first %}
+          {% endif %}
+          {% assign displayed_story_ids = displayed_story_ids | push: s.story_id %}
+        {% endunless %}
+      {% else %}
+        {% assign other_filtered = other_filtered | push: s %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign author_page_path = "/pages/authors/" | append: author_slug | append: "/" %}
+    {% assign author_data = site.pages | where: "permalink", author_page_path | first %}
+
+    {% if other_filtered.size > 0 or author_data.ku_titles.size > 0 %}
+    <section class="also-by-author">
+      <h3 class="also-by-heading">More by {{ page.author }}</h3>
+
+      {% if author_data.ku_titles and author_data.ku_titles.size > 0 %}
+      <div class="also-by-ku">
+        <p class="also-by-ku-label">
+          <span class="ku-badge-inline">Kindle Unlimited</span>
+          Also available to read free with Kindle Unlimited:
+        </p>
+        <div class="also-by-ku-grid">
+          {% for book in author_data.ku_titles %}
+          <a href="{{ book.amazon_url }}" target="_blank" rel="noopener" class="also-by-ku-book">
+            {% if book.cover %}
+            <img src="{{ book.cover | absolute_url }}" alt="{{ book.title }}" class="also-by-ku-cover">
+            {% else %}
+            <div class="also-by-ku-cover also-by-ku-cover-placeholder">{{ book.title }}</div>
+            {% endif %}
+            <span class="also-by-ku-title">{{ book.title }}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if other_filtered.size > 0 %}
+      <div class="also-by-stories">
+        {% for s in other_filtered limit: 3 %}
+          {% assign s_thumb = s.art_image %}
+          {% if s_thumb == blank or s_thumb == nil %}
+            {% if s.story_id %}
+              {% assign s_siblings = site.stories | where: "story_id", s.story_id %}
+              {% for sib in s_siblings %}
+                {% if sib.art_image and sib.art_image != blank %}
+                  {% assign s_thumb = sib.art_image %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+          {% assign s_thumb_src = s_thumb | default: '/assets/images/default-story-thumb.svg' %}
+          <a href="{{ s.url | absolute_url }}" class="also-by-story-card">
+            <figure class="also-by-thumb">
+              <img src="{{ s_thumb_src | absolute_url }}" alt="{{ s.title | escape }}">
+            </figure>
+            <span class="also-by-title">{{ s.title | truncate: 40 }}</span>
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <a href="{{ site.baseurl }}/pages/authors/{{ author_slug }}" class="also-by-all-link">
+        See all stories by {{ page.author }} &rarr;
+      </a>
+    </section>
+    {% endif %}
+
     <footer class="story-footer">
       <a href="{{ '/' | absolute_url }}" class="back-link">&larr; Back to Stories</a>
     </footer>

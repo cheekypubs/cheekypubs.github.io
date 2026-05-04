@@ -38,16 +38,19 @@ function verifyToken(token, secret) {
   }
 }
 
-// CORS helper for cross-origin requests from GitHub Pages
-function setCorsHeaders(res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://cheeky.pub');
+// CORS helper for cross-origin requests from GitHub Pages and localhost
+function setCorsHeaders(res, req) {
+  const allowed = ['https://cheeky.pub', 'http://localhost:4000', 'http://127.0.0.1:4000'];
+  const origin = req && req.headers && req.headers.origin ? req.headers.origin : '';
+  const allowedOrigin = allowed.includes(origin) ? origin : 'https://cheeky.pub';
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 }
 
 export default async function handler(req, res) {
-  setCorsHeaders(res);
+  setCorsHeaders(res, req);
 
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {

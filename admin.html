@@ -27,6 +27,7 @@ permalink: /admin/
     <div class="admin-tabs" role="tablist">
       <button type="button" class="admin-tab-btn active" id="publishTabBtn" role="tab" aria-selected="true" aria-controls="publishContent" onclick="switchTab('publish')">📝 Publish Story</button>
       <button type="button" class="admin-tab-btn" id="editTabBtn" role="tab" aria-selected="false" aria-controls="editTabContent" onclick="switchTab('edit')">✏️ Edit Story</button>
+      <button type="button" class="admin-tab-btn" id="authorTabBtn" role="tab" aria-selected="false" aria-controls="authorTabContent" onclick="switchTab('author')">👤 Author Profiles</button>
     </div>
 
     <!-- Publish Story Tab -->
@@ -303,6 +304,69 @@ permalink: /admin/
           <p>There was an error deleting the story. Please try again or contact us if the problem persists.</p>
           <p id="deleteErrorDetails"></p>
           <button type="button" class="btn-secondary" onclick="document.getElementById('deleteError').style.display='none'; document.getElementById('storyEditForm').style.display='block';">Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author Profiles Tab -->
+    <div id="authorTabContent" class="admin-tab-content" role="tabpanel" aria-labelledby="authorTabBtn">
+      <div class="submission-form">
+        <p class="form-intro">Select an author to edit their profile, bio, and Kindle Unlimited titles.</p>
+
+        <form id="authorForm">
+          <div class="form-group">
+            <label for="authorSelect">Select Author *</label>
+            <select id="authorSelect" name="authorSelect">
+              <option value="">Loading authors...</option>
+            </select>
+          </div>
+
+          <div id="authorFields" style="display: none;">
+            <div class="form-group">
+              <label for="authorBio">Bio</label>
+              <textarea id="authorBio" name="bio" rows="4" placeholder="A short bio shown on the author's profile page..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="authorPhoto">Photo URL</label>
+              <input type="text" id="authorPhoto" name="photo" placeholder="/assets/images/authors/name.jpg or https://...">
+              <small class="form-hint">Optional author photo displayed on their profile page.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="authorAmazonUrl">Amazon Author Page URL</label>
+              <input type="text" id="authorAmazonUrl" name="amazon_author_url" placeholder="https://www.amazon.com/author/...">
+              <small class="form-hint">Links to the author's full Amazon page.</small>
+            </div>
+
+            <!-- KU Titles -->
+            <div class="form-group">
+              <label>Kindle Unlimited Titles</label>
+              <small class="form-hint">Add books available on Amazon Kindle Unlimited. These appear on the author's profile and inside story pages.</small>
+              <div id="kuTitlesList" style="margin-top: 12px;"></div>
+              <button type="button" class="btn-secondary" id="addKuTitleBtn" style="margin-top: 10px;">+ Add KU Title</button>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary btn-submit" id="saveAuthorBtn">
+                <span class="btn-text">Save Author Profile</span>
+                <span class="btn-loading" style="display: none;">Saving...</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div id="authorSuccess" class="edit-success" style="display: none;">
+          <h2>✅ Author Profile Updated!</h2>
+          <p>The author profile has been saved successfully.</p>
+          <button type="button" class="btn-primary" onclick="location.reload();">Edit Another Author</button>
+        </div>
+
+        <div id="authorError" class="edit-error" style="display: none;">
+          <h2>❌ Save Error</h2>
+          <p>There was an error saving the author profile. Please try again.</p>
+          <p id="authorErrorDetails"></p>
+          <button type="button" class="btn-secondary" onclick="document.getElementById('authorError').style.display='none'; document.getElementById('authorForm').style.display='block';">Try Again</button>
         </div>
       </div>
     </div>

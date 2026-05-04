@@ -9,6 +9,9 @@ baseurl: ""
 # Google Analytics
 google_analytics: "G-06VR2CPVFH"
 
+# Email signup (paste your Mailchimp/Buttondown/ConvertKit form action URL here)
+email_signup_action: "#"
+
 # Build Settings
 markdown: kramdown
 theme: minima

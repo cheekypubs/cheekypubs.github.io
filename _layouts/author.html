@@ -3,7 +3,6 @@ layout: default
 ---
 
 <div class="stories-page">
-  <!-- Mobile Authors/Tags Toggle -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
     <span>Authors &amp; Tags</span>
     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -12,7 +11,6 @@ layout: default
   </button>
 
   <div class="stories-container">
-    <!-- Sidebar with Authors and Tags -->
     <aside class="stories-sidebar" id="storiesSidebar">
       <div class="sidebar-section">
         <h3>Authors</h3>
@@ -33,7 +31,6 @@ layout: default
       <div class="sidebar-section">
         <h3>Tags</h3>
         <div class="tag-cloud">
-          {% comment %}Collect unique tag slugs and count stories per slug{% endcomment %}
           {% assign tag_slugs = "" | split: "" %}
           {% assign tag_names = "" | split: "" %}
           {% for story in site.stories %}
@@ -57,7 +54,6 @@ layout: default
                 {% endif %}
               {% endfor %}
             {% endfor %}
-            {% comment %}Find original tag name for display{% endcomment %}
             {% for i in (0..tag_slugs.size) %}
               {% if tag_slugs[i] == slug %}
                 {% assign display_tag = tag_names[i] %}
@@ -72,34 +68,81 @@ layout: default
       </div>
     </aside>
 
-    <!-- Main Stories List -->
     <main class="stories-main">
-      <h1>Stories by {{ page.author }}</h1>
       <p class="filter-notice">
         <a href="{{ '/' | absolute_url }}" class="clear-filter">&larr; Back to all stories</a>
       </p>
 
-      {{ content }}
+      <!-- Author Profile Card -->
+      <div class="author-profile">
+        {% if page.photo %}
+        <img src="{{ page.photo | absolute_url }}" alt="{{ page.author }}" class="author-photo">
+        {% endif %}
+        <div class="author-profile-info">
+          <h1>{{ page.author }}</h1>
+          {% if page.bio %}
+          <p class="author-bio">{{ page.bio }}</p>
+          {% endif %}
+          <div class="author-links">
+            {% if page.amazon_author_url %}
+            <a href="{{ page.amazon_author_url }}" target="_blank" rel="noopener" class="btn-amazon">
+              View on Amazon
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Kindle Unlimited Titles -->
+      {% if page.ku_titles and page.ku_titles.size > 0 %}
+      <div class="author-ku-section">
+        <h2 class="ku-section-title">
+          <span class="ku-badge-inline">Kindle Unlimited</span>
+          Books by {{ page.author }}
+        </h2>
+        <div class="ku-books-grid">
+          {% for book in page.ku_titles %}
+          <a href="{{ book.amazon_url }}" target="_blank" rel="noopener" class="ku-book-card">
+            {% if book.cover %}
+            <img src="{{ book.cover | absolute_url }}" alt="{{ book.title }}" class="ku-book-cover">
+            {% else %}
+            <div class="ku-book-cover ku-book-cover-placeholder">
+              <span>{{ book.title }}</span>
+            </div>
+            {% endif %}
+            <div class="ku-book-info">
+              <h3 class="ku-book-title">{{ book.title }}</h3>
+              {% if book.description %}
+              <p class="ku-book-desc">{{ book.description }}</p>
+              {% endif %}
+              <span class="ku-read-free">Read free on KU →</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- Free Stories on Site -->
+      <h2 class="author-stories-heading">Free Stories on Cheeky Pubs</h2>
+
+      {% assign author_stories = site.stories | where: "author", page.author | sort: "date" | reverse %}
+      {% assign displayed_story_ids = "" | split: "" %}
+      {% assign filtered_stories = "" | split: "" %}
+      {% for story in author_stories %}
+        {% if story.story_id %}
+          {% unless displayed_story_ids contains story.story_id %}
+            {% assign story_chapters = site.stories | where: "story_id", story.story_id | sort: "chapter" %}
+            {% assign first_chapter = story_chapters | first %}
+            {% assign filtered_stories = filtered_stories | push: first_chapter %}
+            {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
+          {% endunless %}
+        {% else %}
+          {% assign filtered_stories = filtered_stories | push: story %}
+        {% endif %}
+      {% endfor %}
 
       <div class="story-list">
-        {% assign author_stories = site.stories | where: "author", page.author | sort: "date" | reverse %}
-        
-        {% comment %}Group multi-chapter stories - only show first chapter{% endcomment %}
-        {% assign displayed_story_ids = "" | split: "" %}
-        {% assign filtered_stories = "" | split: "" %}
-        {% for story in author_stories %}
-          {% if story.story_id %}
-            {% unless displayed_story_ids contains story.story_id %}
-              {% assign story_chapters = site.stories | where: "story_id", story.story_id | sort: "chapter" %}
-              {% assign first_chapter = story_chapters | first %}
-              {% assign filtered_stories = filtered_stories | push: first_chapter %}
-              {% assign displayed_story_ids = displayed_story_ids | push: story.story_id %}
-            {% endunless %}
-          {% else %}
-            {% assign filtered_stories = filtered_stories | push: story %}
-          {% endif %}
-        {% endfor %}
-        
         {% for story in filtered_stories %}
           {% if story.story_id %}
             {% assign story_chapters = site.stories | where: "story_id", story.story_id %}
@@ -108,7 +151,6 @@ layout: default
             {% assign chapter_count = 0 %}
           {% endif %}
           <article class="story-preview">
-            {% comment %}Resolve artwork: story's own, inherited from series, or default{% endcomment %}
             {% assign thumb_image = story.art_image %}
             {% if thumb_image == blank or thumb_image == nil %}
               {% if story.story_id %}
@@ -128,23 +170,23 @@ layout: default
               </figure>
             </a>
             <div class="story-preview-content">
-            <h2 class="story-title">
-              <a href="{{ story.url | absolute_url }}">{{ story.title | truncate: 50 }}</a>
-              {% if chapter_count > 1 %}
-                <span class="chapter-badge">{{ chapter_count }} chapters</span>
+              <h2 class="story-title">
+                <a href="{{ story.url | absolute_url }}">{{ story.title | truncate: 50 }}</a>
+                {% if chapter_count > 1 %}
+                  <span class="chapter-badge">{{ chapter_count }} chapters</span>
+                {% endif %}
+              </h2>
+              <div class="story-meta">
+                <span class="story-date">{{ story.date | date: "%B %-d, %Y" }}</span>
+              </div>
+              {% if story.tags.size > 0 %}
+              <div class="story-tags">
+                {% for tag in story.tags %}
+                  {% assign tag_slug = tag | slugify %}
+                  <a href="{{ site.baseurl }}/pages/tags/{{ tag_slug }}" class="tag">{{ tag | downcase }}</a>
+                {% endfor %}
+              </div>
               {% endif %}
-            </h2>
-            <div class="story-meta">
-              <span class="story-date">{{ story.date | date: "%B %-d, %Y" }}</span>
-            </div>
-            {% if story.tags.size > 0 %}
-            <div class="story-tags">
-              {% for tag in story.tags %}
-                {% assign tag_slug = tag | slugify %}
-                <a href="{{ site.baseurl }}/pages/tags/{{ tag_slug }}" class="tag">{{ tag | downcase }}</a>
-              {% endfor %}
-            </div>
-            {% endif %}
             </div>
             <p class="story-excerpt">
               {% if story.description %}{{ story.description | truncate: 150 }}{% else %}{{ story.excerpt | strip_html | truncatewords: 50 }}{% endif %}

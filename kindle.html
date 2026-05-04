@@ -1,0 +1,70 @@
+---
+layout: default
+title: "On Kindle Unlimited"
+seo_title: "Spanking Stories on Kindle Unlimited | Cheeky Pubs"
+seo_description: "Read spanking fiction free with Kindle Unlimited. Books by Cheeky Pubs authors available on Amazon KU."
+permalink: /kindle/
+---
+
+<div class="page-container">
+  <div class="content-box">
+    <div class="ku-page">
+      <div class="ku-page-header">
+        <h1>On Kindle Unlimited</h1>
+        <p class="ku-page-intro">Love what you read here? Our authors also publish on Amazon — read their books <strong>free with Kindle Unlimited</strong>, or buy to own. Every purchase supports an independent author.</p>
+        <a href="https://www.amazon.com/kindle-dbs/hz/subscribe/ku" target="_blank" rel="noopener" class="ku-try-link">
+          Try Kindle Unlimited free for 30 days &rarr;
+        </a>
+      </div>
+
+      {% assign ku_authors = site.pages | where: "layout", "author" %}
+      {% assign has_ku = false %}
+
+      {% for author_page in ku_authors %}
+        {% if author_page.ku_titles and author_page.ku_titles.size > 0 %}
+          {% assign has_ku = true %}
+          <div class="ku-author-section">
+            <div class="ku-author-header">
+              {% if author_page.photo %}
+              <img src="{{ author_page.photo | absolute_url }}" alt="{{ author_page.author }}" class="ku-author-photo">
+              {% endif %}
+              <div>
+                <h2 class="ku-author-name">
+                  <a href="{{ author_page.permalink | absolute_url }}">{{ author_page.author }}</a>
+                </h2>
+                {% if author_page.bio %}
+                <p class="ku-author-bio">{{ author_page.bio | truncate: 160 }}</p>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="ku-books-grid">
+              {% for book in author_page.ku_titles %}
+              <a href="{{ book.amazon_url }}" target="_blank" rel="noopener" class="ku-book-card">
+                {% if book.cover %}
+                <img src="{{ book.cover | absolute_url }}" alt="{{ book.title }}" class="ku-book-cover">
+                {% else %}
+                <div class="ku-book-cover ku-book-cover-placeholder">
+                  <span>{{ book.title }}</span>
+                </div>
+                {% endif %}
+                <div class="ku-book-info">
+                  <h3 class="ku-book-title">{{ book.title }}</h3>
+                  {% if book.description %}
+                  <p class="ku-book-desc">{{ book.description }}</p>
+                  {% endif %}
+                  <span class="ku-read-free">Read free on KU →</span>
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% unless has_ku %}
+      <p class="ku-empty">KU titles coming soon — check back shortly!</p>
+      {% endunless %}
+    </div>
+  </div>
+</div>

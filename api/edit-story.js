@@ -110,7 +110,7 @@ async function propagateSeriesArtwork(token, storyId, currentFilePath, artImage)
 }
 
 export default async function handler(req, res) {
-  setCorsHeaders(res);
+  setCorsHeaders(res, req);
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
