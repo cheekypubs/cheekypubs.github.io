@@ -1,0 +1,38 @@
+---
+layout: default
+title: "Authors"
+permalink: /pages/authors/
+---
+
+<div class="page-container">
+  <div class="content-box">
+    <h1 style="color: #C0392B; margin: 0 0 24px;">Authors</h1>
+
+    <div class="authors-grid">
+      {% assign author_pages = site.pages | where: "layout", "author" | sort: "author" %}
+      {% for author_page in author_pages %}
+        {% assign author_stories = site.stories | where: "author", author_page.author %}
+        {% assign story_count = author_stories | map: "story_id" | uniq | size %}
+        {% assign standalone = author_stories | where_exp: "s", "s.story_id == nil" | size %}
+        {% assign total = story_count | plus: standalone %}
+        <a href="{{ author_page.permalink | absolute_url }}" class="author-card">
+          {% if author_page.photo %}
+          <img src="{{ author_page.photo | absolute_url }}" alt="{{ author_page.author }}" class="author-card-photo">
+          {% else %}
+          <div class="author-card-photo author-card-photo-placeholder">{{ author_page.author | slice: 0 }}</div>
+          {% endif %}
+          <div class="author-card-info">
+            <h2 class="author-card-name">{{ author_page.author }}</h2>
+            {% if author_page.bio %}
+            <p class="author-card-bio">{{ author_page.bio | truncate: 100 }}</p>
+            {% endif %}
+            <span class="author-card-count">{{ author_stories.size }} {% if author_stories.size == 1 %}story{% else %}stories{% endif %}</span>
+            {% if author_page.ku_titles and author_page.ku_titles.size > 0 %}
+            <span class="author-card-ku"><span class="ku-badge-inline">Kindle Unlimited</span></span>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
