@@ -995,9 +995,13 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    // Parse a simple scalar YAML string value
+    // Parse a simple scalar YAML string value (handles apostrophes inside double-quoted values)
     function extractYamlString(yaml, key) {
-      const match = yaml.match(new RegExp('^' + key + ':\\s*["\']?([^"\'\\n]+)["\']?', 'm'));
+      // Double-quoted value
+      let match = yaml.match(new RegExp('^' + key + ':\\s*"([^"]*)"', 'm'));
+      if (match) return match[1];
+      // Unquoted value
+      match = yaml.match(new RegExp('^' + key + ':\\s*([^"\'\\n][^\\n]*)', 'm'));
       return match ? match[1].trim() : '';
     }
 
@@ -1013,7 +1017,11 @@ document.addEventListener('DOMContentLoaded', function() {
       entries.forEach(function(entry) {
         if (!entry.trim()) return;
         const get = function(k) {
-          const m = entry.match(new RegExp('[ \t]+' + k + ':\\s*["\']?([^"\'\\n]+)["\']?'));
+          // Double-quoted value (allows apostrophes)
+          let m = entry.match(new RegExp('[ \t]+' + k + ':\\s*"([^"]*)"'));
+          if (m) return m[1];
+          // Unquoted fallback
+          m = entry.match(new RegExp('[ \t]+' + k + ':\\s*([^"\'\\n][^\\n]*)'));
           return m ? m[1].trim() : '';
         };
         const title = get('title');

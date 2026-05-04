@@ -46,7 +46,11 @@ function esc(str) {
 }
 
 function getYamlValue(yaml, key) {
-  const match = yaml.match(new RegExp(`^${key}:\\s*["']?([^"'\\n]+)["']?`, 'm'));
+  // Double-quoted value (allows apostrophes)
+  let match = yaml.match(new RegExp(`^${key}:\\s*"([^"]*)"`, 'm'));
+  if (match) return match[1];
+  // Unquoted fallback
+  match = yaml.match(new RegExp(`^${key}:\\s*([^"'\\n][^\\n]*)`, 'm'));
   return match ? match[1].trim() : '';
 }
 
