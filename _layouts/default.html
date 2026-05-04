@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} | {{ site.title }}</title>
-    <meta name="description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories across romance, drama, fantasy, and more.{% endif %}">
-    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}spanking stories, discipline fiction, spanking punishment{% endif %}">
-    
-    <!-- Open Graph Tags for Social Sharing -->
-    <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.seo_description %}{{ page.seo_description | strip_html | strip_newlines | truncatewords: 30 }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}Explore a curated collection of spanking stories.{% endif %}">
+    {% assign seo_title = page.seo_title | default: page.title %}
+    {% assign seo_desc = page.seo_description | default: page.description | default: "Explore a curated collection of spanking stories across romance, drama, fantasy, and more." %}
+    {% assign seo_image = page.art_image | default: '/assets/images/logo/Cheekypub.png' %}
+    {% assign is_story = false %}{% if page.layout == 'story' %}{% assign is_story = true %}{% endif %}
+
+    <title>{% if is_story %}{{ seo_title }} by {{ page.author }} | {{ site.title }}{% elsif page.url == '/' %}{{ site.title }} — Spanking Stories{% else %}{{ seo_title }} | {{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ seo_desc | strip_html | strip_newlines | truncate: 160 }}">
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% elsif page.tags %}{{ page.tags | join: ', ' }}, spanking stories{% else %}spanking stories, discipline fiction, spanking punishment{% endif %}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if is_story %}{{ seo_title }} by {{ page.author }}{% else %}{{ seo_title }}{% endif %}">
+    <meta property="og:description" content="{{ seo_desc | strip_html | strip_newlines | truncate: 160 }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:type" content="{% if page.layout == 'story' or layout == 'story' %}article{% else %}website{% endif %}">
-    <meta property="og:image" content="{% if page.art_image %}{{ page.art_image | absolute_url }}{% else %}{{ '/assets/images/logo/Cheekypub.png' | absolute_url }}{% endif %}">
+    <meta property="og:type" content="{% if is_story %}article{% else %}website{% endif %}">
+    <meta property="og:image" content="{{ seo_image | absolute_url }}">
     <meta property="og:site_name" content="{{ site.title }}">
-    
-    {% if page.layout == 'story' or layout == 'story' %}
+
+    {% if is_story %}
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
     <meta property="article:author" content="{{ page.author }}">
     {% for tag in page.tags %}<meta property="article:tag" content="{{ tag }}">{% endfor %}
     {% endif %}
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     

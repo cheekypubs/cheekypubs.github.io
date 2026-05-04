@@ -1,6 +1,18 @@
 ---
 layout: default
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ page.author }}",
+  "url": "{{ page.permalink | absolute_url }}",
+  {% if page.bio %}"description": "{{ page.bio | escape }}",{% endif %}
+  {% if page.photo %}"image": "{{ page.photo | absolute_url }}",{% endif %}
+  {% if page.amazon_author_url %}"sameAs": "{{ page.amazon_author_url }}",{% endif %}
+  "mainEntityOfPage": "{{ page.permalink | absolute_url }}"
+}
+</script>
 
 <div class="stories-page">
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">

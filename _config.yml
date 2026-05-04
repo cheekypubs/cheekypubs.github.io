@@ -18,6 +18,12 @@ theme: minima
 permalink: pretty
 future: true
 
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
 # Collections
 collections:
   stories:
