@@ -621,6 +621,8 @@ a {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    min-width: 0;
+    word-break: break-word;
 }
 
 /* Individual Story Page */
@@ -1157,14 +1159,18 @@ a {
     }
 
     .story-preview {
-        flex-direction: row;
-        align-items: stretch;
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        grid-template-rows: auto 1fr;
+        flex-direction: unset;
+        align-items: unset;
         border-radius: 8px;
     }
 
     .story-thumb-link {
-        width: 110px;
-        flex-shrink: 0;
+        grid-column: 1;
+        grid-row: 1 / -1;
+        width: 100%;
     }
 
     .story-thumb {
@@ -1174,12 +1180,20 @@ a {
     }
 
     .story-preview-content {
+        grid-column: 2;
+        grid-row: 1;
         padding: 12px 12px 0;
+        min-width: 0;
     }
 
     .story-excerpt {
-        padding: 6px 12px 12px;
+        grid-column: 2;
+        grid-row: 2;
+        padding: 4px 12px 12px;
         -webkit-line-clamp: 2;
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .story-title {
@@ -2181,7 +2195,7 @@ a {
 
 .email-signup {
     background: linear-gradient(135deg, #C0392B, #8B2020);
-    padding: 28px 24px;
+    padding: 28px 24px 36px;
     text-align: center;
     color: #fff;
     margin-bottom: 0;
