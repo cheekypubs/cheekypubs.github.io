@@ -2,9 +2,10 @@
 layout: story
 title: "School Blues"
 author: "Karole"
-date: 2026-03-18 02:40:53 -0500
+date: 2026-03-18 12:00:00 -0500
+art_image: "/assets/images/story-art/school-blues-1777947470490.png"
 tags:
-  - m/f
+  - "m/f"
 ---
 
 Lisa slammed her laptop closed.
