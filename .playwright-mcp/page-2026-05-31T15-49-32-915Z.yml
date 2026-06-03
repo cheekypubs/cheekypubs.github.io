@@ -1,0 +1,83 @@
+- application:
+  - iframe [ref=e1]:
+    
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - img [ref=e12]
+        - generic [ref=e16]:
+          - text: CHEEKY REPORT CARD.pdf
+          - tooltip [ref=e17]
+        - menubar "Menu bar" [ref=e19]:
+          - button "File" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: File
+          - button "View" [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: View
+          - button "Tools" [ref=e33] [cursor=pointer]:
+            - generic [ref=e34]: Tools
+          - button "Help" [ref=e38] [cursor=pointer]:
+            - generic [ref=e39]: Help
+        - link "Sign in" [ref=e46] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://drive.google.com/file/d/1HpH7eQViXS3WdjqPok6GHknFP_zkFB4_/view&followup=https://drive.google.com/file/d/1HpH7eQViXS3WdjqPok6GHknFP_zkFB4_/view&ec=GAZAGQ
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: Page
+            - group "Page number input container. Press ENTER to begin typing and ESC to exit." [ref=e53]:
+              - textbox "Page 1 of 1" [ref=e57]: "1"
+            - generic [ref=e58]: /
+            - generic [ref=e59]: "1"
+          - generic [ref=e61]:
+            - generic [ref=e63]:
+              - button "Download" [ref=e64] [cursor=pointer]:
+                - img [ref=e67]
+              - tooltip [ref=e70]: Download
+            - generic [ref=e72]:
+              - button "Print" [ref=e73] [cursor=pointer]:
+                - img [ref=e76]
+              - tooltip [ref=e79]: Print
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - button "Zoom out" [ref=e84] [cursor=pointer]:
+                - img [ref=e86]
+              - tooltip [ref=e89]: Zoom out
+            - group "Zoom autocomplete container. Press ENTER to begin typing, ESC to exit, and arrow keys to navigate the dropdown menu." [ref=e90]:
+              - generic [ref=e93]:
+                - combobox "Page zoom control" [ref=e95]: 100%
+                - generic [ref=e96]:
+                  - generic:
+                    - img
+            - generic [ref=e97]:
+              - button "Zoom in" [ref=e98] [cursor=pointer]:
+                - img [ref=e100]
+              - tooltip [ref=e103]: Zoom in
+        - generic [ref=e106]:
+          - button "Hide file header" [ref=e107] [cursor=pointer]:
+            - img [ref=e110]
+            - img [ref=e114]
+          - tooltip [ref=e117]: Hide file header
+      - generic [ref=e119]:
+        - toolbar "Navigation"
+        - generic [ref=e122]:
+          - button "Show navigation pane" [ref=e123] [cursor=pointer]:
+            - img [ref=e126]
+            - img [ref=e130]
+          - tooltip [ref=e133]: Show navigation pane
+    - generic "Showing viewer." [ref=e135]:
+      - generic "Displaying CHEEKY REPORT CARD.pdf." [active]
+      - generic [ref=e136]:
+        - generic "Previous" [ref=e137]
+        - generic "Next" [ref=e138]
+        - main [ref=e139]:
+          - generic [ref=e140]:
+            - textbox [ref=e141]
+            - document [ref=e143]:
+              - generic:
+                - img
+            - generic [ref=e146]:
+              - textbox [ref=e149]:
+                - /placeholder: Find in document
+              - button [ref=e152] [cursor=pointer]
+              - button [ref=e154] [cursor=pointer]
+              - button [ref=e156] [cursor=pointer]
+  - region

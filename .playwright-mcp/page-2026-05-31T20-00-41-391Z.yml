@@ -1,0 +1,22 @@
+- generic [ref=e9]:
+  - generic [ref=e10]:
+    - generic [ref=e11]: Cheeky Admin Dashboard
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: 33 Pending
+        - generic [ref=e15]: 662 Approved
+        - generic [ref=e16]: 2 Declined
+        - generic [ref=e17]: 0 Banned
+      - button "Log out" [ref=e18] [cursor=pointer]
+  - generic [ref=e19]:
+    - button "Vetting Queue" [ref=e20] [cursor=pointer]
+    - button "Events" [ref=e21] [cursor=pointer]
+    - button "🎓 School" [active] [ref=e22] [cursor=pointer]
+    - button "Member Directory" [ref=e23] [cursor=pointer]
+    - button "Settings" [ref=e24] [cursor=pointer]
+  - generic [ref=e25]:
+    - text: • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
+    - generic [ref=e428]:
+      - combobox [ref=e429]:
+        - option "— Select a school event —" [selected]
+      - button "+ New School Event" [ref=e430] [cursor=pointer]

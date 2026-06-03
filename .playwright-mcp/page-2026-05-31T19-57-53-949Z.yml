@@ -1,0 +1,10 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Limits Cheat Sheets" [level=1] [ref=e4]
+      - generic [ref=e5]: Loading…
+    - button "🖨 Print" [ref=e7] [cursor=pointer]
+  - generic [ref=e8]:
+    - strong [ref=e9]: One sheet per teacher per period.
+    - text: Teachers pick up the card for their current class. Each card lists their students' limits, intensity, and headspace notes. Print double-sided or single-sided — cut on the dashed lines to separate cards.
+  - generic [ref=e11]: Loading…

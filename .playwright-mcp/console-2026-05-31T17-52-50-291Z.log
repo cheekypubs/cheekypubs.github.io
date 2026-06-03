@@ -1,0 +1,6 @@
+[     450ms] Uncaught ReferenceError: deleteCookie is not defined
+    at <anonymous> (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:427916)
+    at dispatch (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:283678)
+    at m.handle (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:281669)
+[     494ms] [WARNING] [Meta Pixel] - You are sending a non-standard event 'ViewCategory'. The preferred way to send these events is using trackCustom. See 'https://developers.facebook.com/docs/ads-for-websites/pixel-events/#events' for more information. @ https://connect.facebook.net/en_US/fbevents.js:181
+[     555ms] [LOG] NOT IE @ https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1

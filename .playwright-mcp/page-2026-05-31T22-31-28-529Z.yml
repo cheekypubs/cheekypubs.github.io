@@ -1,0 +1,6 @@
+- generic [ref=e3]:
+  - heading "Cheeky Admin" [level=1] [ref=e4]
+  - paragraph [ref=e5]: Staff access only.
+  - textbox "Name" [ref=e6]: Melissa
+  - textbox "Password" [ref=e7]: hendo315
+  - button "Sign in" [active] [ref=e8] [cursor=pointer]

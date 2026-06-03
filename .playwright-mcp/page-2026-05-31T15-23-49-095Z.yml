@@ -1,0 +1,32 @@
+- application:
+  - iframe [ref=e1]:
+    
+  - region
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - generic [ref=e11]:
+          - text: School logos
+          - tooltip [ref=e12]
+        - menubar "Menu bar" [ref=e14]:
+          - button "File" [ref=e18] [cursor=pointer]:
+            - generic [ref=e19]: File
+          - button "Help" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: Help
+        - link "Sign in" [ref=e31] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://drive.google.com/file/d/1XjM3CGtLl8cXVk-wRKoXTCRWwal5Jy5t/edit&followup=https://drive.google.com/file/d/1XjM3CGtLl8cXVk-wRKoXTCRWwal5Jy5t/edit&ec=GAZAGQ
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - toolbar
+        - generic [ref=e37]:
+          - button "Hide file header" [ref=e38] [cursor=pointer]:
+            - img [ref=e41]
+            - img [ref=e45]
+          - tooltip [ref=e48]: Hide file header
+    - generic "Showing viewer." [ref=e49]:
+      - generic "No preview available" [active]
+      - generic [ref=e50]:
+        - generic "Previous" [ref=e51]
+        - generic "Next" [ref=e52]
+        - main [ref=e53]:
+          - generic [ref=e56]: No preview available

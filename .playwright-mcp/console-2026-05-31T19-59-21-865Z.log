@@ -1,0 +1,9 @@
+[     439ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[    5612ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  101560ms] TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at renderSubmissions (http://localhost:3099/staff.html:986:102)
+    at HTMLButtonElement.<anonymous> (http://localhost:3099/staff.html:2671:9)
+    at eval (eval at <anonymous> (eval at evaluate (:302:30)), <anonymous>:2:64)
+    at eval (eval at evaluate (:302:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:304:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)

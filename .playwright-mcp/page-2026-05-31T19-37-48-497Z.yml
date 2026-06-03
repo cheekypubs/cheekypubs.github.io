@@ -1,0 +1,23 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Report Cards" [level=1] [ref=e4]
+      - generic [ref=e5]: Loading…
+    - button "🖨 Print this side" [ref=e7] [cursor=pointer]
+  - generic [ref=e8]:
+    - strong [ref=e9]: "How to print double-sided folded report cards:"
+    - list [ref=e10]:
+      - listitem [ref=e11]:
+        - text: Select
+        - strong [ref=e12]: Covers
+        - text: tab → Print (landscape) — covers print in the bottom half of each page
+      - listitem [ref=e13]:
+        - text: Re-insert printed sheets → Select
+        - strong [ref=e14]: Grades
+        - text: tab → Print on the back (grades appear in top half)
+      - listitem [ref=e15]: Cut each sheet down the center vertically to separate the 2 cards
+      - listitem [ref=e16]: Fold each card in half horizontally (top folds down) — cover faces out, grades inside
+  - generic [ref=e17]:
+    - button "1 · Covers (print first)" [ref=e18] [cursor=pointer]
+    - button "2 · Grades (print on back)" [ref=e19] [cursor=pointer]
+  - generic [ref=e21]: Loading…

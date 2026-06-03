@@ -1,0 +1,78 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Cheeky Spankos Logo" [ref=e4] [cursor=pointer]:
+      - /url: https://cheekyparties.github.io/
+      - img "Cheeky Spankos Logo" [ref=e5]
+    - button "Toggle menu" [ref=e6] [cursor=pointer]:
+      - img [ref=e7]
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - img "Cheeky Spankos new york spanking party event with adult guests enjoying consensual play" [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - heading "New York Spanking Parties" [level=1] [ref=e18]
+          - paragraph [ref=e19]:
+            - text: Cheeky is a social group for New York spanking parties; we have a party downtown at least every other month (though sometimes more). Twice a year we also run a "Cheeky Preparatory Academy" full day school immersive that allow adults the full headspace - a day of classes, homework assignments, tests, and of course - punishments if you misbehave. (For more on the lore and structure of Cheeky Preparatory Academy, view our
+            - link "history" [ref=e20] [cursor=pointer]:
+              - /url: /pages/history
+            - text: page.) All attendees to our events must be vetted; you can start the process
+            - link "here" [ref=e21] [cursor=pointer]:
+              - /url: https://docs.google.com/forms/d/e/1FAIpQLSfNyt1Ty9pTPrYPeCptPrzoVUZkw4NT6I0dSMZNnmw-3E1RwQ/viewform
+            - text: . Vetted attendees get all our updates, including info about dates and times of our parties. We can't wait to see you there!
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - heading "Why Cheeky's New York Spanking Parties?" [level=3] [ref=e24]
+            - list [ref=e25]:
+              - listitem [ref=e26]:
+                - strong [ref=e27]: "Immersive Experiences:"
+                - text: Our new york spanking party events go beyond simple adult fun—we create full roleplay scenarios and shared headspace.
+              - listitem [ref=e28]:
+                - strong [ref=e29]: "Safe & Consensual:"
+                - text: Every participant completes our vetting process to ensure a trustworthy, respectful community.
+              - listitem [ref=e30]:
+                - strong [ref=e31]: "Downtown NYC Location:"
+                - text: Conveniently located in downtown New York City for easy access to our adult events.
+              - listitem [ref=e32]:
+                - strong [ref=e33]: "Regular Events:"
+                - text: Ongoing spanking parties and special themed events throughout the year.
+          - heading "Upcoming Events" [level=2] [ref=e34]
+          - paragraph [ref=e35]:
+            - text: Interested in attending a Cheeky event? If it's your first time joining us, you must first complete our
+            - link "vetting" [ref=e36] [cursor=pointer]:
+              - /url: /pages/vetting
+            - text: process.
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - paragraph [ref=e39]: Cheeky Spring Fling
+              - generic [ref=e40]: Sat, Mar 14 at 7:30 PM to Sun, Mar 15 at 1:30 AM
+            - generic [ref=e41]:
+              - paragraph [ref=e42]: Cheeky All-Day Hangout and Play Party
+              - generic [ref=e43]: Sat, Apr 18 at 12:00 PM to Sun, Apr 19 at 1:00 AM
+            - generic [ref=e44]:
+              - paragraph [ref=e45]: Cheeky Summer School Immersive and Play Party
+              - generic [ref=e46]: Sat, Jun 20 at 12:00 PM to Sun, Jun 21 at 1:00 AM
+            - generic [ref=e47]:
+              - paragraph [ref=e48]: Cheeky August Play Party
+              - generic [ref=e49]: Sat, Aug 15 at 7:30 PM to Sun, Aug 16 at 1:30 AM
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: Cheeky Immersive Fall School Event
+              - generic [ref=e52]: Sat, Oct 17, 2026 from 12:00 PM to 4:00 PM
+            - generic [ref=e53]:
+              - paragraph [ref=e54]: Spooky Spanks Halloween Weekend
+              - generic [ref=e55]: Sat, Oct 17 at 7:30 PM to Sun, Oct 18 at 1:30 AM
+        - generic [ref=e56]:
+          - heading "Join our mailing list to stay connected!" [level=2] [ref=e57]
+          - link "Sign Up" [ref=e58] [cursor=pointer]:
+            - /url: https://docs.google.com/forms/d/e/1FAIpQLScIRYfxVneRF8dhZdNfq5L0fhm1rVXXZameAEVLzKxt0_Cxaw/viewform?usp=publish-editor
+  - contentinfo [ref=e59]:
+    - generic [ref=e60]:
+      - link "FetLife" [ref=e61] [cursor=pointer]:
+        - /url: https://fetlife.com/groups/91209
+        - img "FetLife logo" [ref=e62]
+      - link "Twitter" [ref=e63] [cursor=pointer]:
+        - /url: https://x.com/cheekyspankos
+        - img "Twitter logo" [ref=e64]
+      - link "Email" [ref=e65] [cursor=pointer]:
+        - /url: mailto:cheekyspankos@gmail.com?subject=From the Cheeky Spanko Website
+        - img "Email icon" [ref=e66]
+    - paragraph [ref=e67]: © 2026 by Cheeky Spankos.

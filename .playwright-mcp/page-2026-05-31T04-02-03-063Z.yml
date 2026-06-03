@@ -1,0 +1,70 @@
+- application:
+  - iframe [ref=e1]:
+    
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e8]:
+        - img [ref=e12]
+        - generic [ref=e16]:
+          - text: CHEEKY REPORT CARD.pdf
+          - tooltip [ref=e17]
+        - menubar "Menu bar" [ref=e19]:
+          - generic [ref=e22]:
+            - button "File" [disabled]:
+              - generic: File
+          - generic [ref=e25]:
+            - button "View" [disabled]:
+              - generic: View
+          - generic [ref=e28]:
+            - button "Insert" [disabled]:
+              - generic: Insert
+          - generic [ref=e31]:
+            - button "Tools" [disabled]:
+              - generic: Tools
+          - generic [ref=e34]:
+            - button "Help" [disabled]:
+              - generic: Help
+        - link "Sign in" [ref=e41] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?service=wise&passive=1209600&osid=1&continue=https://drive.google.com/file/d/1HpH7eQViXS3WdjqPok6GHknFP_zkFB4_/view?usp%3Dsharing&followup=https://drive.google.com/file/d/1HpH7eQViXS3WdjqPok6GHknFP_zkFB4_/view?usp%3Dsharing&ec=GAZAGQ
+      - generic [ref=e43]:
+        - generic [ref=e45]:
+          - generic [ref=e47]:
+            - button "Download" [ref=e48] [cursor=pointer]:
+              - img [ref=e51]
+            - tooltip [ref=e54]: Download
+          - generic [ref=e56]:
+            - button "Print" [disabled] [ref=e57]:
+              - img [ref=e60]
+            - tooltip [ref=e63]: Printing not yet available
+        - generic [ref=e66]:
+          - button "Hide file header" [ref=e67] [cursor=pointer]:
+            - img [ref=e70]
+            - img [ref=e74]
+          - tooltip [ref=e77]: Hide file header
+      - generic [ref=e79]:
+        - toolbar "Navigation"
+        - generic [ref=e82]:
+          - button "Show navigation pane" [ref=e83] [cursor=pointer]:
+            - img [ref=e86]
+            - img [ref=e90]
+          - tooltip [ref=e93]: Show navigation pane
+    - generic "Showing viewer." [ref=e95]:
+      - generic "Displaying CHEEKY REPORT CARD.pdf." [active]
+      - generic [ref=e96]:
+        - generic "Previous" [ref=e97]
+        - generic "Next" [ref=e98]
+        - main [ref=e99]:
+          - generic [ref=e100]:
+            - textbox [ref=e101]
+            - generic [ref=e102]:
+              - document [ref=e103]:
+                - generic:
+                  - img
+              - status "Loading" [ref=e106]
+            - generic [ref=e138]:
+              - textbox [ref=e141]:
+                - /placeholder: Find in document
+              - button [ref=e144] [cursor=pointer]
+              - button [ref=e146] [cursor=pointer]
+              - button [ref=e148] [cursor=pointer]
+  - region

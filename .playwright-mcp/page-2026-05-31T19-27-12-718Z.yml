@@ -1,0 +1,22 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Report Cards" [level=1] [ref=e4]
+      - generic [ref=e5]: Loading…
+    - button "🖨 Print this side" [ref=e7] [cursor=pointer]
+  - generic [ref=e8]:
+    - strong [ref=e9]: "How to print double-sided report cards (portrait):"
+    - list [ref=e10]:
+      - listitem [ref=e11]:
+        - text: Select
+        - strong [ref=e12]: Covers
+        - text: tab → Print → your printer will use Portrait automatically
+      - listitem [ref=e13]:
+        - text: Re-insert printed sheets → Select
+        - strong [ref=e14]: Grades
+        - text: tab → Print on the back
+      - listitem [ref=e15]: Cut each sheet in half horizontally (cut mark across the middle) · fold right half back → logo faces out, grades inside
+  - generic [ref=e16]:
+    - button "1 · Covers (print first)" [ref=e17] [cursor=pointer]
+    - button "2 · Grades (print on back)" [ref=e18] [cursor=pointer]
+  - generic [ref=e20]: Loading…

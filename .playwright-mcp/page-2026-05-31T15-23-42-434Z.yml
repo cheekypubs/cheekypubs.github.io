@@ -1,0 +1,198 @@
+- generic [ref=e1]:
+  - iframe [ref=e2]:
+    
+  - generic [ref=e4]:
+    - navigation [ref=e5]:
+      - button [ref=e282] [cursor=pointer]:
+        - generic [ref=e9]: Skip to main content
+      - button [ref=e283] [cursor=pointer]:
+        - generic [ref=e13]: Keyboard shortcuts
+      - button [ref=e284] [cursor=pointer]:
+        - generic [ref=e17]: Accessibility feedback
+    - banner [ref=e19]:
+      - generic [ref=e20]:
+        - link [ref=e285] [cursor=pointer]:
+          - /url: https://drive.google.com/?tab=oo
+          - img [ref=e25]
+          - generic [ref=e26]: Drive
+        - generic [ref=e28]:
+          - button [ref=e286] [cursor=pointer]:
+            - img [ref=e33]
+          - link [ref=e287] [cursor=pointer]:
+            - /url: https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://drive.google.com/drive/folders/1XjM3CGtLl8cXVk-wRKoXTCRWwal5Jy5t%3Fusp%3Dsharing&service=writely&ec=GAZAMQ
+            - text: Sign in
+    - generic [ref=e37]:
+      - generic [ref=e46]:
+        - navigation [ref=e276]:
+          - heading [ref=e288]: Folder Path
+          - list [ref=e289]:
+            - listitem [ref=e278]:
+              - link [ref=e290]: School logos
+        - toolbar [ref=e50]:
+          - generic [ref=e51]:
+            - button [ref=e291] [cursor=pointer]: Download all
+            - radiogroup [ref=e292]:
+              - generic [ref=e56]:
+                - radio [checked] [ref=e293] [cursor=pointer]:
+                  - generic [ref=e58]:
+                    - img [ref=e59]
+                    - img [ref=e63]
+                - radio [ref=e294] [cursor=pointer]:
+                  - generic [ref=e67]:
+                    - img [ref=e68]
+                    - img [ref=e72]
+      - main [ref=e76]:
+        - region [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e87] [cursor=pointer]:
+              - button [ref=e295]: Name
+              - button [ref=e296]:
+                - img [ref=e90]
+            - generic [ref=e97]:
+              - button [ref=e297] [cursor=pointer]:
+                - img [ref=e101]
+              - tooltip [ref=e104]: More sorting options
+          - grid [ref=e108]:
+            - generic [ref=e109]:
+              - row [ref=e298]:
+                - gridcell [ref=e299]:
+                  - img [ref=e116]
+                  - generic [ref=e118]:
+                    - generic [ref=e301]: 75px.jpg
+                    - img [ref=e302]:
+                      - img [ref=e122]
+              - row [ref=e303]:
+                - gridcell [ref=e304]:
+                  - img [ref=e131]
+                  - generic [ref=e133]:
+                    - generic [ref=e306]: cheekysmall.png
+                    - img [ref=e307]:
+                      - img [ref=e137]
+              - row [ref=e308]:
+                - gridcell [ref=e309]:
+                  - img [ref=e146]
+                  - generic [ref=e148]:
+                    - generic [ref=e311]: cheekysmalljpg.jpg
+                    - img [ref=e312]:
+                      - img [ref=e152]
+              - row [ref=e313]:
+                - gridcell [ref=e314]:
+                  - img [ref=e161]
+                  - generic [ref=e163]:
+                    - generic [ref=e316]: Copy of forpatch.png
+                    - img [ref=e317]:
+                      - img [ref=e167]
+              - row [ref=e318]:
+                - gridcell [ref=e319]:
+                  - img [ref=e176]
+                  - generic [ref=e177]:
+                    - generic [ref=e321]: final cheeky prepatory.ai
+                    - img [ref=e322]:
+                      - img [ref=e181]
+              - row [ref=e323]:
+                - gridcell [ref=e324]:
+                  - img [ref=e190]
+                  - generic [ref=e191]:
+                    - generic [ref=e326]: final cheeky prepatory.eps
+                    - img [ref=e327]:
+                      - img [ref=e195]
+              - row [ref=e328]:
+                - gridcell [ref=e329]:
+                  - img [ref=e204]
+                  - generic [ref=e206]:
+                    - generic [ref=e331]: final cheeky prepatory.jpg
+                    - img [ref=e332]:
+                      - img [ref=e210]
+              - row [ref=e333]:
+                - gridcell [ref=e334]:
+                  - img [ref=e219]
+                  - generic [ref=e221]:
+                    - generic [ref=e336]: final cheeky prepatory.pdf
+                    - img [ref=e337]:
+                      - img [ref=e225]
+              - row [selected] [ref=e338]:
+                - gridcell [ref=e339]:
+                  - img [ref=e234]
+                  - generic [ref=e236]:
+                    - generic [ref=e341]: final cheeky prepatory.png
+                    - img [ref=e342]:
+                      - img [ref=e240]
+              - row [ref=e343]:
+                - gridcell [ref=e344]:
+                  - img [ref=e249]
+                  - generic [ref=e251]:
+                    - generic [ref=e346]: final cheeky prepatory.psd
+                    - img [ref=e347]:
+                      - img [ref=e255]
+              - row [ref=e348]:
+                - gridcell [ref=e349]:
+                  - img [ref=e264]
+                  - generic [ref=e266]:
+                    - generic [ref=e351]: forpatch.png
+                    - img [ref=e352]:
+                      - img [ref=e270]
+  - region
+  - img [ref=e274]
+  - generic [ref=e355]:
+    - generic [ref=e356]:
+      - generic [ref=e359]:
+        - generic [ref=e361]:
+          - button "Close" [ref=e362] [cursor=pointer]:
+            - img [ref=e364]
+          - tooltip [ref=e367]: Close
+        - img [ref=e371]
+        - generic [ref=e375]:
+          - text: final cheeky prepatory.png
+          - tooltip [ref=e376]
+        - menubar "Menu bar" [ref=e378]:
+          - button "File" [ref=e382] [cursor=pointer]:
+            - generic [ref=e383]: File
+          - button "View" [ref=e387] [cursor=pointer]:
+            - generic [ref=e388]: View
+          - button "Help" [ref=e392] [cursor=pointer]:
+            - generic [ref=e393]: Help
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - button "Previous" [ref=e397] [cursor=pointer]:
+              - img [ref=e399]
+            - tooltip [ref=e402]: Previous
+          - generic [ref=e403]:
+            - button "Next" [ref=e404] [cursor=pointer]:
+              - img [ref=e406]
+            - tooltip [ref=e409]: Next
+      - generic [ref=e412]:
+        - generic [ref=e413]:
+          - generic [ref=e415]:
+            - button "Download" [ref=e416] [cursor=pointer]:
+              - img [ref=e419]
+            - tooltip [ref=e422]: Download
+          - generic [ref=e424]:
+            - button "Print" [ref=e425] [cursor=pointer]:
+              - img [ref=e428]
+            - tooltip [ref=e431]: Print
+        - generic [ref=e433]:
+          - generic [ref=e434]:
+            - button "Zoom out" [disabled] [ref=e435]:
+              - img [ref=e438]
+            - tooltip [ref=e441]: Zoom out
+          - generic [ref=e442]:
+            - button "Reset zoom" [disabled] [ref=e443]:
+              - img [ref=e446]
+            - tooltip [ref=e449]: Reset zoom
+          - generic [ref=e450]:
+            - button "Zoom in" [ref=e451] [cursor=pointer]:
+              - img [ref=e454]
+            - tooltip [ref=e457]: Zoom in
+    - dialog "Showing viewer." [ref=e458]:
+      - generic "Displaying final cheeky prepatory.png." [active]
+      - generic [ref=e459]:
+        - generic "Previous" [ref=e460]
+        - generic "Next" [ref=e461]
+        - main [ref=e462]:
+          - generic:
+            - generic:
+              - generic [ref=e464]:
+                - generic:
+                  - list
+              - img "Displaying final cheeky prepatory.png" [ref=e465]:
+                - img [ref=e466]

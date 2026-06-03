@@ -1,0 +1,157 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - heading "Preview mode" [level=1] [ref=e7]
+    - generic [ref=e8]:
+      - generic [ref=e9]: Published
+      - button "Copy responder link" [ref=e14] [cursor=pointer]:
+        - generic [ref=e20]: Copy responder link
+  - button "Request edit access" [ref=e22] [cursor=pointer]:
+    - generic [ref=e24]:
+      - img [ref=e26]
+      - generic [ref=e30]: Request edit access
+  - generic [ref=e32]:
+    - generic [ref=e35]:
+      - generic [ref=e37]:
+        - generic [ref=e39]:
+          - heading "Cheeky Vetting and Registration Form" [level=1] [ref=e41]
+          - generic [ref=e42]: Thanks for showing your interest in attending a Cheeky Spankos event! We need you to fill out this form to vet you for attendance to our events. This is part of our effort to make sure that all events are safe for our community. Thanks for your cooperation!
+        - generic [ref=e45]: "* Indicates required question"
+      - list [ref=e46]:
+        - listitem [ref=e47]:
+          - generic [ref=e49]:
+            - heading "Email Required question" [level=3] [ref=e51]:
+              - generic [ref=e52]: Email
+              - generic "Required question" [ref=e53]: "*"
+            - generic [ref=e57]:
+              - textbox "Your email" [disabled] [ref=e58]
+              - generic: Your email
+        - listitem [ref=e60]:
+          - generic [ref=e62]:
+            - generic [ref=e64]:
+              - heading "What is your legal name? Required question" [level=3] [ref=e65]:
+                - generic [ref=e66]: What is your legal name?
+                - generic "Required question" [ref=e67]: "*"
+              - generic [ref=e68]: This information will be kept in the strictest confidence, but you will be asked to show ID at the door, so it must be accurate. Please provide a first and last name or you will not be able to be vetted. (If your legal name is your deadname, please be assured we will never use it out loud.)
+            - generic [ref=e73]:
+              - textbox "What is your legal name? Required question" [disabled] [ref=e74]
+              - generic: Your answer
+        - listitem [ref=e76]:
+          - generic [ref=e78]:
+            - heading "What is your (scene) name? This is the name you would like people to call you (and will be how we refer to you as well). Required question" [level=3] [ref=e81]:
+              - generic [ref=e82]: What is your (scene) name? This is the name you would like people to call you (and will be how we refer to you as well).
+              - generic "Required question" [ref=e83]: "*"
+            - generic [ref=e88]:
+              - textbox "What is your (scene) name? This is the name you would like people to call you (and will be how we refer to you as well). Required question" [disabled] [ref=e89]
+              - generic: Your answer
+        - listitem [ref=e91]:
+          - generic [ref=e93]:
+            - heading "What is your Fetlife handle, if you have one? Required question" [level=3] [ref=e96]:
+              - generic [ref=e97]: What is your Fetlife handle, if you have one?
+              - generic "Required question" [ref=e98]: "*"
+            - generic [ref=e103]:
+              - textbox "What is your Fetlife handle, if you have one? Required question" [disabled] [ref=e104]
+              - generic: Your answer
+        - listitem [ref=e106]:
+          - generic [ref=e108]:
+            - heading "What are your pronouns Required question" [level=3] [ref=e111]:
+              - generic [ref=e112]: What are your pronouns
+              - generic "Required question" [ref=e113]: "*"
+            - radiogroup "What are your pronouns Required question" [ref=e116]:
+              - generic [ref=e117]:
+                - generic [ref=e120]:
+                  - generic [ref=e121]:
+                    - radio "She/her/hers" [disabled]
+                  - generic [ref=e124]: She/her/hers
+                - generic [ref=e127]:
+                  - generic [ref=e128]:
+                    - radio "He/him/his" [disabled]
+                  - generic [ref=e131]: He/him/his
+                - generic [ref=e134]:
+                  - generic [ref=e135]:
+                    - radio "They/them/theirs" [disabled]
+                  - generic [ref=e138]: They/them/theirs
+                - generic [ref=e139]:
+                  - generic [ref=e141]:
+                    - generic [ref=e142]:
+                      - radio [disabled]
+                    - generic [ref=e145]: "Other:"
+                  - textbox "Other response" [disabled] [ref=e151]
+        - listitem [ref=e153]:
+          - generic [ref=e155]:
+            - heading "Please provide the names of 1-3 existing scene members who can vouch for you. Please also provide their e-mail addresses or fetlife names. If you are new to the scene and do not have references, our team will reach out to you for a virtual vetting session. Required question" [level=3] [ref=e158]:
+              - generic [ref=e159]: Please provide the names of 1-3 existing scene members who can vouch for you. Please also provide their e-mail addresses or fetlife names. If you are new to the scene and do not have references, our team will reach out to you for a virtual vetting session.
+              - generic "Required question" [ref=e160]: "*"
+            - generic [ref=e163]:
+              - generic: Your answer
+              - textbox "Please provide the names of 1-3 existing scene members who can vouch for you. Please also provide their e-mail addresses or fetlife names. If you are new to the scene and do not have references, our team will reach out to you for a virtual vetting session. Required question" [disabled] [ref=e165]
+        - listitem [ref=e167]:
+          - generic [ref=e169]:
+            - heading "Are you a top, bottom, or switch? Required question" [level=3] [ref=e172]:
+              - generic [ref=e173]: Are you a top, bottom, or switch?
+              - generic "Required question" [ref=e174]: "*"
+            - radiogroup "Are you a top, bottom, or switch? Required question" [ref=e177]:
+              - generic [ref=e178]:
+                - generic [ref=e181]:
+                  - generic [ref=e182]:
+                    - radio "Top" [disabled]
+                  - generic [ref=e185]: Top
+                - generic [ref=e188]:
+                  - generic [ref=e189]:
+                    - radio "Bottom" [disabled]
+                  - generic [ref=e192]: Bottom
+                - generic [ref=e195]:
+                  - generic [ref=e196]:
+                    - radio "Switch" [disabled]
+                  - generic [ref=e199]: Switch
+        - listitem [ref=e200]:
+          - generic [ref=e202]:
+            - heading "Please tell us anything else about yourself you want us to know! Required question" [level=3] [ref=e205]:
+              - generic [ref=e206]: Please tell us anything else about yourself you want us to know!
+              - generic "Required question" [ref=e207]: "*"
+            - generic [ref=e210]:
+              - generic: Your answer
+              - textbox "Please tell us anything else about yourself you want us to know! Required question" [disabled] [ref=e212]
+        - listitem [ref=e214]:
+          - generic [ref=e216]:
+            - 'heading "I have read and understood the Code of Conduct (available here): Required question" [level=3] [ref=e219]':
+              - generic [ref=e220]:
+                - text: I have read and understood the Code of Conduct (
+                - link "available here" [ref=e221] [cursor=pointer]:
+                  - /url: https://cheekyparties.org/pages/guidelines/
+                - text: "):"
+              - generic "Required question" [ref=e222]: "*"
+            - 'radiogroup "I have read and understood the Code of Conduct (available here): Required question" [ref=e225]':
+              - generic [ref=e229]:
+                - generic [ref=e230]:
+                  - radio "Yes" [disabled]
+                - generic [ref=e233]: "Yes"
+        - listitem [ref=e234]:
+          - generic [ref=e235]:
+            - heading "Thanks so much!" [level=2] [ref=e236]
+            - generic [ref=e237]: Providing your info helps us make an immersive, inclusive, and most of all SAFE event. We look forward to welcoming you to the Cheeky group!
+      - generic [ref=e238]:
+        - generic [ref=e239]:
+          - button "Forms cannot be submitted in preview mode" [disabled] [ref=e241]:
+            - generic [ref=e244]: Submit
+          - button "Clear form" [ref=e246] [cursor=pointer]:
+            - generic [ref=e249]: Clear form
+        - generic [ref=e250]: Never submit passwords through Google Forms.
+    - generic [ref=e251]:
+      - generic [ref=e252]:
+        - text: This content is neither created nor endorsed by Google. -
+        - link "Terms of Service" [ref=e253] [cursor=pointer]:
+          - /url: https://policies.google.com/terms
+        - text: "-"
+        - link "Privacy Policy" [ref=e254] [cursor=pointer]:
+          - /url: https://policies.google.com/privacy
+        - paragraph [ref=e255]:
+          - text: Does this form look suspicious?
+          - link "Report" [ref=e256] [cursor=pointer]:
+            - /url: https://docs.google.com/forms/d/1eXLZ5rAv28sxmalFOUNGi4HqRZJatytkboXt2xNIYwg/abuse
+      - link "Google Forms" [ref=e258] [cursor=pointer]:
+        - /url: //www.google.com/forms/about/?utm_source=product&utm_medium=forms_logo&utm_campaign=forms
+        - img "Google" [ref=e259]
+        - text: Forms
+  - generic [ref=e263]:
+    - button "help and feedback" [ref=e264] [cursor=pointer]
+    - tooltip [ref=e267]: Help and feedback

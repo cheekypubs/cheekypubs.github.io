@@ -1,0 +1,16 @@
+[      70ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[   15812ms] TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at renderSubmissions (http://localhost:3099/staff.html:1024:102)
+    at HTMLButtonElement.<anonymous> (http://localhost:3099/staff.html:3008:9)
+[   63827ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[   71250ms] TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at renderSubmissions (http://localhost:3099/staff.html:1024:102)
+    at HTMLButtonElement.<anonymous> (http://localhost:3099/staff.html:3008:9)
+[  321492ms] TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at renderSubmissions (http://localhost:3099/staff.html:1024:102)
+    at HTMLButtonElement.<anonymous> (http://localhost:3099/staff.html:3008:9)
+[  736226ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  979641ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[ 1275565ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[56780843ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[56931121ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0

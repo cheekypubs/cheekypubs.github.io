@@ -1,0 +1,116 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link:
+      - /url: https://cheekyparties.org
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Vetting & Registration" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Thanks for your interest in attending a Cheeky Spankos event! To keep our community safe and welcoming, everyone must be vetted before attending. Fill out this form and we'll be in touch.
+      - generic [ref=e7]:
+        - generic [ref=e8]: Contact Info
+        - generic [ref=e9]:
+          - generic [ref=e10]: Email *
+          - textbox "Email *" [ref=e11]
+        - generic [ref=e12]:
+          - generic [ref=e13]: Legal name *
+          - textbox "Legal name *" [ref=e14]
+          - paragraph [ref=e15]:
+            - text: Kept in strict confidence. You'll be asked to show ID at the door, so it must be accurate. If your legal name is your deadname, we will
+            - strong [ref=e16]: never
+            - text: use it out loud.
+        - generic [ref=e17]:
+          - generic [ref=e18]: Scene name *
+          - textbox "Scene name *" [ref=e19]
+          - paragraph [ref=e20]: The name you'd like people to call you — this is how we'll refer to you.
+        - generic [ref=e21]:
+          - generic [ref=e22]: FetLife handle
+          - textbox "FetLife handle" [ref=e23]:
+            - /placeholder: e.g. SpankoSuzie
+          - paragraph [ref=e24]: Optional, but helpful for vetting. Leave blank if you don't have one.
+        - generic [ref=e25]: About You
+        - generic [ref=e26]:
+          - generic [ref=e27]: Pronouns *
+          - generic [ref=e28]:
+            - generic [ref=e29] [cursor=pointer]:
+              - checkbox "She/her" [ref=e30]
+              - text: She/her
+            - generic [ref=e31] [cursor=pointer]:
+              - checkbox "He/him" [ref=e32]
+              - text: He/him
+            - generic [ref=e33] [cursor=pointer]:
+              - checkbox "They/them" [ref=e34]
+              - text: They/them
+            - generic [ref=e35] [cursor=pointer]:
+              - checkbox "Other:" [ref=e36]
+              - text: "Other:"
+        - generic [ref=e37]:
+          - generic [ref=e38]: Role *
+          - generic [ref=e39]:
+            - generic [ref=e40] [cursor=pointer]:
+              - radio "Top" [ref=e41]
+              - text: Top
+            - generic [ref=e42] [cursor=pointer]:
+              - radio "Bottom" [ref=e43]
+              - text: Bottom
+            - generic [ref=e44] [cursor=pointer]:
+              - radio "Switch" [ref=e45]
+              - text: Switch
+        - generic [ref=e46]: References
+        - paragraph [ref=e47]: Please provide 1–3 existing Cheeky community members who can vouch for you. Include their name and how to reach them (email or FetLife handle).
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]: Reference 1
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]: Name
+                - textbox "Name" [ref=e54]
+              - generic [ref=e55]:
+                - generic [ref=e56]: Email or FetLife
+                - textbox "Email or FetLife" [ref=e57]:
+                  - /placeholder: email or @handle
+          - generic [ref=e58]:
+            - generic [ref=e59]: Reference 2 (optional)
+            - generic [ref=e60]:
+              - generic [ref=e61]:
+                - generic [ref=e62]: Name
+                - textbox "Name" [ref=e63]
+              - generic [ref=e64]:
+                - generic [ref=e65]: Email or FetLife
+                - textbox "Email or FetLife" [ref=e66]:
+                  - /placeholder: email or @handle
+          - generic [ref=e67]:
+            - generic [ref=e68]: Reference 3 (optional)
+            - generic [ref=e69]:
+              - generic [ref=e70]:
+                - generic [ref=e71]: Name
+                - textbox "Name" [ref=e72]
+              - generic [ref=e73]:
+                - generic [ref=e74]: Email or FetLife
+                - textbox "Email or FetLife" [ref=e75]:
+                  - /placeholder: email or @handle
+        - generic [ref=e76]:
+          - generic [ref=e77] [cursor=pointer]:
+            - checkbox "I'm new to the scene and don't have references yet" [ref=e78]
+            - text: I'm new to the scene and don't have references yet
+          - paragraph [ref=e79]: That's totally okay! Someone from our team will reach out to schedule a virtual vetting chat.
+        - generic [ref=e80]: Anything Else?
+        - generic [ref=e81]:
+          - generic [ref=e82]: Anything you'd like us to know
+          - textbox "Anything you'd like us to know" [ref=e83]:
+            - /placeholder: Accessibility needs, questions, how you heard about us — anything at all.
+        - generic [ref=e84]: Agreements
+        - generic [ref=e86] [cursor=pointer]:
+          - checkbox "I confirm that I am 18 years of age or older. *" [ref=e87]
+          - text: I confirm that I am 18 years of age or older.
+          - generic [ref=e88]: "*"
+        - generic [ref=e90] [cursor=pointer]:
+          - checkbox "I have read and agree to the Cheeky Community Guidelines & Code of Conduct . *" [ref=e91]
+          - text: I have read and agree to the
+          - link "Cheeky Community Guidelines & Code of Conduct" [ref=e92]:
+            - /url: https://cheekyparties.org/pages/guidelines/
+          - text: .
+          - generic [ref=e93]: "*"
+        - button "Submit Application" [ref=e94] [cursor=pointer]
+    - contentinfo [ref=e95]:
+      - link "← Back to Cheeky Spankos" [ref=e96] [cursor=pointer]:
+        - /url: https://cheekyparties.org

@@ -1,0 +1,11 @@
+[     130ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[   65412ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  155314ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  347806ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  491294ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  492374ms] [ERROR] TypeError: Failed to fetch
+    at loadSubmissions (http://localhost:3099/staff.html:1033:27)
+    at http://localhost:3099/staff.html:891:7 @ http://localhost:3099/staff.html:1056
+[  493381ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0
+[  493402ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3099/favicon.ico:0
+[ 7225111ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://localhost:3099/staff.html:0

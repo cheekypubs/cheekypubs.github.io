@@ -1,0 +1,6 @@
+[     551ms] Uncaught ReferenceError: deleteCookie is not defined
+    at <anonymous> (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:427916)
+    at dispatch (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:283678)
+    at m.handle (https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1:281669)
+[     553ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://nationalschoolforms.com/product-categories/referral-forms/student-discipline-referral-form/:0
+[     676ms] [LOG] NOT IE @ https://cdn11.bigcommerce.com/s-bql818/stencil/53291370-9f3f-013c-5f27-2a04f32c492a/e/4da52490-420f-013d-7e3a-5627c80bf758/dist/theme-bundle.main.js:1

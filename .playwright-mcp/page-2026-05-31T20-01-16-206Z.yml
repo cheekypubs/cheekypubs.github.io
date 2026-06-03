@@ -1,0 +1,88 @@
+- generic [ref=e9]:
+  - generic [ref=e10]:
+    - generic [ref=e11]: Cheeky Admin Dashboard
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: 33 Pending
+        - generic [ref=e15]: 662 Approved
+        - generic [ref=e16]: 2 Declined
+        - generic [ref=e17]: 0 Banned
+      - button "Log out" [ref=e18] [cursor=pointer]
+  - generic [ref=e19]:
+    - button "Vetting Queue" [ref=e20] [cursor=pointer]
+    - button "Events" [ref=e21] [cursor=pointer]
+    - button "🎓 School" [ref=e22] [cursor=pointer]
+    - button "Member Directory" [ref=e23] [cursor=pointer]
+    - button "Settings" [ref=e24] [cursor=pointer]
+  - generic [ref=e25]:
+    - text: • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
+    - generic [ref=e427]:
+      - generic [ref=e428]:
+        - combobox [ref=e429]:
+          - option "— Select a school event —"
+          - option "Cheeky Summer School 2026 — Jun 20, 2026" [selected]
+        - button "+ New School Event" [ref=e430] [cursor=pointer]
+      - generic [ref=e431]:
+        - generic [ref=e432]:
+          - generic [ref=e433]:
+            - strong [ref=e434]: "Deans (3):"
+            - text: Will (Principal)AmandeepAndy ·
+            - strong [ref=e435]: Saturday, June 20, 2026
+          - button "✎ Edit event" [ref=e436] [cursor=pointer]
+        - generic [ref=e437]:
+          - button "Students & Groups" [ref=e438] [cursor=pointer]
+          - button "Classes" [ref=e439] [cursor=pointer]
+          - button "Schedule" [ref=e440] [cursor=pointer]
+          - button "Dean Appointments" [ref=e441] [cursor=pointer]
+          - button "Grades" [ref=e442] [cursor=pointer]
+        - generic [ref=e512]:
+          - generic [ref=e513]:
+            - button "+ Add Class" [ref=e514] [cursor=pointer]
+            - button "📋 Schedules" [ref=e515] [cursor=pointer]
+            - button "📝 Attendance" [ref=e516] [cursor=pointer]
+            - button "⚠ Limits" [ref=e517] [cursor=pointer]
+          - generic [ref=e519]:
+            - generic [ref=e520]:
+              - generic [ref=e521]: Period 1 — English
+              - generic [ref=e522]:
+                - text: "Ms. Jay · Groups:"
+                - emphasis [ref=e523]: none assigned
+            - generic [ref=e524]:
+              - button "🔗 Grade link" [ref=e525] [cursor=pointer]
+              - button "✕ Close" [active] [ref=e528] [cursor=pointer]
+              - button "✕" [ref=e527] [cursor=pointer]
+            - generic [ref=e529]:
+              - generic [ref=e530]:
+                - generic [ref=e531]:
+                  - generic [ref=e532]: Class name
+                  - textbox [ref=e533]: English
+                - generic [ref=e534]:
+                  - generic [ref=e535]: Teacher
+                  - textbox [ref=e536]: Ms. Jay
+                - generic [ref=e537]:
+                  - generic [ref=e538]: Period
+                  - spinbutton [ref=e539]: "1"
+              - generic [ref=e540]:
+                - generic [ref=e541]: Groups
+                - generic [ref=e542]:
+                  - generic [ref=e543] [cursor=pointer]:
+                    - checkbox "A" [ref=e544]
+                    - text: A
+                  - generic [ref=e545] [cursor=pointer]:
+                    - checkbox "B" [ref=e546]
+                    - text: B
+                  - generic [ref=e547] [cursor=pointer]:
+                    - checkbox "C" [ref=e548]
+                    - text: C
+                  - generic [ref=e549] [cursor=pointer]:
+                    - checkbox "D" [ref=e550]
+                    - text: D
+                  - generic [ref=e551] [cursor=pointer]:
+                    - checkbox "E" [ref=e552]
+                    - text: E
+                  - generic [ref=e553] [cursor=pointer]:
+                    - checkbox "F" [ref=e554]
+                    - text: F
+              - generic [ref=e555]:
+                - button "Save" [ref=e556] [cursor=pointer]
+                - button "Cancel" [ref=e557] [cursor=pointer]

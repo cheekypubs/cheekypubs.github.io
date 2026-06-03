@@ -1,0 +1,119 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - link "Toggle menu" [ref=e5] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e6]: Toggle menu
+      - generic [ref=e7]: 1-800-431-1201
+      - generic [ref=e8]:
+        - list:
+          - listitem [ref=e9]:
+            - link:
+              - /url: https://nationalschoolforms.com/login.php
+            - link "Login" [ref=e10] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/login.php
+            - text: or
+            - link "Sign Up" [ref=e11] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/login.php?action=create_account
+          - listitem [ref=e12]:
+            - link [ref=e13] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/cart.php
+              - img [ref=e16]
+    - banner [ref=e21]:
+      - link "NationalSchoolForms.com" [ref=e23] [cursor=pointer]:
+        - /url: https://nationalschoolforms.com/
+        - img "NationalSchoolForms.com" [ref=e25]
+  - generic [ref=e27]:
+    - text: /
+    - main [ref=e28]:
+      - generic [ref=e29]:
+        - heading "404 Error - Page not found" [level=1] [ref=e30]
+        - paragraph [ref=e31]: Uh oh, looks like the page you are looking for has moved or no longer exists.
+        - group [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35] [cursor=pointer]: "Search Keyword:"
+            - generic [ref=e36]:
+              - textbox "Search Keyword:" [ref=e37]
+              - button "Search" [ref=e38] [cursor=pointer]
+  - contentinfo [ref=e39]:
+    - generic [ref=e41]:
+      - article [ref=e42]:
+        - heading "Contact Us" [level=5] [ref=e43]
+        - generic [ref=e45]:
+          - text: National School Forms
+          - text: 200 D Campus Drive
+          - text: Morganville, NJ 07751
+      - article [ref=e46]:
+        - heading "Accounts & Orders" [level=5] [ref=e47]
+        - list [ref=e49]:
+          - listitem [ref=e50]:
+            - link "Login" [ref=e51] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/login.php
+            - generic [ref=e52]: or
+            - link "Sign Up" [ref=e53] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/login.php?action=create_account
+          - listitem [ref=e54]:
+            - link "Shipping & Returns" [ref=e55] [cursor=pointer]:
+              - /url: /shipping-returns/
+      - article [ref=e56]:
+        - heading "Quick Links" [level=5] [ref=e57]
+        - list [ref=e59]:
+          - listitem [ref=e60]:
+            - link "REQUEST a QUOTE" [ref=e61] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/request-a-quote.html
+          - listitem [ref=e62]:
+            - link "REQUEST SAMPLES" [ref=e63] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/request-samples.html
+          - listitem [ref=e64]:
+            - link "Product Order Forms" [ref=e65] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/product-order-forms.html
+          - listitem [ref=e66]:
+            - link "Ordering Options" [ref=e67] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/ordering-options.html
+          - listitem [ref=e68]:
+            - link "Shipping & Returns" [ref=e69] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/shipping-returns.html
+          - listitem [ref=e70]:
+            - link "Contact Us" [ref=e71] [cursor=pointer]:
+              - /url: https://nationalschoolforms.com/pages/contact-us.html
+          - listitem [ref=e72]:
+            - link:
+              - /url: https://nationalschoolforms.com/pages/welcome-to-national-school-forms.html
+      - article [ref=e73]:
+        - generic [ref=e74]:
+          - heading "Connect with Us:" [level=5] [ref=e75]
+          - list [ref=e76]:
+            - listitem [ref=e77]:
+              - link [ref=e78] [cursor=pointer]:
+                - /url: https://www.facebook.com/nationalschoolforms
+                - img [ref=e79]
+            - listitem [ref=e81]:
+              - link [ref=e82] [cursor=pointer]:
+                - /url: https://www.instagram.com/nationalschoolforms/
+                - img [ref=e83]
+            - listitem [ref=e85]:
+              - link [ref=e86] [cursor=pointer]:
+                - /url: https://www.pinterest.com/schoolforms/
+                - img [ref=e87]
+      - generic [ref=e89]:
+        - img [ref=e90]
+        - img [ref=e92]
+        - img [ref=e94]
+        - img [ref=e96]
+    - list [ref=e100]:
+      - listitem [ref=e101]:
+        - generic [ref=e102]: © 2026 NationalSchoolForms.com
+      - text: "|"
+      - listitem [ref=e103]:
+        - link "Sitemap" [ref=e104] [cursor=pointer]:
+          - /url: https://nationalschoolforms.com/sitemap.php
+      - text: "|"
+      - listitem [ref=e105]:
+        - text: Premium
+        - link "BigCommerce" [ref=e106] [cursor=pointer]:
+          - /url: https://www.bigcommerce.com/
+        - text: Theme by
+        - link "Lone Star Templates" [ref=e107] [cursor=pointer]:
+          - /url: http://lonestartemplates.com/
+    - generic "Scroll Back to Top" [ref=e108] [cursor=pointer]:
+      - img "submit" [ref=e109]
