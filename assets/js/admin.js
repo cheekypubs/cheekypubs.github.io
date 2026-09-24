@@ -14,10 +14,16 @@ const GET_STORY_CONTENT_URL = `${API_BASE}/api/get-story-content`;
 const UPLOAD_ARTWORK_URL = `${API_BASE}/api/upload-artwork`;
 const GET_AUTHOR_CONTENT_URL = `${API_BASE}/api/get-author-content`;
 const EDIT_AUTHOR_URL = `${API_BASE}/api/edit-author`;
+const LIST_SUBMISSIONS_URL = `${API_BASE}/api/list-submissions`;
+const CLOSE_SUBMISSION_URL = `${API_BASE}/api/close-submission`;
 
 // Session storage key for the unified admin token
 const TOKEN_KEY = 'adminToken';
 const AUTH_KEY = 'adminAuth';
+
+// Tracks which pending-submission issue (if any) is currently loaded into the
+// Publish Story form, so a successful publish can auto-close it.
+let loadedSubmissionIssueNumber = null;
 
 // Store multi-chapter stories for the publish dropdown
 let multiChapterStories = [];
@@ -26,9 +32,10 @@ let multiChapterStories = [];
 
 function switchTab(tab) {
   const tabs = [
-    { id: 'publish', btn: 'publishTabBtn', content: 'publishContent' },
-    { id: 'edit',    btn: 'editTabBtn',    content: 'editTabContent' },
-    { id: 'author',  btn: 'authorTabBtn',  content: 'authorTabContent' }
+    { id: 'publish',     btn: 'publishTabBtn',     content: 'publishContent' },
+    { id: 'edit',        btn: 'editTabBtn',        content: 'editTabContent' },
+    { id: 'author',      btn: 'authorTabBtn',      content: 'authorTabContent' },
+    { id: 'submissions', btn: 'submissionsTabBtn', content: 'submissionsTabContent' }
   ];
   tabs.forEach(function(t) {
     const btn = document.getElementById(t.btn);
@@ -39,6 +46,7 @@ function switchTab(tab) {
     btn.setAttribute('aria-selected', String(active));
     content.classList.toggle('active', active);
   });
+  if (tab === 'submissions') loadSubmissions();
 }
 
 // ─── Clear edit form ──────────────────────────────────────────────────────────
@@ -64,6 +72,139 @@ function clearEditForm() {
       preview.style.display = 'none';
     }
   });
+}
+
+// ─── Submissions ────────────────────────────────────────────────────────────
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+async function loadSubmissions() {
+  const listEl = document.getElementById('submissionsList');
+  if (!listEl) return;
+  listEl.innerHTML = '<p style="color:#999;font-size:0.9em;">Loading…</p>';
+
+  try {
+    const token = sessionStorage.getItem(TOKEN_KEY) || '';
+    const resp = await fetch(LIST_SUBMISSIONS_URL, {
+      method: 'GET',
+      headers: token ? { 'Authorization': 'Bearer ' + token } : {},
+      credentials: 'include'
+    });
+
+    if (!resp.ok) throw new Error('Failed to load submissions (' + resp.status + ')');
+
+    const data = await resp.json();
+    renderSubmissions(data.submissions || []);
+  } catch (err) {
+    listEl.innerHTML = '<p class="error-message">' + escapeHtml(err.message) + '</p>';
+  }
+}
+
+function renderSubmissions(submissions) {
+  const listEl = document.getElementById('submissionsList');
+  if (!listEl) return;
+
+  if (!submissions.length) {
+    listEl.innerHTML = '<p class="submissions-empty">No pending submissions right now.</p>';
+    return;
+  }
+
+  listEl.innerHTML = submissions.map(function(sub) {
+    const tagsHtml = (sub.tags || []).map(function(t) {
+      return '<span class="tag">' + escapeHtml(t) + '</span>';
+    }).join('');
+    const excerpt = (sub.content || '').slice(0, 220).trim();
+    const submittedDate = sub.createdAt ? new Date(sub.createdAt).toLocaleDateString() : '';
+
+    return (
+      '<div class="submission-card" data-issue="' + sub.issueNumber + '">' +
+        '<div class="submission-card-header">' +
+          '<h3>' + escapeHtml(sub.title) + '</h3>' +
+          '<span class="submission-card-meta">By ' + escapeHtml(sub.author) + (submittedDate ? ' · ' + submittedDate : '') + '</span>' +
+        '</div>' +
+        (tagsHtml ? '<div class="submission-card-tags">' + tagsHtml + '</div>' : '') +
+        (sub.description ? '<p class="submission-card-excerpt"><em>' + escapeHtml(sub.description) + '</em></p>' : '') +
+        '<p class="submission-card-excerpt">' + escapeHtml(excerpt) + (sub.content && sub.content.length > 220 ? '…' : '') + '</p>' +
+        (sub.email ? '<p class="submission-card-meta">Contact: ' + escapeHtml(sub.email) + '</p>' : '') +
+        '<div class="submission-card-actions">' +
+          '<button type="button" class="btn-primary" onclick="loadSubmissionIntoPublishTab(' + sub.issueNumber + ')">Review &amp; Publish</button>' +
+          '<button type="button" class="btn-secondary" onclick="rejectSubmission(' + sub.issueNumber + ')">Reject</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+function loadSubmissionIntoPublishTab(issueNumber) {
+  fetch(LIST_SUBMISSIONS_URL, {
+    method: 'GET',
+    headers: (function() {
+      const token = sessionStorage.getItem(TOKEN_KEY) || '';
+      return token ? { 'Authorization': 'Bearer ' + token } : {};
+    })(),
+    credentials: 'include'
+  })
+    .then(function(resp) { return resp.json(); })
+    .then(function(data) {
+      const sub = (data.submissions || []).find(function(s) { return s.issueNumber === issueNumber; });
+      if (!sub) return;
+
+      const storyForm = document.getElementById('storyForm');
+      if (storyForm) storyForm.reset();
+      const publishPreview = document.getElementById('publishStoryArtworkPreview');
+      if (publishPreview) { publishPreview.innerHTML = ''; publishPreview.style.display = 'none'; }
+
+      const setVal = function(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.value = value || '';
+      };
+      setVal('storyTitle', sub.title);
+      setVal('storyAuthor', sub.author);
+      setVal('storyTags', (sub.tags || []).join(', '));
+      setVal('storyDescription', sub.description);
+      setVal('storyContent', sub.content);
+
+      const standaloneRadio = document.querySelector('input[name="chapterType"][value="standalone"]');
+      if (standaloneRadio) {
+        standaloneRadio.checked = true;
+        standaloneRadio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      loadedSubmissionIssueNumber = issueNumber;
+      switchTab('publish');
+      const storyTitleEl = document.getElementById('storyTitle');
+      if (storyTitleEl) storyTitleEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    })
+    .catch(function(err) {
+      alert('Could not load submission: ' + err.message);
+    });
+}
+
+function rejectSubmission(issueNumber) {
+  const reason = prompt('Optional: reason for rejecting this submission (shown in the closed issue, not sent to the author automatically).') || '';
+  closeSubmission(issueNumber, 'rejected', reason).then(function(ok) {
+    if (ok) loadSubmissions();
+  });
+}
+
+async function closeSubmission(issueNumber, action, reason) {
+  try {
+    const token = sessionStorage.getItem(TOKEN_KEY) || '';
+    const resp = await fetch(CLOSE_SUBMISSION_URL, {
+      method: 'POST',
+      headers: Object.assign({ 'Content-Type': 'application/json' }, token ? { 'Authorization': 'Bearer ' + token } : {}),
+      credentials: 'include',
+      body: JSON.stringify({ issueNumber: issueNumber, action: action, reason: reason || '' })
+    });
+    return resp.ok;
+  } catch (err) {
+    console.error('Failed to close submission', err);
+    return false;
+  }
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -333,6 +474,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         storyForm.style.display = 'none';
         document.getElementById('submissionSuccess').style.display = 'block';
+
+        if (loadedSubmissionIssueNumber) {
+          closeSubmission(loadedSubmissionIssueNumber, 'published');
+          loadedSubmissionIssueNumber = null;
+        }
 
       } catch (error) {
         console.error('Submission error:', error);

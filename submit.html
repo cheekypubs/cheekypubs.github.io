@@ -9,37 +9,13 @@ seo_description: "Submit your original spanking stories to Cheeky Pubs. Guidelin
 <div class="page-container">
   <div class="content-box">
     <h1>Submit a Story</h1>
-    
+
     <div class="submit-info">
-      <p class="intro">We'd love to read your story! To submit your work for publication on Cheekypubs, please follow the instructions below.</p>
-      
-      <h2>📧 How to Submit</h2>
-      <p>Send your story via email to:</p>
-      <p class="email-highlight">
-        <a href="mailto:cheekypubs@gmail.com">cheekypubs@gmail.com</a>
-      </p>
-      
-      <h2>📝 What to Include</h2>
-      <p>Please include the following information in your email:</p>
-      
-      <ul class="submit-checklist">
-        <li>
-          <strong>Title</strong> — The title of your story
-        </li>
-        <li>
-          <strong>Author Name</strong> — Your pen name (or "Anonymous" if you prefer)
-        </li>
-        <li>
-          <strong>Tags</strong> — Categories that describe your story (e.g., romance, drama, fiction, m/f, f/f, school, office)
-        </li>
-        <li>
-          <strong>Story Content</strong> — The body of your story, formatted in Markdown
-        </li>
-      </ul>
-      
+      <p class="intro">We'd love to read your story! Fill out the form below to send it our way — we review every submission before it's published, and you'll hear back either way.</p>
+
       <h2>✍️ Formatting Your Story</h2>
       <p>We use <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a> for formatting. Here are some basics:</p>
-      
+
       <div class="format-examples">
         <div class="format-example">
           <code>**bold text**</code> → <strong>bold text</strong>
@@ -54,30 +30,65 @@ seo_description: "Submit your original spanking stories to Cheeky Pubs. Guidelin
           <code>---</code> → Creates a decorative section divider ( ~&thinsp;*&thinsp;~ )
         </div>
       </div>
-      
+
       <p><strong>Tip:</strong> Use <code>---</code> (three dashes on its own line) to create a scene break or section divider. It will render as a decorative <em>~&thinsp;*&thinsp;~</em> separator in your published story.</p>
-      
+
       <h2>📷 Including Images</h2>
       <p>If you'd like to include images in your story, upload them to a free image hosting service like <a href="https://imgur.com/" target="_blank" rel="noopener">Imgur</a>, <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB</a>, or <a href="https://postimages.org/" target="_blank" rel="noopener">Postimages</a>, then include the direct image URL in your story using this format:</p>
       <div class="format-example">
         <code>![Image description](https://i.imgur.com/yourimage.jpg)</code>
       </div>
-      
-      <h2>📚 Multi-Chapter Stories</h2>
-      <p>If you're submitting a story with multiple chapters, please indicate:</p>
-      <ul>
-        <li>That it's part of a series</li>
-        <li>The chapter number</li>
-        <li>An optional chapter title (e.g., "Chapter 1: The Beginning")</li>
-      </ul>
-      
-      <h2>⏱️ What Happens Next</h2>
-      <p>After you submit your story, we'll review it and publish it to the site. You'll receive a confirmation email once your story is live.</p>
-      
-      <div class="submit-cta">
-        <p>Ready to share your story?</p>
-        <a href="mailto:cheekypubs@gmail.com?subject=Story%20Submission" class="btn-primary">Email Your Submission</a>
-      </div>
     </div>
+
+    <form id="storySubmissionForm" class="submission-form">
+      <div class="form-group">
+        <label for="submitTitle">Title *</label>
+        <input type="text" id="submitTitle" name="title" required maxlength="200">
+      </div>
+
+      <div class="form-group">
+        <label for="submitAuthor">Author / pen name</label>
+        <input type="text" id="submitAuthor" name="author" placeholder="Anonymous" maxlength="80">
+      </div>
+
+      <div class="form-group">
+        <label for="submitTags">Tags (comma-separated)</label>
+        <input type="text" id="submitTags" name="tags" placeholder="romance, m/f, school">
+      </div>
+
+      <div class="form-group">
+        <label for="submitDescription">Short description (optional)</label>
+        <textarea id="submitDescription" name="description" rows="2" maxlength="300" class="textarea-small"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="submitEmail">Contact email (optional, kept private)</label>
+        <input type="email" id="submitEmail" name="email">
+      </div>
+
+      <div class="form-group">
+        <label for="submitContent">Story content (Markdown) *</label>
+        <textarea id="submitContent" name="content" rows="16" required></textarea>
+      </div>
+
+      <!-- Honeypot field: hidden from real visitors, bots tend to fill every field -->
+      <div class="form-group hp-field" aria-hidden="true">
+        <label for="submitWebsite">Website</label>
+        <input type="text" id="submitWebsite" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAFCjYealnKlEkjEz" data-callback="onSubmitTurnstileSuccess"></div>
+
+      <p id="submitError" class="error-message" style="display: none;"></p>
+      <p id="submitSuccess" class="success-message" style="display: none;">Thanks! Your story has been sent for review. We'll be in touch once it's published.</p>
+
+      <button type="submit" id="submitStoryBtn" class="btn-primary">
+        <span class="btn-text">Submit Story</span>
+        <span class="btn-loading" style="display: none;">Sending…</span>
+      </button>
+    </form>
   </div>
 </div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="{{ '/assets/js/submit-form.js' | absolute_url }}"></script>

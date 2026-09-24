@@ -2502,3 +2502,110 @@ body.age-gate-locked .wip-banner,
 body.age-gate-locked .back-to-top {
     visibility: hidden;
 }
+
+/* ============================================= */
+/* --- Public Submission Form / Admin Submissions --- */
+/* ============================================= */
+
+.form-group textarea.textarea-small {
+    min-height: 60px;
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.success-message {
+    color: #2e7d32;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.cf-turnstile {
+    margin-bottom: 20px;
+}
+
+.submissions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.submission-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px 24px;
+}
+
+.submission-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.submission-card-header h3 {
+    margin: 0;
+    color: #5C4033;
+}
+
+.submission-card-meta {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.submission-card-tags {
+    margin: 8px 0;
+}
+
+.submission-card-tags .tag {
+    display: inline-block;
+    background-color: #FFF5EE;
+    border: 1px solid #f0e0d6;
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78em;
+    margin-right: 6px;
+    color: #5C4033;
+}
+
+.submission-card-excerpt {
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.submission-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.submission-card-actions .btn-secondary {
+    background-color: transparent;
+    border: 2px solid #C0392B;
+    color: #C0392B;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9em;
+}
+
+.submission-card-actions .btn-secondary:hover {
+    background-color: #C0392B;
+    color: #fff;
+}
+
+.submissions-empty {
+    color: #888;
+    text-align: center;
+    padding: 40px 20px;
+}
