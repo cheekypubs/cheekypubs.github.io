@@ -543,6 +543,7 @@ a {
     text-decoration: none;
     grid-row: 1;
     grid-column: 1;
+    height: 100%;
 }
 
 .story-thumb {
@@ -550,6 +551,7 @@ a {
     background-color: #FFE4D1;
     aspect-ratio: 2 / 1;
     width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
 }
