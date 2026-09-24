@@ -47,7 +47,22 @@
     </script>
     {% endif %}
 </head>
-<body>
+<body class="age-gate-locked">
+
+    {% include age-gate.html %}
+    <script>
+      (function() {
+        var gate = document.getElementById('ageGate');
+        if (!gate) return;
+        var THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
+        var verifiedAt = null;
+        try { verifiedAt = localStorage.getItem('cheekyAgeVerified'); } catch (e) {}
+        if (verifiedAt && (Date.now() - parseInt(verifiedAt, 10)) < THIRTY_DAYS) {
+          gate.hidden = true;
+          document.body.classList.remove('age-gate-locked');
+        }
+      })();
+    </script>
 
     <div class="wip-banner" id="wipBanner" role="alert">
         <span>🚧 This site is still a work in progress — some features may be incomplete or change without notice.</span>
@@ -76,6 +91,19 @@
     </button>
     
     <script src="{{ '/assets/js/hamburger.js' | absolute_url }}"></script>
+    <script>
+      // Age gate confirmation
+      (function() {
+        var gate = document.getElementById('ageGate');
+        var enterBtn = document.getElementById('ageGateEnter');
+        if (!gate || !enterBtn) return;
+        enterBtn.addEventListener('click', function() {
+          try { localStorage.setItem('cheekyAgeVerified', Date.now().toString()); } catch (e) {}
+          gate.hidden = true;
+          document.body.classList.remove('age-gate-locked');
+        });
+      })();
+    </script>
     <script>
       // WIP banner dismiss
       (function() {
