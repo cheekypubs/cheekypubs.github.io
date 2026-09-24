@@ -38,28 +38,15 @@ cheekypubs.github.io/
 
 ## Story Submission System
 
-Stories are submitted via a password-protected form. The submission flow:
+Submissions are two-stage: writers submit publicly, an admin reviews and publishes. See `VERCEL.md` for the full flow and required environment variables (`GITHUB_PAT`, `ADMIN_PASSWORD`, `TURNSTILE_SECRET_KEY`).
 
-1. User enters password and submits story via form
-2. Form sends data to Netlify serverless function
-3. Function creates a GitHub Issue with story content (Base64 encoded)
-4. GitHub Action processes the issue, decodes content, and commits the story
-5. Story appears on site after GitHub Pages rebuild
+1. A writer submits a story through the public form at `/submit/` (no login required; a honeypot field and optional Cloudflare Turnstile check guard against spam).
+2. This opens a `pending-submission`-labeled GitHub Issue — nothing is published yet.
+3. The site owner reviews pending submissions in the "📥 Submissions" tab of `/admin/` (password-protected) and either publishes (loads it into the Publish Story form for a final check/edit) or rejects it.
+4. Publishing triggers the same `repository_dispatch` → GitHub Action pipeline used by the admin's own "Publish Story" tab, which commits the story to `_stories/`.
+5. Story appears on site after GitHub Pages rebuild.
 
-### Setup Requirements
-
-1. **Netlify**: Deploy the repo to Netlify and set `GITHUB_TOKEN` environment variable
-2. **GitHub Token**: Personal access token with `repo` scope for creating issues
-
-### Password
-
-The submission password hash is stored in `assets/js/submit-story.js`. 
-To change the password, generate a new SHA-256 hash in browser console:
-
-```javascript
-crypto.subtle.digest('SHA-256', new TextEncoder().encode('yourpassword'))
-  .then(b => console.log(Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('')))
-```
+Backend logic lives in `api/*.js` (deployed on Vercel, not GitHub Pages — see `VERCEL.md`).
 
 ## Local Development
 

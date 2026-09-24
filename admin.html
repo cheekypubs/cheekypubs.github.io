@@ -28,6 +28,7 @@ permalink: /admin/
       <button type="button" class="admin-tab-btn active" id="publishTabBtn" role="tab" aria-selected="true" aria-controls="publishContent" onclick="switchTab('publish')">📝 Publish Story</button>
       <button type="button" class="admin-tab-btn" id="editTabBtn" role="tab" aria-selected="false" aria-controls="editTabContent" onclick="switchTab('edit')">✏️ Edit Story</button>
       <button type="button" class="admin-tab-btn" id="authorTabBtn" role="tab" aria-selected="false" aria-controls="authorTabContent" onclick="switchTab('author')">👤 Author Profiles</button>
+      <button type="button" class="admin-tab-btn" id="submissionsTabBtn" role="tab" aria-selected="false" aria-controls="submissionsTabContent" onclick="switchTab('submissions')">📥 Submissions</button>
     </div>
 
     <!-- Publish Story Tab -->
@@ -368,6 +369,14 @@ permalink: /admin/
           <p id="authorErrorDetails"></p>
           <button type="button" class="btn-secondary" onclick="document.getElementById('authorError').style.display='none'; document.getElementById('authorForm').style.display='block';">Try Again</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Submissions Tab -->
+    <div id="submissionsTabContent" class="admin-tab-content" role="tabpanel" aria-labelledby="submissionsTabBtn">
+      <p class="form-intro">Stories submitted through the public form, waiting for review. Publishing loads a submission into the Publish tab pre-filled &mdash; review it there and hit Publish as usual.</p>
+      <div id="submissionsList" class="submissions-list">
+        <p style="color:#999;font-size:0.9em;">Loading…</p>
       </div>
     </div>
 
