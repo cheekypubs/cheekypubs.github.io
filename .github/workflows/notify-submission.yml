@@ -1,0 +1,41 @@
+name: Notify on New Submission
+
+# Emails the site owner when a writer submits a story through the public form.
+# api/submit-pending.js opens an issue labeled "pending-submission"; GitHub does
+# not notify the account that created it, so this sends an email instead.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   MAIL_USERNAME  Gmail address used to send (the SMTP login)
+#   MAIL_PASSWORD  a Gmail App Password for that account (not the normal password)
+#   MAIL_TO        address that receives the alert
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: contains(github.event.issue.labels.*.name, 'pending-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to: ${{ secrets.MAIL_TO }}
+          from: Cheeky Pubs <${{ secrets.MAIL_USERNAME }}>
+          subject: "New story submission: ${{ github.event.issue.title }}"
+          body: |
+            A new story was submitted and is waiting for review.
+
+            ${{ github.event.issue.title }}
+
+            Review and publish it in the admin: https://cheeky.pub/admin/ (Submissions tab)
+            Or see the issue: ${{ github.event.issue.html_url }}
