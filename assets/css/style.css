@@ -2529,6 +2529,20 @@ body.age-gate-locked .back-to-top {
     margin-bottom: 20px;
 }
 
+.submit-thanks {
+    text-align: center;
+    padding: 40px 20px;
+    border: 2px solid #2e7d32;
+    border-radius: 8px;
+    margin: 20px 0;
+    outline: none;
+}
+
+.submit-thanks h2 {
+    margin-top: 0;
+    color: #2e7d32;
+}
+
 .submissions-list {
     display: flex;
     flex-direction: column;

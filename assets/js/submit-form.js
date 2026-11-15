@@ -6,6 +6,14 @@
   var form = document.getElementById('storySubmissionForm');
   if (!form) return;
 
+  var wrapper = document.getElementById('submitWrapper');
+  var thanks = document.getElementById('submitThanks');
+  document.getElementById('submitAnotherBtn').addEventListener('click', function () {
+    thanks.style.display = 'none';
+    wrapper.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   var turnstileToken = '';
   window.onSubmitTurnstileSuccess = function (token) {
     turnstileToken = token;
@@ -18,10 +26,8 @@
     var btnText = submitBtn.querySelector('.btn-text');
     var btnLoading = submitBtn.querySelector('.btn-loading');
     var errorEl = document.getElementById('submitError');
-    var successEl = document.getElementById('submitSuccess');
 
     errorEl.style.display = 'none';
-    successEl.style.display = 'none';
 
     var title = document.getElementById('submitTitle').value.trim();
     var content = document.getElementById('submitContent').value.trim();
@@ -63,7 +69,12 @@
       }
 
       form.reset();
-      successEl.style.display = 'block';
+      turnstileToken = '';
+      if (window.turnstile) { try { window.turnstile.reset(); } catch (e) {} }
+      wrapper.style.display = 'none';
+      thanks.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      thanks.focus({ preventScroll: true });
     } catch (err) {
       errorEl.textContent = err.message || 'Something went wrong. Please try again.';
       errorEl.style.display = 'block';
