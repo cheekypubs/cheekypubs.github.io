@@ -4,6 +4,7 @@ title: "The Birchbright Restitution"
 author: "Conor Grayson"
 date: 2026-11-15 12:00:00 -0500
 description: "Theater director Clarissa Cottonmoon catches her two late interns making out in the coat check, and offers them a choice: a spanking from her, or a letter home."
+art_image: "/assets/images/story-art/the-birchbright-restitution-1794766145000.jpg"
 tags:
   - "f/f"
   - "f/m"
