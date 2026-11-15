@@ -10,6 +10,13 @@ seo_description: "Submit your original spanking stories to Cheeky Pubs. Guidelin
   <div class="content-box">
     <h1>Submit a Story</h1>
 
+    <div id="submitThanks" class="submit-thanks" role="status" tabindex="-1" style="display: none;">
+      <h2>🎉 Thank you!</h2>
+      <p>Your story has been sent for review. We read every submission, and we'll be in touch once it's published.</p>
+      <button type="button" id="submitAnotherBtn" class="btn-primary">Submit another story</button>
+    </div>
+
+    <div id="submitWrapper">
     <div class="submit-info">
       <p class="intro">We'd love to read your story! Fill out the form below to send it our way — we review every submission before it's published, and you'll hear back either way.</p>
 
@@ -80,13 +87,12 @@ seo_description: "Submit your original spanking stories to Cheeky Pubs. Guidelin
       <div class="cf-turnstile" data-sitekey="0x4AAAAAAFCjYealnKlEkjEz" data-callback="onSubmitTurnstileSuccess"></div>
 
       <p id="submitError" class="error-message" style="display: none;"></p>
-      <p id="submitSuccess" class="success-message" style="display: none;">Thanks! Your story has been sent for review. We'll be in touch once it's published.</p>
-
       <button type="submit" id="submitStoryBtn" class="btn-primary">
         <span class="btn-text">Submit Story</span>
         <span class="btn-loading" style="display: none;">Sending…</span>
       </button>
     </form>
+    </div>
   </div>
 </div>
 
