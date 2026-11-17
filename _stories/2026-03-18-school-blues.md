@@ -133,7 +133,7 @@ Lisa clenched her jaw to keep herself from saying anything else that may get her
 
 Lisa huffed and turned to walk away, but as she did, Marcus landed a firm swat on the butt of her jeans. The sting propelled her forward, and she raced off to get what he asked for.
 
-She walked down the hall to their bedroom and saw the brush on their dresser where they always kept it. Marcus loved having it on display, so every time Lisa walked passed she knew it would be thoroughly applied to her bottom if she stepped out of line.
+She walked down the hall to their bedroom and saw the brush on their dresser where they always kept it. Marcus loved having it on display, so every time Lisa walked past she knew it would be thoroughly applied to her bottom if she stepped out of line.
 
 Lisa grabbed the handle of the thick ebony wood. The weight of it caused her stomach to drop, and butterflies to dance in her chest. Holding the brush with both hands, she slowly walked back out to the living room and handed it to Marcus.
 
