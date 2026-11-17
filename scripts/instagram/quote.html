@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --cream:#FFF5EE; --red:#C0392B; --peach:#FFE4D1; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { width:1080px; height:1350px; overflow:hidden; background:#1a0d0a; font-family:'Lora',Georgia,serif; color:var(--cream); }
+  .bg { position:absolute; inset:0; background:url("{{ART}}") center/cover no-repeat; filter:blur(5px) saturate(1.15); transform:scale(1.08); }
+  .shade { position:absolute; inset:0; background:linear-gradient(to bottom, rgba(40,10,8,.55), rgba(40,10,8,.8)); }
+  .frame { position:absolute; inset:36px; border:3px solid rgba(255,228,209,.55); }
+  .content { position:absolute; inset:0; padding:150px 110px 0; display:flex; flex-direction:column; justify-content:center; height:1130px; }
+  .mark { font-family:'Playfair Display',Georgia,serif; font-size:220px; line-height:.6; color:var(--red); height:110px; }
+  .quote { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:{{QSIZE}}px; line-height:1.28; margin-bottom:48px; }
+  .rule { width:120px; height:5px; background:var(--red); margin-bottom:28px; }
+  .src { font-size:32px; font-weight:600; }
+  .src em { font-weight:400; }
+  .footer { position:absolute; left:110px; right:110px; bottom:70px; display:flex; align-items:center; justify-content:space-between; }
+  .cta { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:34px; }
+  .cta span { color:var(--peach); }
+  .logo { height:110px; background:var(--cream); border-radius:18px; padding:6px 14px; }
+</style></head>
+<body>
+  <div class="bg"></div><div class="shade"></div><div class="frame"></div>
+  <div class="content">
+    <div class="mark">“</div>
+    <div class="quote">{{QUOTE}}</div>
+    <div class="rule"></div>
+    <div class="src">{{TITLE}} <em>by {{AUTHOR}}</em></div>
+  </div>
+  <div class="footer">
+    <div class="cta">Read it free at <span>cheeky.pub</span></div>
+    <img class="logo" src="{{LOGO}}">
+  </div>
+</body></html>

@@ -3,6 +3,7 @@ layout: story
 title: "School Blues"
 author: "Karole"
 date: 2026-03-18 12:00:00 -0500
+description: "After a loud, tantrum-sized meltdown over schoolwork, Lisa finds her boyfriend Marcus home early and not at all amused."
 art_image: "/assets/images/story-art/school-blues-1777947470490.png"
 tags:
   - "m/f"

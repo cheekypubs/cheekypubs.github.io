@@ -3,6 +3,7 @@ layout: story
 title: "My New Nanny"
 author: "Karole"
 date: 2026-03-18 12:00:00 -0500
+description: "On maintenance day, she comes home expecting Daddy and finds a stern Nanny instead, there to make sure she is a very obedient little girl."
 art_image: "/assets/images/story-art/my-new-nanny-1776199234055.png"
 tags:
   - "age play"
