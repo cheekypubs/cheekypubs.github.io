@@ -3,7 +3,7 @@ layout: story
 title: "A Scandal at Burnmarsh"
 author: "Conor Grayson"
 date: 2026-03-07 02:27:04 -0500
-art_image: "/assets/images/story-art/a-scandal-at-burnmarh-1772848575416.png"
+art_image: "/assets/images/story-art/a-scandal-at-burnmarsh-1794890553000.jpg"
 story_id: "a-scandal-at-burnmarh"
 chapter: 2
 chapter_title: "Josephine"
