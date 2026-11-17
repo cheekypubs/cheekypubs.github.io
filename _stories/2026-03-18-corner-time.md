@@ -3,6 +3,8 @@ layout: story
 title: "Corner Time"
 author: "Karole"
 date: 2026-03-18 02:41:28 -0500
+description: "Sara is caught fidgeting during corner time, and Jacob has a stern reminder of the rules and a punishment to match."
+art_image: "/assets/images/story-art/corner-time-1794890150000.jpg"
 tags:
   - m/f
 ---

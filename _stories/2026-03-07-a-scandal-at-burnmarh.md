@@ -4,7 +4,7 @@ title: "A Scandal at Burnmarsh"
 author: "Conor Grayson"
 date: 2026-03-07 12:00:00 -0500
 description: "A young teacher uncovers a cheating scandal at a local school"
-art_image: "/assets/images/story-art/a-scandal-at-burnmarh-1772848575416.png"
+art_image: "/assets/images/story-art/a-scandal-at-burnmarsh-1794890553000.jpg"
 story_id: "a-scandal-at-burnmarh"
 chapter: 1
 chapter_title: "The Crime"

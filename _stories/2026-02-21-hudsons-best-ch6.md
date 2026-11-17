@@ -7,7 +7,7 @@ story_id: "hudsons-best"
 chapter: 6
 chapter_title: "Part 6"
 description: "A strict governess oversees a punishment weekend for the wayward daughter of a wealthy mid-century family."
-art_image: "/assets/images/story-art/hudsons-best-1772379189599.png"
+art_image: "/assets/images/story-art/hudsons-best-1794890232000.jpg"
 tags:
   - f/f
 ---
